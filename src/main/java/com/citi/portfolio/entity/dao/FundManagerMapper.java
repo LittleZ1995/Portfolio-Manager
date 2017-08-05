@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.citi.portfolio.entity.FundManager;
 
-@Repository 
 public interface FundManagerMapper {
     int deleteByPrimaryKey(Integer managerid);
 
