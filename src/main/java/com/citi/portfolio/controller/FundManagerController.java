@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.citi.portfolio.entity.FundManager;
@@ -13,22 +15,19 @@ import com.citi.portfolio.service.FundManagerService;
 @RequestMapping("/manager")
 public class FundManagerController {
 	
-		private FundManagerService fundManagerService;
+	public FundManagerController() {
+		
+	}
 
-		public FundManagerService getFundManagerService() {
-			return fundManagerService;
-		}
+	@Resource
+	private FundManagerService fundManagerService;
 
-		@Resource
-		public void setFundManagerService(FundManagerService fundManagerService) {
-			this.fundManagerService = fundManagerService;
-		}
+	@RequestMapping("/showUser/{id}")
+	public String showUser(@PathVariable("id")Integer id, HttpServletRequest request,Model model) {
+		FundManager manager = fundManagerService.getManagerById(1);
+		model.addAttribute("manager", manager);
+//		request.setAttribute("manager", manager);
+		return "showUser";
+	}
 
-		@RequestMapping("/showUser")
-		public String showUser(int id,HttpServletRequest request) {
-			FundManager manager = fundManagerService.getManagerById(1);
-			request.setAttribute("manager", manager);
-			return "jsp/user/showUser";
-		}
-	
 }
