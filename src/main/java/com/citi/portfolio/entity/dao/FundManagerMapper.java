@@ -1,8 +1,5 @@
 package com.citi.portfolio.entity.dao;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.citi.portfolio.entity.FundManager;
 
 public interface FundManagerMapper {

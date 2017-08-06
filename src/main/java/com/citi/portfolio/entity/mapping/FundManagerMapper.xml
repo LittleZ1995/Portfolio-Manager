@@ -2,20 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.citi.portfolio.entity.dao.FundManagerMapper" >
   <resultMap id="BaseResultMap" type="com.citi.portfolio.entity.FundManager" >
-    <id column="managerId" property="managerid" jdbcType="INTEGER" />
-    <result column="firstName" property="firstname" jdbcType="VARCHAR" />
-    <result column="lastName" property="lastname" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <id column="ManagerID" property="managerid" jdbcType="INTEGER" />
+    <result column="FirstName" property="firstname" jdbcType="VARCHAR" />
+    <result column="LastName" property="lastname" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="PhoneNumber" property="phonenumber" jdbcType="VARCHAR" />
   </resultMap>
-  
   <sql id="Base_Column_List" >
-    managerId, firstName, lastName, email, phoneNumber
+    ManagerID, FirstName, LastName, Email, PhoneNumber
   </sql>
-  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fundmanager
+    where ManagerID = #{managerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fundmanager
+    where ManagerID = #{managerid,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.FundManager" >
-    insert into fundmanager (managerId, firstName, lastName, 
-      email, phoneNumber)
+    insert into fundmanager (ManagerID, FirstName, LastName, 
+      Email, PhoneNumber)
     values (#{managerid,jdbcType=INTEGER}, #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR})
   </insert>
@@ -23,19 +31,19 @@
     insert into fundmanager
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="managerid != null" >
-        managerId,
+        ManagerID,
       </if>
       <if test="firstname != null" >
-        firstName,
+        FirstName,
       </if>
       <if test="lastname != null" >
-        lastName,
+        LastName,
       </if>
       <if test="email != null" >
-        email,
+        Email,
       </if>
       <if test="phonenumber != null" >
-        phoneNumber,
+        PhoneNumber,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -55,43 +63,31 @@
         #{phonenumber,jdbcType=VARCHAR},
       </if>
     </trim>
-  </insert> <update id="updateByPrimaryKeySelective" parameterType="com.citi.portfolio.entity.FundManager" >
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citi.portfolio.entity.FundManager" >
     update fundmanager
     <set >
       <if test="firstname != null" >
-        firstName = #{firstname,jdbcType=VARCHAR},
+        FirstName = #{firstname,jdbcType=VARCHAR},
       </if>
       <if test="lastname != null" >
-        lastName = #{lastname,jdbcType=VARCHAR},
+        LastName = #{lastname,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
+        Email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="phonenumber != null" >
-        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+        PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
       </if>
     </set>
-    where managerId = #{managerid,jdbcType=INTEGER}
+    where ManagerID = #{managerid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.citi.portfolio.entity.FundManager" >
     update fundmanager
-    set firstName = #{firstname,jdbcType=VARCHAR},
-      lastName = #{lastname,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      phoneNumber = #{phonenumber,jdbcType=VARCHAR}
-    where managerId = #{managerid,jdbcType=INTEGER}
+    set FirstName = #{firstname,jdbcType=VARCHAR},
+      LastName = #{lastname,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      PhoneNumber = #{phonenumber,jdbcType=VARCHAR}
+    where ManagerID = #{managerid,jdbcType=INTEGER}
   </update>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from fundmanager
-    where managerId = #{managerid,jdbcType=INTEGER}
-  </delete>
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from fundmanager
-    where managerId = #{managerid,jdbcType=INTEGER}
-  </select>
-  
 </mapper>
