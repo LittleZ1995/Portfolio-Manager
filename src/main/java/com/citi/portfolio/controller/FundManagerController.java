@@ -22,12 +22,19 @@ public class FundManagerController {
 	@Resource
 	private FundManagerService fundManagerService;
 
-	@RequestMapping("/showUser/{id}")
-	public String showUser(@PathVariable("id")Integer id, HttpServletRequest request,Model model) {
-		FundManager manager = fundManagerService.getManagerById(1);
-		model.addAttribute("manager", manager);
+	@RequestMapping("/showUser")
+    public String showUser(HttpServletRequest request, Model model){
+		int userId = Integer.parseInt(request.getParameter("id"));
+		FundManager user = fundManagerService.getManagerById(userId);        
+        model.addAttribute("user",user);
+        return "showUser";
+}
+//	@RequestMapping("/showUser/{id}")
+//	public String showUser(@PathVariable("id")Integer id, HttpServletRequest request,Model model) {
+//		FundManager manager = fundManagerService.getManagerById(id);
+//		model.addAttribute("manager", manager);
 //		request.setAttribute("manager", manager);
-		return "showUser";
-	}
+//		return "showUser";
+//	}
 
 }

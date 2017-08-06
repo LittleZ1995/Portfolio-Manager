@@ -1841,4 +1841,10 @@ Caused by: org.springframework.beans.NotWritablePropertyException: Invalid prope
   [INFO] [2017-08-06 01:06:44][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
   [INFO] [2017-08-06 01:06:48][com.citi.portfolio.service.FundManagerServiceTest]{"email":"1219777393@qq.com","firstname":"chen","lastname":"tao","managerid":1,"phonenumber":"18829234827"}
   [INFO] [2017-08-06 01:06:48][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@783e6358: startup date [Sun Aug 06 01:06:43 CST 2017]; root of context hierarchy
+  [INFO] [2017-08-06 11:50:40][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+  [INFO] [2017-08-06 11:50:45][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@783e6358: startup date [Sun Aug 06 11:50:45 CST 2017]; root of context hierarchy
+  [INFO] [2017-08-06 11:50:46][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2017-08-06 11:50:46][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2017-08-06 11:50:59][com.citi.portfolio.service.FundManagerServiceTest]{"email":"1219777393@qq.com","firstname":"chen","lastname":"tao","managerid":1,"phonenumber":"18829234827"}
+  [INFO] [2017-08-06 11:50:59][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@783e6358: startup date [Sun Aug 06 11:50:45 CST 2017]; root of context hierarchy
   
