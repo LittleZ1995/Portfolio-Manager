@@ -1,5 +1,7 @@
 package com.citi.portfolio.entity.dao;
 
+import java.util.List;
+
 import com.citi.portfolio.entity.FundManager;
 
 public interface FundManagerMapper {
@@ -14,4 +16,8 @@ public interface FundManagerMapper {
     int updateByPrimaryKeySelective(FundManager record);
 
     int updateByPrimaryKey(FundManager record);
+    
+    List<FundManager> getAllManagers();
+    
+    
 }

@@ -1,5 +1,7 @@
 package com.citi.portfolio.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +18,21 @@ public class FundManagerServiceImpl implements FundManagerService{
 
 	public FundManager getManagerById(int managerId) {
 		return fundManagerMapper.selectByPrimaryKey(managerId);
+	}
+
+	public List<FundManager> getAllManagers() {
+		// TODO Auto-generated method stub
+		return fundManagerMapper.getAllManagers();
+	}
+
+	public int addManager(FundManager record) {
+		// TODO Auto-generated method stub
+		return fundManagerMapper.insert(record);
+	}
+
+	public int deleteManager(int managerid) {
+		// TODO Auto-generated method stub
+		return fundManagerMapper.deleteByPrimaryKey(managerid);
 	}
 
 }

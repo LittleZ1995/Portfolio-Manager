@@ -60,4 +60,21 @@ public class FundManager {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+	public FundManager(Integer managerid, String firstname, String lastname, String email, String phonenumber,
+			String password) {
+		super();
+		this.managerid = managerid;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phonenumber = phonenumber;
+		this.password = password;
+	}
+
+	public FundManager() {
+		super();
+	}
+    
+    
 }
