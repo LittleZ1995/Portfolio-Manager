@@ -3,73 +3,90 @@ package com.citi.portfolio.entity;
 import java.util.Date;
 
 public class Bond {
-    private Integer bondid;
+	private Integer bondid;
 
-    private String isin;
+	private String isin;
 
-    private Integer priceid;
+	private Integer priceid;
 
-    private String issuer;
+	private String issuer;
 
-    private Double coupon;
+	private Double coupon;
 
-    private Date maturity;
+	private Date maturity;
 
-    private Integer securityid;
+	private Integer securityid;
 
-    public Integer getBondid() {
-        return bondid;
-    }
+	private Price price;
 
-    public void setBondid(Integer bondid) {
-        this.bondid = bondid;
-    }
+	public Price getPrice() {
+		return price;
+	}
 
-    public String getIsin() {
-        return isin;
-    }
+	public void setPrice(Price price) {
+		this.price = price;
+	}
 
-    public void setIsin(String isin) {
-        this.isin = isin == null ? null : isin.trim();
-    }
+	public Integer getBondid() {
+		return bondid;
+	}
 
-    public Integer getPriceid() {
-        return priceid;
-    }
+	public void setBondid(Integer bondid) {
+		this.bondid = bondid;
+	}
 
-    public void setPriceid(Integer priceid) {
-        this.priceid = priceid;
-    }
+	public String getIsin() {
+		return isin;
+	}
 
-    public String getIssuer() {
-        return issuer;
-    }
+	public void setIsin(String isin) {
+		this.isin = isin == null ? null : isin.trim();
+	}
 
-    public void setIssuer(String issuer) {
-        this.issuer = issuer == null ? null : issuer.trim();
-    }
+	public Integer getPriceid() {
+		return priceid;
+	}
 
-    public Double getCoupon() {
-        return coupon;
-    }
+	public void setPriceid(Integer priceid) {
+		this.priceid = priceid;
+	}
 
-    public void setCoupon(Double coupon) {
-        this.coupon = coupon;
-    }
+	public String getIssuer() {
+		return issuer;
+	}
 
-    public Date getMaturity() {
-        return maturity;
-    }
+	public void setIssuer(String issuer) {
+		this.issuer = issuer == null ? null : issuer.trim();
+	}
 
-    public void setMaturity(Date maturity) {
-        this.maturity = maturity;
-    }
+	public Double getCoupon() {
+		return coupon;
+	}
 
-    public Integer getSecurityid() {
-        return securityid;
-    }
+	public void setCoupon(Double coupon) {
+		this.coupon = coupon;
+	}
 
-    public void setSecurityid(Integer securityid) {
-        this.securityid = securityid;
-    }
+	public Date getMaturity() {
+		return maturity;
+	}
+
+	public void setMaturity(Date maturity) {
+		this.maturity = maturity;
+	}
+
+	public Integer getSecurityid() {
+		return securityid;
+	}
+
+	public void setSecurityid(Integer securityid) {
+		this.securityid = securityid;
+	}
+
+	@Override
+	public String toString() {
+		return "Bond [bondid=" + bondid + ", isin=" + isin + ", priceid=" + priceid + ", issuer=" + issuer + ", coupon="
+				+ coupon + ", maturity=" + maturity + ", securityid=" + securityid + ", price=" + price + "]";
+	}
+
 }

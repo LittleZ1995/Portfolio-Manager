@@ -10,6 +10,8 @@ public interface FutureMapper {
     int insertSelective(Future record);
 
     Future selectByPrimaryKey(Integer futureid);
+    
+    Future selectByPrimaryKeyWithPrice(Integer futureid);
 
     int updateByPrimaryKeySelective(Future record);
 

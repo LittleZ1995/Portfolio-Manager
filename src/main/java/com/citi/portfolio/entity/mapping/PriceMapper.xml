@@ -18,6 +18,11 @@
     from price
     where PriceID = #{priceid,jdbcType=INTEGER}
   </select>
+  <select id="selectBySecurityID" resultMap="BaseResultMap" parameterType="java.util.List">
+    select *
+    from price
+    where SecurityID = #{securityId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from price
     where PriceID = #{priceid,jdbcType=INTEGER}

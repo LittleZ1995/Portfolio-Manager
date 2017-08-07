@@ -63,4 +63,11 @@ public class Price {
     public void setSecurityid(Integer securityid) {
         this.securityid = securityid;
     }
+
+	@Override
+	public String toString() {
+		return "Price [priceid=" + priceid + ", bidprice=" + bidprice + ", offerprice=" + offerprice + ", currency="
+				+ currency + ", date=" + date + ", securityid=" + securityid + "]";
+	}
+    
 }

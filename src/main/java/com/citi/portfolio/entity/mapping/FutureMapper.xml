@@ -9,6 +9,24 @@
     <result column="DeliveryDate" property="deliverydate" jdbcType="DATE" />
     <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="FuturePriceList" type="com.citi.portfolio.entity.Future" >
+    <id column="FutureID" property="futureid" jdbcType="INTEGER" />
+    <result column="ISIN" property="isin" jdbcType="VARCHAR" />
+    <result column="PriceID" property="priceid" jdbcType="INTEGER" />
+    <result column="Symbol" property="symbol" jdbcType="VARCHAR" />
+    <result column="DeliveryDate" property="deliverydate" jdbcType="DATE" />
+    <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
+    <association property="price" javaType="com.citi.portfolio.entity.Price" resultMap="PriceList" />
+  </resultMap>
+
+	<resultMap id="PriceList" type="com.citi.portfolio.entity.Price">
+		<id column="PriceID" property="priceid" jdbcType="INTEGER" />
+		<result column="BidPrice" property="bidprice" jdbcType="DECIMAL" />
+		<result column="OfferPrice" property="offerprice" jdbcType="DECIMAL" />
+		<result column="Currency" property="currency" jdbcType="VARCHAR" />
+		<result column="Date" property="date" jdbcType="DATE" />
+		<result column="SecurityID" property="securityid" jdbcType="INTEGER" />
+	</resultMap>
   <sql id="Base_Column_List" >
     FutureID, ISIN, PriceID, Symbol, DeliveryDate, SecurityID
   </sql>
@@ -17,6 +35,11 @@
     <include refid="Base_Column_List" />
     from future
     where FutureID = #{futureid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKeyWithPrice" resultMap="FuturePriceList" parameterType="java.lang.Integer">
+    select * 
+    from future, price
+    where future.FutureID = #{futureid,jdbcType=INTEGER} and future.PriceID = price.PriceID
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from future

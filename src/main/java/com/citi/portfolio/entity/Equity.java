@@ -10,6 +10,8 @@ public class Equity {
     private String symbol;
 
     private Integer securityid;
+    
+    private Price price;
 
     public Integer getEquityid() {
         return equityid;
@@ -50,4 +52,20 @@ public class Equity {
     public void setSecurityid(Integer securityid) {
         this.securityid = securityid;
     }
+
+	public Price getPrice() {
+		return price;
+	}
+
+	public void setPrice(Price price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Equity [equityid=" + equityid + ", isin=" + isin + ", priceid=" + priceid + ", symbol=" + symbol
+				+ ", securityid=" + securityid + ", price=" + price + "]";
+	}
+    
+    
 }

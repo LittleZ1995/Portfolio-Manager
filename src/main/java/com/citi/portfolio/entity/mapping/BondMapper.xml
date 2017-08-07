@@ -10,6 +10,27 @@
     <result column="Maturity" property="maturity" jdbcType="DATE" />
     <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
   </resultMap>
+  
+   <resultMap id="BondPriceList" type="com.citi.portfolio.entity.Bond" >
+    <id column="BondID" property="bondid" jdbcType="INTEGER" />
+    <result column="ISIN" property="isin" jdbcType="VARCHAR" />
+    <result column="PriceID" property="priceid" jdbcType="INTEGER" />
+    <result column="Issuer" property="issuer" jdbcType="VARCHAR" />
+    <result column="Coupon" property="coupon" jdbcType="DOUBLE" />
+    <result column="Maturity" property="maturity" jdbcType="DATE" />
+    <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
+    <association property="price" javaType="com.citi.portfolio.entity.Price" resultMap="PriceList" />
+  </resultMap>
+
+	<resultMap id="PriceList" type="com.citi.portfolio.entity.Price">
+		<id column="PriceID" property="priceid" jdbcType="INTEGER" />
+		<result column="BidPrice" property="bidprice" jdbcType="DECIMAL" />
+		<result column="OfferPrice" property="offerprice" jdbcType="DECIMAL" />
+		<result column="Currency" property="currency" jdbcType="VARCHAR" />
+		<result column="Date" property="date" jdbcType="DATE" />
+		<result column="SecurityID" property="securityid" jdbcType="INTEGER" />
+	</resultMap>
+	
   <sql id="Base_Column_List" >
     BondID, ISIN, PriceID, Issuer, Coupon, Maturity, SecurityID
   </sql>
@@ -18,6 +39,11 @@
     <include refid="Base_Column_List" />
     from bond
     where BondID = #{bondid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKeyWithPrice" resultMap="BondPriceList" parameterType="java.lang.Integer">
+    select * 
+    from bond, price
+    where bond.BondID = #{bondid,jdbcType=INTEGER} and bond.PriceID = price.PriceID
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bond

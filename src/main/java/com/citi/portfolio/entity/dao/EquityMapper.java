@@ -10,6 +10,8 @@ public interface EquityMapper {
     int insertSelective(Equity record);
 
     Equity selectByPrimaryKey(Integer equityid);
+    
+    Equity selectByPrimaryKeyWithPrice(Integer equityid);
 
     int updateByPrimaryKeySelective(Equity record);
 

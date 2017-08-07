@@ -14,6 +14,8 @@ public class Future {
     private Date deliverydate;
 
     private Integer securityid;
+    
+    private Price price;
 
     public Integer getFutureid() {
         return futureid;
@@ -62,4 +64,19 @@ public class Future {
     public void setSecurityid(Integer securityid) {
         this.securityid = securityid;
     }
+
+	public Price getPrice() {
+		return price;
+	}
+
+	public void setPrice(Price price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Future [futureid=" + futureid + ", isin=" + isin + ", priceid=" + priceid + ", symbol=" + symbol
+				+ ", deliverydate=" + deliverydate + ", securityid=" + securityid + ", price=" + price + "]";
+	}
+    
 }
