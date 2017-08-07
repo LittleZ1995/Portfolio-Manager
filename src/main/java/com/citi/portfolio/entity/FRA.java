@@ -5,7 +5,7 @@ public class FRA {
 
     private String isin;
 
-    private Integer priceidfra;
+    private Integer priceid;
 
     private Integer fpstart;
 
@@ -13,7 +13,7 @@ public class FRA {
 
     private Double rate;
 
-    private Integer positionidfra;
+    private Integer securityid;
 
     public Integer getFraid() {
         return fraid;
@@ -31,12 +31,12 @@ public class FRA {
         this.isin = isin == null ? null : isin.trim();
     }
 
-    public Integer getPriceidfra() {
-        return priceidfra;
+    public Integer getPriceid() {
+        return priceid;
     }
 
-    public void setPriceidfra(Integer priceidfra) {
-        this.priceidfra = priceidfra;
+    public void setPriceid(Integer priceid) {
+        this.priceid = priceid;
     }
 
     public Integer getFpstart() {
@@ -63,11 +63,11 @@ public class FRA {
         this.rate = rate;
     }
 
-    public Integer getPositionidfra() {
-        return positionidfra;
+    public Integer getSecurityid() {
+        return securityid;
     }
 
-    public void setPositionidfra(Integer positionidfra) {
-        this.positionidfra = positionidfra;
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }

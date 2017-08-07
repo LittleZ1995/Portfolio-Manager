@@ -5,11 +5,11 @@ public class ETF {
 
     private String isin;
 
-    private Integer priceidetf;
+    private Integer priceid;
 
     private String symbol;
 
-    private Integer positionidetf;
+    private Integer securityid;
 
     public Integer getEtfid() {
         return etfid;
@@ -27,12 +27,12 @@ public class ETF {
         this.isin = isin == null ? null : isin.trim();
     }
 
-    public Integer getPriceidetf() {
-        return priceidetf;
+    public Integer getPriceid() {
+        return priceid;
     }
 
-    public void setPriceidetf(Integer priceidetf) {
-        this.priceidetf = priceidetf;
+    public void setPriceid(Integer priceid) {
+        this.priceid = priceid;
     }
 
     public String getSymbol() {
@@ -43,11 +43,11 @@ public class ETF {
         this.symbol = symbol == null ? null : symbol.trim();
     }
 
-    public Integer getPositionidetf() {
-        return positionidetf;
+    public Integer getSecurityid() {
+        return securityid;
     }
 
-    public void setPositionidetf(Integer positionidetf) {
-        this.positionidetf = positionidetf;
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }

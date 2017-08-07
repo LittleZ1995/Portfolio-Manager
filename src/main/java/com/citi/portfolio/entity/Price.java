@@ -14,6 +14,8 @@ public class Price {
 
     private Date date;
 
+    private Integer securityid;
+
     public Integer getPriceid() {
         return priceid;
     }
@@ -52,5 +54,13 @@ public class Price {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getSecurityid() {
+        return securityid;
+    }
+
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }

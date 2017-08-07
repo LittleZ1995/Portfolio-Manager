@@ -7,15 +7,15 @@ public class Bond {
 
     private String isin;
 
-    private Integer priceidb;
-
-    private Integer positionidb;
+    private Integer priceid;
 
     private String issuer;
 
     private Double coupon;
 
     private Date maturity;
+
+    private Integer securityid;
 
     public Integer getBondid() {
         return bondid;
@@ -33,20 +33,12 @@ public class Bond {
         this.isin = isin == null ? null : isin.trim();
     }
 
-    public Integer getPriceidb() {
-        return priceidb;
+    public Integer getPriceid() {
+        return priceid;
     }
 
-    public void setPriceidb(Integer priceidb) {
-        this.priceidb = priceidb;
-    }
-
-    public Integer getPositionidb() {
-        return positionidb;
-    }
-
-    public void setPositionidb(Integer positionidb) {
-        this.positionidb = positionidb;
+    public void setPriceid(Integer priceid) {
+        this.priceid = priceid;
     }
 
     public String getIssuer() {
@@ -71,5 +63,13 @@ public class Bond {
 
     public void setMaturity(Date maturity) {
         this.maturity = maturity;
+    }
+
+    public Integer getSecurityid() {
+        return securityid;
+    }
+
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }

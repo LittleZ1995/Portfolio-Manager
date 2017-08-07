@@ -7,13 +7,13 @@ public class Future {
 
     private String isin;
 
-    private Integer priceidf;
+    private Integer priceid;
 
     private String symbol;
 
     private Date deliverydate;
 
-    private Integer positionidf;
+    private Integer securityid;
 
     public Integer getFutureid() {
         return futureid;
@@ -31,12 +31,12 @@ public class Future {
         this.isin = isin == null ? null : isin.trim();
     }
 
-    public Integer getPriceidf() {
-        return priceidf;
+    public Integer getPriceid() {
+        return priceid;
     }
 
-    public void setPriceidf(Integer priceidf) {
-        this.priceidf = priceidf;
+    public void setPriceid(Integer priceid) {
+        this.priceid = priceid;
     }
 
     public String getSymbol() {
@@ -55,11 +55,11 @@ public class Future {
         this.deliverydate = deliverydate;
     }
 
-    public Integer getPositionidf() {
-        return positionidf;
+    public Integer getSecurityid() {
+        return securityid;
     }
 
-    public void setPositionidf(Integer positionidf) {
-        this.positionidf = positionidf;
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }

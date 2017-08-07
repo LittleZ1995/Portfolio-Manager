@@ -7,9 +7,10 @@
     <result column="OfferPrice" property="offerprice" jdbcType="DECIMAL" />
     <result column="Currency" property="currency" jdbcType="VARCHAR" />
     <result column="Date" property="date" jdbcType="DATE" />
+    <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    PriceID, BidPrice, OfferPrice, Currency, Date
+    PriceID, BidPrice, OfferPrice, Currency, Date, SecurityID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,9 +24,11 @@
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.Price" >
     insert into price (PriceID, BidPrice, OfferPrice, 
-      Currency, Date)
+      Currency, Date, SecurityID
+      )
     values (#{priceid,jdbcType=INTEGER}, #{bidprice,jdbcType=DECIMAL}, #{offerprice,jdbcType=DECIMAL}, 
-      #{currency,jdbcType=VARCHAR}, #{date,jdbcType=DATE})
+      #{currency,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{securityid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.Price" >
     insert into price
@@ -45,6 +48,9 @@
       <if test="date != null" >
         Date,
       </if>
+      <if test="securityid != null" >
+        SecurityID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="priceid != null" >
@@ -61,6 +67,9 @@
       </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},
+      </if>
+      <if test="securityid != null" >
+        #{securityid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -79,6 +88,9 @@
       <if test="date != null" >
         Date = #{date,jdbcType=DATE},
       </if>
+      <if test="securityid != null" >
+        SecurityID = #{securityid,jdbcType=INTEGER},
+      </if>
     </set>
     where PriceID = #{priceid,jdbcType=INTEGER}
   </update>
@@ -87,7 +99,8 @@
     set BidPrice = #{bidprice,jdbcType=DECIMAL},
       OfferPrice = #{offerprice,jdbcType=DECIMAL},
       Currency = #{currency,jdbcType=VARCHAR},
-      Date = #{date,jdbcType=DATE}
+      Date = #{date,jdbcType=DATE},
+      SecurityID = #{securityid,jdbcType=INTEGER}
     where PriceID = #{priceid,jdbcType=INTEGER}
   </update>
 </mapper>

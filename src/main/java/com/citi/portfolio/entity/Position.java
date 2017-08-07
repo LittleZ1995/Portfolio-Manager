@@ -11,7 +11,7 @@ public class Position {
 
     private BigDecimal lastprice;
 
-    private String securitytype;
+    private Integer securityid;
 
     public Integer getPositionid() {
         return positionid;
@@ -45,11 +45,11 @@ public class Position {
         this.lastprice = lastprice;
     }
 
-    public String getSecuritytype() {
-        return securitytype;
+    public Integer getSecurityid() {
+        return securityid;
     }
 
-    public void setSecuritytype(String securitytype) {
-        this.securitytype = securitytype == null ? null : securitytype.trim();
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }

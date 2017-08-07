@@ -11,6 +11,8 @@ public class FundManager {
 
     private String phonenumber;
 
+    private String password;
+
     public Integer getManagerid() {
         return managerid;
     }
@@ -49,5 +51,13 @@ public class FundManager {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber == null ? null : phonenumber.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

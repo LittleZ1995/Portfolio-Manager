@@ -7,9 +7,10 @@
     <result column="LastName" property="lastname" jdbcType="VARCHAR" />
     <result column="Email" property="email" jdbcType="VARCHAR" />
     <result column="PhoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ManagerID, FirstName, LastName, Email, PhoneNumber
+    ManagerID, FirstName, LastName, Email, PhoneNumber, Password
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,9 +24,11 @@
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.FundManager" >
     insert into fundmanager (ManagerID, FirstName, LastName, 
-      Email, PhoneNumber)
+      Email, PhoneNumber, Password
+      )
     values (#{managerid,jdbcType=INTEGER}, #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR})
+      #{email,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.FundManager" >
     insert into fundmanager
@@ -45,6 +48,9 @@
       <if test="phonenumber != null" >
         PhoneNumber,
       </if>
+      <if test="password != null" >
+        Password,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="managerid != null" >
@@ -61,6 +67,9 @@
       </if>
       <if test="phonenumber != null" >
         #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -79,6 +88,9 @@
       <if test="phonenumber != null" >
         PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
     </set>
     where ManagerID = #{managerid,jdbcType=INTEGER}
   </update>
@@ -87,7 +99,8 @@
     set FirstName = #{firstname,jdbcType=VARCHAR},
       LastName = #{lastname,jdbcType=VARCHAR},
       Email = #{email,jdbcType=VARCHAR},
-      PhoneNumber = #{phonenumber,jdbcType=VARCHAR}
+      PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR}
     where ManagerID = #{managerid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.citi.portfolio.entity.ETF" >
     <id column="ETFID" property="etfid" jdbcType="INTEGER" />
     <result column="ISIN" property="isin" jdbcType="VARCHAR" />
-    <result column="PriceIDetf" property="priceidetf" jdbcType="INTEGER" />
+    <result column="PriceID" property="priceid" jdbcType="INTEGER" />
     <result column="Symbol" property="symbol" jdbcType="VARCHAR" />
-    <result column="PositionIDetf" property="positionidetf" jdbcType="INTEGER" />
+    <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ETFID, ISIN, PriceIDetf, Symbol, PositionIDetf
+    ETFID, ISIN, PriceID, Symbol, SecurityID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,10 +22,10 @@
     where ETFID = #{etfid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.ETF" >
-    insert into etf (ETFID, ISIN, PriceIDetf, 
-      Symbol, PositionIDetf)
-    values (#{etfid,jdbcType=INTEGER}, #{isin,jdbcType=VARCHAR}, #{priceidetf,jdbcType=INTEGER}, 
-      #{symbol,jdbcType=VARCHAR}, #{positionidetf,jdbcType=INTEGER})
+    insert into etf (ETFID, ISIN, PriceID, 
+      Symbol, SecurityID)
+    values (#{etfid,jdbcType=INTEGER}, #{isin,jdbcType=VARCHAR}, #{priceid,jdbcType=INTEGER}, 
+      #{symbol,jdbcType=VARCHAR}, #{securityid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.ETF" >
     insert into etf
@@ -36,14 +36,14 @@
       <if test="isin != null" >
         ISIN,
       </if>
-      <if test="priceidetf != null" >
-        PriceIDetf,
+      <if test="priceid != null" >
+        PriceID,
       </if>
       <if test="symbol != null" >
         Symbol,
       </if>
-      <if test="positionidetf != null" >
-        PositionIDetf,
+      <if test="securityid != null" >
+        SecurityID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -53,14 +53,14 @@
       <if test="isin != null" >
         #{isin,jdbcType=VARCHAR},
       </if>
-      <if test="priceidetf != null" >
-        #{priceidetf,jdbcType=INTEGER},
+      <if test="priceid != null" >
+        #{priceid,jdbcType=INTEGER},
       </if>
       <if test="symbol != null" >
         #{symbol,jdbcType=VARCHAR},
       </if>
-      <if test="positionidetf != null" >
-        #{positionidetf,jdbcType=INTEGER},
+      <if test="securityid != null" >
+        #{securityid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -70,14 +70,14 @@
       <if test="isin != null" >
         ISIN = #{isin,jdbcType=VARCHAR},
       </if>
-      <if test="priceidetf != null" >
-        PriceIDetf = #{priceidetf,jdbcType=INTEGER},
+      <if test="priceid != null" >
+        PriceID = #{priceid,jdbcType=INTEGER},
       </if>
       <if test="symbol != null" >
         Symbol = #{symbol,jdbcType=VARCHAR},
       </if>
-      <if test="positionidetf != null" >
-        PositionIDetf = #{positionidetf,jdbcType=INTEGER},
+      <if test="securityid != null" >
+        SecurityID = #{securityid,jdbcType=INTEGER},
       </if>
     </set>
     where ETFID = #{etfid,jdbcType=INTEGER}
@@ -85,9 +85,9 @@
   <update id="updateByPrimaryKey" parameterType="com.citi.portfolio.entity.ETF" >
     update etf
     set ISIN = #{isin,jdbcType=VARCHAR},
-      PriceIDetf = #{priceidetf,jdbcType=INTEGER},
+      PriceID = #{priceid,jdbcType=INTEGER},
       Symbol = #{symbol,jdbcType=VARCHAR},
-      PositionIDetf = #{positionidetf,jdbcType=INTEGER}
+      SecurityID = #{securityid,jdbcType=INTEGER}
     where ETFID = #{etfid,jdbcType=INTEGER}
   </update>
 </mapper>

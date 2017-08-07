@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.citi.portfolio.entity.Equity" >
     <id column="EquityID" property="equityid" jdbcType="INTEGER" />
     <result column="ISIN" property="isin" jdbcType="VARCHAR" />
-    <result column="PriceIDe" property="priceide" jdbcType="INTEGER" />
+    <result column="PriceID" property="priceid" jdbcType="INTEGER" />
     <result column="Symbol" property="symbol" jdbcType="VARCHAR" />
-    <result column="PositionIDe" property="positionide" jdbcType="INTEGER" />
+    <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    EquityID, ISIN, PriceIDe, Symbol, PositionIDe
+    EquityID, ISIN, PriceID, Symbol, SecurityID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,10 +22,10 @@
     where EquityID = #{equityid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.Equity" >
-    insert into equity (EquityID, ISIN, PriceIDe, 
-      Symbol, PositionIDe)
-    values (#{equityid,jdbcType=INTEGER}, #{isin,jdbcType=VARCHAR}, #{priceide,jdbcType=INTEGER}, 
-      #{symbol,jdbcType=VARCHAR}, #{positionide,jdbcType=INTEGER})
+    insert into equity (EquityID, ISIN, PriceID, 
+      Symbol, SecurityID)
+    values (#{equityid,jdbcType=INTEGER}, #{isin,jdbcType=VARCHAR}, #{priceid,jdbcType=INTEGER}, 
+      #{symbol,jdbcType=VARCHAR}, #{securityid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.Equity" >
     insert into equity
@@ -36,14 +36,14 @@
       <if test="isin != null" >
         ISIN,
       </if>
-      <if test="priceide != null" >
-        PriceIDe,
+      <if test="priceid != null" >
+        PriceID,
       </if>
       <if test="symbol != null" >
         Symbol,
       </if>
-      <if test="positionide != null" >
-        PositionIDe,
+      <if test="securityid != null" >
+        SecurityID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -53,14 +53,14 @@
       <if test="isin != null" >
         #{isin,jdbcType=VARCHAR},
       </if>
-      <if test="priceide != null" >
-        #{priceide,jdbcType=INTEGER},
+      <if test="priceid != null" >
+        #{priceid,jdbcType=INTEGER},
       </if>
       <if test="symbol != null" >
         #{symbol,jdbcType=VARCHAR},
       </if>
-      <if test="positionide != null" >
-        #{positionide,jdbcType=INTEGER},
+      <if test="securityid != null" >
+        #{securityid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -70,14 +70,14 @@
       <if test="isin != null" >
         ISIN = #{isin,jdbcType=VARCHAR},
       </if>
-      <if test="priceide != null" >
-        PriceIDe = #{priceide,jdbcType=INTEGER},
+      <if test="priceid != null" >
+        PriceID = #{priceid,jdbcType=INTEGER},
       </if>
       <if test="symbol != null" >
         Symbol = #{symbol,jdbcType=VARCHAR},
       </if>
-      <if test="positionide != null" >
-        PositionIDe = #{positionide,jdbcType=INTEGER},
+      <if test="securityid != null" >
+        SecurityID = #{securityid,jdbcType=INTEGER},
       </if>
     </set>
     where EquityID = #{equityid,jdbcType=INTEGER}
@@ -85,9 +85,9 @@
   <update id="updateByPrimaryKey" parameterType="com.citi.portfolio.entity.Equity" >
     update equity
     set ISIN = #{isin,jdbcType=VARCHAR},
-      PriceIDe = #{priceide,jdbcType=INTEGER},
+      PriceID = #{priceid,jdbcType=INTEGER},
       Symbol = #{symbol,jdbcType=VARCHAR},
-      PositionIDe = #{positionide,jdbcType=INTEGER}
+      SecurityID = #{securityid,jdbcType=INTEGER}
     where EquityID = #{equityid,jdbcType=INTEGER}
   </update>
 </mapper>

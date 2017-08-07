@@ -5,11 +5,11 @@ public class Equity {
 
     private String isin;
 
-    private Integer priceide;
+    private Integer priceid;
 
     private String symbol;
 
-    private Integer positionide;
+    private Integer securityid;
 
     public Integer getEquityid() {
         return equityid;
@@ -27,12 +27,12 @@ public class Equity {
         this.isin = isin == null ? null : isin.trim();
     }
 
-    public Integer getPriceide() {
-        return priceide;
+    public Integer getPriceid() {
+        return priceid;
     }
 
-    public void setPriceide(Integer priceide) {
-        this.priceide = priceide;
+    public void setPriceid(Integer priceid) {
+        this.priceid = priceid;
     }
 
     public String getSymbol() {
@@ -43,11 +43,11 @@ public class Equity {
         this.symbol = symbol == null ? null : symbol.trim();
     }
 
-    public Integer getPositionide() {
-        return positionide;
+    public Integer getSecurityid() {
+        return securityid;
     }
 
-    public void setPositionide(Integer positionide) {
-        this.positionide = positionide;
+    public void setSecurityid(Integer securityid) {
+        this.securityid = securityid;
     }
 }
