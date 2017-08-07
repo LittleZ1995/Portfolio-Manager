@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.citi.portfolio.entity.dao.SecurityMapper" >
+  <resultMap id="BaseResultMap" type="com.citi.portfolio.entity.Security" >
+    <id column="SecurityID" property="securityid" jdbcType="INTEGER" />
+    <result column="SecurityType" property="securitytype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SecurityID, SecurityType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from security
+    where SecurityID = #{securityid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from security
+    where SecurityID = #{securityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.citi.portfolio.entity.Security" >
+    insert into security (SecurityID, SecurityType)
+    values (#{securityid,jdbcType=INTEGER}, #{securitytype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.citi.portfolio.entity.Security" >
+    insert into security
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="securityid != null" >
+        SecurityID,
+      </if>
+      <if test="securitytype != null" >
+        SecurityType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="securityid != null" >
+        #{securityid,jdbcType=INTEGER},
+      </if>
+      <if test="securitytype != null" >
+        #{securitytype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.citi.portfolio.entity.Security" >
+    update security
+    <set >
+      <if test="securitytype != null" >
+        SecurityType = #{securitytype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SecurityID = #{securityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.citi.portfolio.entity.Security" >
+    update security
+    set SecurityType = #{securitytype,jdbcType=VARCHAR}
+    where SecurityID = #{securityid,jdbcType=INTEGER}
+  </update>
+</mapper>
