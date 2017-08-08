@@ -15,5 +15,5 @@ public interface PositionMapper {
 
     int updateByPrimaryKey(Position record);
     
-    
+    List<Portfolio> getAllPortfoliosOfManager(int managerid);
 }

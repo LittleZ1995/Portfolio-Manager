@@ -7,10 +7,11 @@
     <result column="LastName" property="lastname" jdbcType="VARCHAR" />
     <result column="Email" property="email" jdbcType="VARCHAR" />
     <result column="PhoneNumber" property="phonenumber" jdbcType="VARCHAR" />
-    <result column="PassWord" property="password" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="Profit" property="profit" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ManagerID, FirstName, LastName, Email, PhoneNumber,PassWord
+    ManagerID, FirstName, LastName, Email, PhoneNumber, Password, Profit
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,9 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.FundManager" >
     insert into fundmanager (ManagerID, FirstName, LastName, 
-      Email, PhoneNumber, PassWord)
+      Email, PhoneNumber, Password, 
+      Profit)
     values (#{managerid,jdbcType=INTEGER}, #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+      #{email,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{profit,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.FundManager" >
     insert into fundmanager
@@ -46,8 +49,11 @@
       <if test="phonenumber != null" >
         PhoneNumber,
       </if>
-       <if test="password != null" >
-        PassWord,
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="profit != null" >
+        Profit,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -66,8 +72,11 @@
       <if test="phonenumber != null" >
         #{phonenumber,jdbcType=VARCHAR},
       </if>
-       <if test="password != null" >
+      <if test="password != null" >
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -87,7 +96,10 @@
         PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        PassWord = #{password,jdbcType=VARCHAR},
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="profit != null" >
+        Profit = #{profit,jdbcType=DOUBLE},
       </if>
     </set>
     where ManagerID = #{managerid,jdbcType=INTEGER}
@@ -98,7 +110,8 @@
       LastName = #{lastname,jdbcType=VARCHAR},
       Email = #{email,jdbcType=VARCHAR},
       PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
-      PassWord = #{password,jdbcType=VARCHAR}
+      Password = #{password,jdbcType=VARCHAR},
+      Profit = #{profit,jdbcType=DOUBLE}
     where ManagerID = #{managerid,jdbcType=INTEGER}
   </update>
   
@@ -118,5 +131,4 @@
     
     where Email = #{email}
   </select>
-  
 </mapper>

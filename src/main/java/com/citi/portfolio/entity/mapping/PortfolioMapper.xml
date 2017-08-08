@@ -5,9 +5,10 @@
     <id column="PortfolioID" property="portfolioid" jdbcType="INTEGER" />
     <result column="Name" property="name" jdbcType="VARCHAR" />
     <result column="ManagerID" property="managerid" jdbcType="INTEGER" />
+    <result column="Profit" property="profit" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    PortfolioID, Name, ManagerID
+    PortfolioID, Name, ManagerID, Profit
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,10 +21,10 @@
     where PortfolioID = #{portfolioid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.Portfolio" >
-    insert into portfolio (PortfolioID, Name, ManagerID
-      )
-    values (#{portfolioid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{managerid,jdbcType=INTEGER}
-      )
+    insert into portfolio (PortfolioID, Name, ManagerID, 
+      Profit)
+    values (#{portfolioid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{managerid,jdbcType=INTEGER}, 
+      #{profit,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.Portfolio" >
     insert into portfolio
@@ -37,6 +38,9 @@
       <if test="managerid != null" >
         ManagerID,
       </if>
+      <if test="profit != null" >
+        Profit,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="portfolioid != null" >
@@ -47,6 +51,9 @@
       </if>
       <if test="managerid != null" >
         #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -59,17 +66,20 @@
       <if test="managerid != null" >
         ManagerID = #{managerid,jdbcType=INTEGER},
       </if>
+      <if test="profit != null" >
+        Profit = #{profit,jdbcType=DOUBLE},
+      </if>
     </set>
     where PortfolioID = #{portfolioid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.citi.portfolio.entity.Portfolio" >
     update portfolio
     set Name = #{name,jdbcType=VARCHAR},
-      ManagerID = #{managerid,jdbcType=INTEGER}
+      ManagerID = #{managerid,jdbcType=INTEGER},
+      Profit = #{profit,jdbcType=DOUBLE}
     where PortfolioID = #{portfolioid,jdbcType=INTEGER}
   </update>
-  
-  <!--select all-->
+    <!--select all-->
   <select id="getAllPortfoliosOfManager" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />

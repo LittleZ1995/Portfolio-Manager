@@ -10,8 +10,12 @@ public class Equity {
     private String symbol;
 
     private Integer securityid;
+
+    private String sector;
+
+    private String industry;
     
-    private Price price;
+    private String Price;
 
     public Integer getEquityid() {
         return equityid;
@@ -53,18 +57,35 @@ public class Equity {
         this.securityid = securityid;
     }
 
-	public Price getPrice() {
-		return price;
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector == null ? null : sector.trim();
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry == null ? null : industry.trim();
+    }
+
+	public String getPrice() {
+		return Price;
 	}
 
-	public void setPrice(Price price) {
-		this.price = price;
+	public void setPrice(String price) {
+		Price = price;
 	}
 
 	@Override
 	public String toString() {
 		return "Equity [equityid=" + equityid + ", isin=" + isin + ", priceid=" + priceid + ", symbol=" + symbol
-				+ ", securityid=" + securityid + ", price=" + price + "]";
+				+ ", securityid=" + securityid + ", sector=" + sector + ", industry=" + industry + ", Price=" + Price
+				+ "]";
 	}
     
     

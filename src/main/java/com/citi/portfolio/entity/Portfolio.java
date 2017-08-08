@@ -7,6 +7,8 @@ public class Portfolio {
 
     private Integer managerid;
 
+    private Double profit;
+
     public Integer getPortfolioid() {
         return portfolioid;
     }
@@ -31,6 +33,13 @@ public class Portfolio {
         this.managerid = managerid;
     }
 
+    public Double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(Double profit) {
+        this.profit = profit;
+    }
 	public Portfolio() {
 		super();
 	}

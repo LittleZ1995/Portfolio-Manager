@@ -5,13 +5,13 @@ import java.util.Date;
 public class Future {
     private Integer futureid;
 
-    private String isin;
-
-    private Integer priceid;
-
     private String symbol;
 
     private Date deliverydate;
+
+    private String isin;
+
+    private Integer priceid;
 
     private Integer securityid;
     
@@ -23,22 +23,6 @@ public class Future {
 
     public void setFutureid(Integer futureid) {
         this.futureid = futureid;
-    }
-
-    public String getIsin() {
-        return isin;
-    }
-
-    public void setIsin(String isin) {
-        this.isin = isin == null ? null : isin.trim();
-    }
-
-    public Integer getPriceid() {
-        return priceid;
-    }
-
-    public void setPriceid(Integer priceid) {
-        this.priceid = priceid;
     }
 
     public String getSymbol() {
@@ -55,6 +39,22 @@ public class Future {
 
     public void setDeliverydate(Date deliverydate) {
         this.deliverydate = deliverydate;
+    }
+
+    public String getIsin() {
+        return isin;
+    }
+
+    public void setIsin(String isin) {
+        this.isin = isin == null ? null : isin.trim();
+    }
+
+    public Integer getPriceid() {
+        return priceid;
+    }
+
+    public void setPriceid(Integer priceid) {
+        this.priceid = priceid;
     }
 
     public Integer getSecurityid() {
@@ -75,8 +75,9 @@ public class Future {
 
 	@Override
 	public String toString() {
-		return "Future [futureid=" + futureid + ", isin=" + isin + ", priceid=" + priceid + ", symbol=" + symbol
-				+ ", deliverydate=" + deliverydate + ", securityid=" + securityid + ", price=" + price + "]";
+		return "Future [futureid=" + futureid + ", symbol=" + symbol + ", deliverydate=" + deliverydate + ", isin="
+				+ isin + ", priceid=" + priceid + ", securityid=" + securityid + ", price=" + price + "]";
 	}
+    
     
 }

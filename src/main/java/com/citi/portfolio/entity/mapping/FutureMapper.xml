@@ -3,13 +3,13 @@
 <mapper namespace="com.citi.portfolio.entity.dao.FutureMapper" >
   <resultMap id="BaseResultMap" type="com.citi.portfolio.entity.Future" >
     <id column="FutureID" property="futureid" jdbcType="INTEGER" />
-    <result column="ISIN" property="isin" jdbcType="VARCHAR" />
-    <result column="PriceID" property="priceid" jdbcType="INTEGER" />
     <result column="Symbol" property="symbol" jdbcType="VARCHAR" />
     <result column="DeliveryDate" property="deliverydate" jdbcType="DATE" />
+    <result column="ISIN" property="isin" jdbcType="VARCHAR" />
+    <result column="PriceID" property="priceid" jdbcType="INTEGER" />
     <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="FuturePriceList" type="com.citi.portfolio.entity.Future" >
+   <resultMap id="FuturePriceList" type="com.citi.portfolio.entity.Future" >
     <id column="FutureID" property="futureid" jdbcType="INTEGER" />
     <result column="ISIN" property="isin" jdbcType="VARCHAR" />
     <result column="PriceID" property="priceid" jdbcType="INTEGER" />
@@ -28,7 +28,7 @@
 		<result column="SecurityID" property="securityid" jdbcType="INTEGER" />
 	</resultMap>
   <sql id="Base_Column_List" >
-    FutureID, ISIN, PriceID, Symbol, DeliveryDate, SecurityID
+    FutureID, Symbol, DeliveryDate, ISIN, PriceID, SecurityID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -36,7 +36,7 @@
     from future
     where FutureID = #{futureid,jdbcType=INTEGER}
   </select>
-  <select id="selectByPrimaryKeyWithPrice" resultMap="FuturePriceList" parameterType="java.lang.Integer">
+   <select id="selectByPrimaryKeyWithPrice" resultMap="FuturePriceList" parameterType="java.lang.Integer">
     select * 
     from future, price
     where future.FutureID = #{futureid,jdbcType=INTEGER} and future.PriceID = price.PriceID
@@ -46,11 +46,11 @@
     where FutureID = #{futureid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.Future" >
-    insert into future (FutureID, ISIN, PriceID, 
-      Symbol, DeliveryDate, SecurityID
+    insert into future (FutureID, Symbol, DeliveryDate, 
+      ISIN, PriceID, SecurityID
       )
-    values (#{futureid,jdbcType=INTEGER}, #{isin,jdbcType=VARCHAR}, #{priceid,jdbcType=INTEGER}, 
-      #{symbol,jdbcType=VARCHAR}, #{deliverydate,jdbcType=DATE}, #{securityid,jdbcType=INTEGER}
+    values (#{futureid,jdbcType=INTEGER}, #{symbol,jdbcType=VARCHAR}, #{deliverydate,jdbcType=DATE}, 
+      #{isin,jdbcType=VARCHAR}, #{priceid,jdbcType=INTEGER}, #{securityid,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.Future" >
@@ -59,17 +59,17 @@
       <if test="futureid != null" >
         FutureID,
       </if>
-      <if test="isin != null" >
-        ISIN,
-      </if>
-      <if test="priceid != null" >
-        PriceID,
-      </if>
       <if test="symbol != null" >
         Symbol,
       </if>
       <if test="deliverydate != null" >
         DeliveryDate,
+      </if>
+      <if test="isin != null" >
+        ISIN,
+      </if>
+      <if test="priceid != null" >
+        PriceID,
       </if>
       <if test="securityid != null" >
         SecurityID,
@@ -79,17 +79,17 @@
       <if test="futureid != null" >
         #{futureid,jdbcType=INTEGER},
       </if>
-      <if test="isin != null" >
-        #{isin,jdbcType=VARCHAR},
-      </if>
-      <if test="priceid != null" >
-        #{priceid,jdbcType=INTEGER},
-      </if>
       <if test="symbol != null" >
         #{symbol,jdbcType=VARCHAR},
       </if>
       <if test="deliverydate != null" >
         #{deliverydate,jdbcType=DATE},
+      </if>
+      <if test="isin != null" >
+        #{isin,jdbcType=VARCHAR},
+      </if>
+      <if test="priceid != null" >
+        #{priceid,jdbcType=INTEGER},
       </if>
       <if test="securityid != null" >
         #{securityid,jdbcType=INTEGER},
@@ -99,17 +99,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.citi.portfolio.entity.Future" >
     update future
     <set >
-      <if test="isin != null" >
-        ISIN = #{isin,jdbcType=VARCHAR},
-      </if>
-      <if test="priceid != null" >
-        PriceID = #{priceid,jdbcType=INTEGER},
-      </if>
       <if test="symbol != null" >
         Symbol = #{symbol,jdbcType=VARCHAR},
       </if>
       <if test="deliverydate != null" >
         DeliveryDate = #{deliverydate,jdbcType=DATE},
+      </if>
+      <if test="isin != null" >
+        ISIN = #{isin,jdbcType=VARCHAR},
+      </if>
+      <if test="priceid != null" >
+        PriceID = #{priceid,jdbcType=INTEGER},
       </if>
       <if test="securityid != null" >
         SecurityID = #{securityid,jdbcType=INTEGER},
@@ -119,10 +119,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.citi.portfolio.entity.Future" >
     update future
-    set ISIN = #{isin,jdbcType=VARCHAR},
-      PriceID = #{priceid,jdbcType=INTEGER},
-      Symbol = #{symbol,jdbcType=VARCHAR},
+    set Symbol = #{symbol,jdbcType=VARCHAR},
       DeliveryDate = #{deliverydate,jdbcType=DATE},
+      ISIN = #{isin,jdbcType=VARCHAR},
+      PriceID = #{priceid,jdbcType=INTEGER},
       SecurityID = #{securityid,jdbcType=INTEGER}
     where FutureID = #{futureid,jdbcType=INTEGER}
   </update>

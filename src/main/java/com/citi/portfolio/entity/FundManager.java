@@ -13,6 +13,8 @@ public class FundManager {
 
     private String password;
 
+    private Double profit;
+
     public Integer getManagerid() {
         return managerid;
     }
@@ -61,7 +63,15 @@ public class FundManager {
         this.password = password == null ? null : password.trim();
     }
 
-	public FundManager(String firstname, String lastname, String email, String phonenumber,
+    public Double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(Double profit) {
+        this.profit = profit;
+    }
+    
+    public FundManager(String firstname, String lastname, String email, String phonenumber,
 			String password) {
 		super();
 		this.firstname = firstname;
@@ -74,6 +84,4 @@ public class FundManager {
 	public FundManager() {
 		super();
 	}
-    
-    
 }

@@ -9,9 +9,13 @@ public class Position {
 
     private Integer quantity;
 
-    private BigDecimal lastprice;
+    private BigDecimal initialprice;
+
+    private BigDecimal currentprice;
 
     private Integer securityid;
+
+    private Double profit;
 
     public Integer getPositionid() {
         return positionid;
@@ -37,12 +41,20 @@ public class Position {
         this.quantity = quantity;
     }
 
-    public BigDecimal getLastprice() {
-        return lastprice;
+    public BigDecimal getInitialprice() {
+        return initialprice;
     }
 
-    public void setLastprice(BigDecimal lastprice) {
-        this.lastprice = lastprice;
+    public void setInitialprice(BigDecimal initialprice) {
+        this.initialprice = initialprice;
+    }
+
+    public BigDecimal getCurrentprice() {
+        return currentprice;
+    }
+
+    public void setCurrentprice(BigDecimal currentprice) {
+        this.currentprice = currentprice;
     }
 
     public Integer getSecurityid() {
@@ -51,5 +63,13 @@ public class Position {
 
     public void setSecurityid(Integer securityid) {
         this.securityid = securityid;
+    }
+
+    public Double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(Double profit) {
+        this.profit = profit;
     }
 }

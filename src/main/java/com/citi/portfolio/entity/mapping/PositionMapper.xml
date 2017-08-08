@@ -5,11 +5,13 @@
     <id column="PositionID" property="positionid" jdbcType="INTEGER" />
     <result column="PortfolioID" property="portfolioid" jdbcType="INTEGER" />
     <result column="Quantity" property="quantity" jdbcType="INTEGER" />
-    <result column="LastPrice" property="lastprice" jdbcType="DECIMAL" />
+    <result column="InitialPrice" property="initialprice" jdbcType="DECIMAL" />
+    <result column="CurrentPrice" property="currentprice" jdbcType="DECIMAL" />
     <result column="SecurityID" property="securityid" jdbcType="INTEGER" />
+    <result column="Profit" property="profit" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    PositionID, PortfolioID, Quantity, LastPrice, SecurityID
+    PositionID, PortfolioID, Quantity, InitialPrice, CurrentPrice, SecurityID, Profit
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,9 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.citi.portfolio.entity.Position" >
     insert into position (PositionID, PortfolioID, Quantity, 
-      LastPrice, SecurityID)
+      InitialPrice, CurrentPrice, SecurityID, 
+      Profit)
     values (#{positionid,jdbcType=INTEGER}, #{portfolioid,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, 
-      #{lastprice,jdbcType=DECIMAL}, #{securityid,jdbcType=INTEGER})
+      #{initialprice,jdbcType=DECIMAL}, #{currentprice,jdbcType=DECIMAL}, #{securityid,jdbcType=INTEGER}, 
+      #{profit,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.citi.portfolio.entity.Position" >
     insert into position
@@ -39,11 +43,17 @@
       <if test="quantity != null" >
         Quantity,
       </if>
-      <if test="lastprice != null" >
-        LastPrice,
+      <if test="initialprice != null" >
+        InitialPrice,
+      </if>
+      <if test="currentprice != null" >
+        CurrentPrice,
       </if>
       <if test="securityid != null" >
         SecurityID,
+      </if>
+      <if test="profit != null" >
+        Profit,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -56,11 +66,17 @@
       <if test="quantity != null" >
         #{quantity,jdbcType=INTEGER},
       </if>
-      <if test="lastprice != null" >
-        #{lastprice,jdbcType=DECIMAL},
+      <if test="initialprice != null" >
+        #{initialprice,jdbcType=DECIMAL},
+      </if>
+      <if test="currentprice != null" >
+        #{currentprice,jdbcType=DECIMAL},
       </if>
       <if test="securityid != null" >
         #{securityid,jdbcType=INTEGER},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -73,11 +89,17 @@
       <if test="quantity != null" >
         Quantity = #{quantity,jdbcType=INTEGER},
       </if>
-      <if test="lastprice != null" >
-        LastPrice = #{lastprice,jdbcType=DECIMAL},
+      <if test="initialprice != null" >
+        InitialPrice = #{initialprice,jdbcType=DECIMAL},
+      </if>
+      <if test="currentprice != null" >
+        CurrentPrice = #{currentprice,jdbcType=DECIMAL},
       </if>
       <if test="securityid != null" >
         SecurityID = #{securityid,jdbcType=INTEGER},
+      </if>
+      <if test="profit != null" >
+        Profit = #{profit,jdbcType=DOUBLE},
       </if>
     </set>
     where PositionID = #{positionid,jdbcType=INTEGER}
@@ -86,8 +108,10 @@
     update position
     set PortfolioID = #{portfolioid,jdbcType=INTEGER},
       Quantity = #{quantity,jdbcType=INTEGER},
-      LastPrice = #{lastprice,jdbcType=DECIMAL},
-      SecurityID = #{securityid,jdbcType=INTEGER}
+      InitialPrice = #{initialprice,jdbcType=DECIMAL},
+      CurrentPrice = #{currentprice,jdbcType=DECIMAL},
+      SecurityID = #{securityid,jdbcType=INTEGER},
+      Profit = #{profit,jdbcType=DOUBLE}
     where PositionID = #{positionid,jdbcType=INTEGER}
   </update>
 </mapper>

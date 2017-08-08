@@ -18,4 +18,6 @@ public interface PortfolioMapper {
     int updateByPrimaryKey(Portfolio record);
     
     List<Portfolio> getAllPortfoliosOfManager(int managerid);
+    
+    
 }
