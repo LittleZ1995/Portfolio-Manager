@@ -18,6 +18,7 @@
 				<th>email</th>
 				<th>telephone</th>
 				<th>password</th>
+				<th>profit</th>
 				<th>operation</th>
 			</tr>
 			<c:forEach items="${fundManagers}" var="fundmanager" >
@@ -28,6 +29,7 @@
 				<td>${fundmanager.email}</td>
 				<td>${fundmanager.phonenumber}</td>
 				<td>${fundmanager.password}</td>
+				<td>${fundmanager.profit}</td>
 				<td><input type="button" name="delete" onclick="deleteManagerById(${fundmanager.managerid})" value="delete" /></td>
 			</tr>
             </c:forEach>
@@ -35,13 +37,12 @@
 		</table>
 		
 <h2>add manager</h2>	
-		<form action="addManager" method="post">
-				<input type="text" name="managerid" id="managerid" value="" />
-				<input type="text" name="firstname" id="firstname" value="" />
-				<input type="text" name="lastname" id="lastname" value="" />
-				<input type="text" name="email" id="email" value="" />
-				<input type="text" name="phonenumber" id="phonenumber" value="" />
-				<input type="text" name="password" id="password" value="" />
+		<form action="admin/addManager" method="post">
+				firstname:<input type="text" name="firstname" id="firstname" value="" />
+				lastname:<input type="text" name="lastname" id="lastname" value="" />
+				email<input type="text" name="email" id="email" value="" />
+				phonenumber<input type="text" name="phonenumber" id="phonenumber" value="" />
+				password:<input type="text" name="password" id="password" value="" />
 				<input type="submit" value="confirm"/>
 			</form>
 		

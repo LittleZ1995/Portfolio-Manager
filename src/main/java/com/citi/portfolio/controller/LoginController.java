@@ -37,7 +37,12 @@ public class LoginController {
 		String password = request.getParameter("password");
 		
 		if(account.equals("admin") && password.equals("admin"))
-			return "adminPage";		
+		{
+//			List<FundManager> fundManagers = fundManagerService.getAllManagers();     
+//			model.addAttribute("fundManagers",fundManagers);		
+			return "redirect:/admin/mainpage";	
+		}
+				
 		else{
 			FundManager fundManager = null;
 			fundManager = fundManagerService.selectByEmail(account);

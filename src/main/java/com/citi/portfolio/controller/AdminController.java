@@ -28,17 +28,18 @@ public class AdminController {
 	private FundManagerService fundManagerService;
 	
 
-	@RequestMapping("/mainpage")
-    public String mainPage(HttpServletRequest request, Model model){
-
-        return "adminPage";
-	}
-	
 	@RequestMapping("/showManagers")
     public String showUser(HttpServletRequest request, Model model){
 		List<FundManager> fundManagers = fundManagerService.getAllManagers();     
 		model.addAttribute("fundManagers",fundManagers);
-        return "admintest";
+        return "fundManagerList";
+	}
+	
+	@RequestMapping("/mainpage")
+    public String mainPage(HttpServletRequest request, Model model){
+		List<FundManager> fundManagers = fundManagerService.getAllManagers();     
+		model.addAttribute("fundManagers",fundManagers);
+        return "fundManagerList";
 	}
 	
 	@RequestMapping("/addManager")
@@ -54,7 +55,10 @@ public class AdminController {
 		int result = fundManagerService.addManager(fundManager);
 		if(result != 0)
 			System.out.println("add successfully");
-        return "adminPage";
+		
+		List<FundManager> fundManagers = fundManagerService.getAllManagers();     
+		model.addAttribute("fundManagers",fundManagers);
+        return "fundManagerList";
 	}
 	
 	@RequestMapping(value = "/deleteManagerById", method = RequestMethod.POST, produces = "application/json; charset=utf-8")

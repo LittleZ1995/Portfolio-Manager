@@ -120,6 +120,7 @@
     select 
     <include refid="Base_Column_List" />
     from fundmanager
+    order by Profit desc
   </select>
   
   
