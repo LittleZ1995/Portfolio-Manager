@@ -22,7 +22,6 @@ public class EquityServiceImpl implements EquityService {
 	@Resource 
 	private PriceMapper priceMapper;
 	
-	@Override
 	public List<Price> findAllHistoryPrices(int equityid) {
 		Equity equity = equityMapper.selectByPrimaryKey(equityid);
 		Integer securityId = equity.getSecurityid();

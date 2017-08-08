@@ -1,6 +1,5 @@
 package com.citi.portfolio.controller;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -44,14 +43,14 @@ public class AdminController {
 	
 	@RequestMapping("/addManager")
     public String addManager(HttpServletRequest request, Model model){
-		String managerid = request.getParameter("managerid");
+		
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String email = request.getParameter("email");
 		String phonenumber = request.getParameter("phonenumber");
 		String password = request.getParameter("password");
-		int id = Integer.parseInt(managerid);
-		FundManager fundManager = new FundManager(id, firstname, lastname, email, phonenumber, password);
+		
+		FundManager fundManager = new FundManager(firstname, lastname, email, phonenumber, password);
 		int result = fundManagerService.addManager(fundManager);
 		if(result != 0)
 			System.out.println("add successfully");

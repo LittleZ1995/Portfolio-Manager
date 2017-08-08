@@ -22,7 +22,6 @@ public class BondServiceImpl implements BondService{
 	@Resource
 	private PriceMapper priceMapper;
 
-	@Override
 	public List<Price> findAllHistoryPrices(int bondid) {
 		Bond bond = bondMapper.selectByPrimaryKey(bondid);
 		Integer securityId = bond.getSecurityid();

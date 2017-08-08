@@ -108,4 +108,15 @@
     <include refid="Base_Column_List" />
     from fundmanager
   </select>
+  
+  
+  <!--select by email-->
+  <select id="selectByEmail" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fundmanager
+    
+    where Email = #{email}
+  </select>
+  
 </mapper>

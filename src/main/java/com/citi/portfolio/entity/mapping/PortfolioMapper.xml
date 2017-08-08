@@ -68,4 +68,12 @@
       ManagerID = #{managerid,jdbcType=INTEGER}
     where PortfolioID = #{portfolioid,jdbcType=INTEGER}
   </update>
+  
+  <!--select all-->
+  <select id="getAllPortfoliosOfManager" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from portfolio
+    where ManagerId = #{managerid}
+  </select>
 </mapper>

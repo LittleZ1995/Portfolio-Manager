@@ -19,5 +19,5 @@ public interface FundManagerMapper {
     
     List<FundManager> getAllManagers();
     
-    
+    FundManager selectByEmail(String email);
 }

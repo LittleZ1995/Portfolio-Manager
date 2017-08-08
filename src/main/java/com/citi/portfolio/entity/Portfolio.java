@@ -30,4 +30,16 @@ public class Portfolio {
     public void setManagerid(Integer managerid) {
         this.managerid = managerid;
     }
+
+	public Portfolio() {
+		super();
+	}
+
+	public Portfolio(String name, Integer managerid) {
+		super();
+		this.name = name;
+		this.managerid = managerid;
+	}
+    
+    
 }

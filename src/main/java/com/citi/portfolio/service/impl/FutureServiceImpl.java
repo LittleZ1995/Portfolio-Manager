@@ -19,7 +19,6 @@ public class FutureServiceImpl implements FutureService {
 	@Resource
 	private PriceMapper priceMapper;
 	
-	@Override
 	public List<Price> findAllHistoryPrices(int futureid) {
 		Future future = futureMapper.selectByPrimaryKey(futureid);
 		Integer securityId = future.getSecurityid();

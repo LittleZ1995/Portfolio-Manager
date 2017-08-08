@@ -35,4 +35,9 @@ public class FundManagerServiceImpl implements FundManagerService{
 		return fundManagerMapper.deleteByPrimaryKey(managerid);
 	}
 
+	public FundManager selectByEmail(String email) {
+		// TODO Auto-generated method stub
+		return fundManagerMapper.selectByEmail(email);
+	}
+
 }

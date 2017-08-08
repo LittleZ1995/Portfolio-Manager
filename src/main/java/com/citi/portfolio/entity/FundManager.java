@@ -61,10 +61,9 @@ public class FundManager {
         this.password = password == null ? null : password.trim();
     }
 
-	public FundManager(Integer managerid, String firstname, String lastname, String email, String phonenumber,
+	public FundManager(String firstname, String lastname, String email, String phonenumber,
 			String password) {
 		super();
-		this.managerid = managerid;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
