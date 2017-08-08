@@ -41,6 +41,12 @@
     from future, price
     where future.FutureID = #{futureid,jdbcType=INTEGER} and future.PriceID = price.PriceID
   </select>
+  <select id="selectBySymbol" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from future
+    where Symbol = #{symbol,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from future
     where FutureID = #{futureid,jdbcType=INTEGER}

@@ -16,4 +16,6 @@ public interface FutureMapper {
     int updateByPrimaryKeySelective(Future record);
 
     int updateByPrimaryKey(Future record);
+
+	Future selectBySymbol(String symbol);
 }

@@ -40,5 +40,11 @@ public class BondServiceTest {
 		}
 		
 	}
+	
+	@Test
+	public void testSelectByISIN(){
+		Bond bond = bondMapper.selectByISIN("1234567890");
+		System.out.println(bond);
+	}
 
 }

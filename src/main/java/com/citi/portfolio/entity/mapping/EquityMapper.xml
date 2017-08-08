@@ -43,6 +43,12 @@
 		where equity.EquityID = #{equityid,jdbcType=INTEGER} and equity.PriceID =
 		price.PriceID
 	</select>
+  <select id="selectBySymbol" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from equity
+    where Symbol = #{symbol,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from equity
     where EquityID = #{equityid,jdbcType=INTEGER}

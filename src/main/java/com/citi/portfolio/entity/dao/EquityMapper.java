@@ -16,4 +16,6 @@ public interface EquityMapper {
     int updateByPrimaryKeySelective(Equity record);
 
     int updateByPrimaryKey(Equity record);
+
+	Equity selectBySymbol(String symbol);
 }

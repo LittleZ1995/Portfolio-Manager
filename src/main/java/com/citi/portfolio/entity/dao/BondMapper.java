@@ -19,5 +19,7 @@ public interface BondMapper {
     int updateByPrimaryKeySelective(Bond record);
 
     int updateByPrimaryKey(Bond record);
+
+	Bond selectByISIN(String iSIN);
 	
 }
