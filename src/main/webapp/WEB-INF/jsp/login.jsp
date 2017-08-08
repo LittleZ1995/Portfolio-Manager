@@ -40,7 +40,7 @@
             <form action="login" method="post">
               <h1>Login Form</h1>
               <div>
-                <input type="text"  name="account" id="account" class="form-control" placeholder="Username" required="" />
+                <input type="text"  name="account" id="account" class="form-control" placeholder="Account" required="" />
               </div>
               <div>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="" />

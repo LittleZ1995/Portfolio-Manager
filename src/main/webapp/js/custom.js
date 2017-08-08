@@ -2572,7 +2572,7 @@ if (typeof NProgress != 'undefined') {
 				});
 
 				$('#portfolios-table').DataTable({
-				  'order': [[ 1, 'asc' ]],
+				  'order': [[ 1, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
 				  'columnDefs': [

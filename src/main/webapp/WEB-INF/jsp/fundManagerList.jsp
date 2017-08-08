@@ -57,9 +57,9 @@
                 <ul class="nav side-menu">
                                
                   </li>
-                  <li><a><i class="fa fa-user"></i> Found Manager <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-user"></i> Fund Manager <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="fundManagersList.html">View Found Managers</a></li>
+                      <li><a href="fundManagersList.html">View Fund Managers</a></li>
                       <!-- <li><a href="form_advanced.html">Advanced Components</a></li> -->
                     </ul>
                   </li>
@@ -121,7 +121,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Found Manager</h3>
+              <h3>Fund Manager</h3>
             </div>
 
             
@@ -143,7 +143,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                       <div class="well profile_view">
                         <div class="col-sm-12">
-                          <h4 class="brief"><i>Found Manager</i></h4>
+                          <h4 class="brief"><i>Fund Manager</i></h4>
                           <div class="left col-xs-7">
                             <h2>${fundmanager.firstname}${fundmanager.lastname}</h2>
                             <ul class="list-unstyled">
@@ -180,7 +180,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Found Manager List</small></h2>
+                  <h2>Fund Manager List</small></h2>
                   <ul class="nav navbar-right ">
                     <li><a  class="btn btn-success btn-xs plus" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Add </a></li>
                   
@@ -191,7 +191,7 @@
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                               </button>
-                              <h4 class="modal-title" id="myModalLabel2">Add Found Manager</h4>
+                              <h4 class="modal-title" id="myModalLabel2">Add Fund Manager</h4>
                             </div>
                             <div class="modal-body">
                               <form id="demo-form2" data-parsley-validate action="addManager" method="post" class="form-horizontal form-label-left">
@@ -257,9 +257,9 @@
                         
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Portfolios</th>
+                        <th>Phone</th>            
                         <th>Profit</th>
+                        <th>Operations</th>
                       </tr>
                     </thead>
                     <tbody>

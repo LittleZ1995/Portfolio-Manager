@@ -85,5 +85,6 @@
     <include refid="Base_Column_List" />
     from portfolio
     where ManagerId = #{managerid}
+    order by Profit desc 
   </select>
 </mapper>

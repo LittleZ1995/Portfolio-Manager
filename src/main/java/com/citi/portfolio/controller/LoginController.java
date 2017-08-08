@@ -60,7 +60,7 @@ public class LoginController {
 				httpSession.setAttribute("FundManager", fundManager);
 				List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
 				model.addAttribute("portfolios",portfolios);
-				return "managerPage";
+				return "portfolioListOfManager";
 			}
 		}
 		

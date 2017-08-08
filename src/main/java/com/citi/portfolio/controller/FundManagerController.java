@@ -36,5 +36,7 @@ public class FundManagerController {
 //		request.setAttribute("manager", manager);
 //		return "showUser";
 //	}
+	
+	
 
 }

@@ -16,6 +16,7 @@ ${sessionScope.FundManager.email}
 	<table border="" cellspacing="" cellpadding="">
 			<tr><th>portfolioid</th>
 				<th>portfolioname</th>
+				<th>profit</th>
 				<th>managerid</th>
 				<th>operation</th>
 			</tr>
@@ -23,6 +24,7 @@ ${sessionScope.FundManager.email}
                 <tr id = ${portfolio.portfolioid} >
                 <td>${portfolio.portfolioid}</td>
 				<td>${portfolio.name}</td>
+				<td>${portfolio.profit}</td>
 				<td>${portfolio.managerid}</td>
 				<td><button onclick="">operation</button></td>
 			</tr>

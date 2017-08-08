@@ -36,7 +36,7 @@ public class PortfolioController {
 			System.out.println("add successfully");
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(managerid);	
 		model.addAttribute("portfolios",portfolios);
-        return "managerPage";
+        return "portfolioListOfManager";
 	}
 	
 }
