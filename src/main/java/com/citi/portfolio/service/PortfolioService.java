@@ -10,4 +10,5 @@ public interface PortfolioService {
 	
 	public List<Portfolio> getAllPortfoliosOfManager(int managerid);
 
+	Portfolio getPortfolioByPortfolioId(int portfolioid);
 }

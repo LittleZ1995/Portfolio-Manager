@@ -1,6 +1,10 @@
 package com.citi.portfolio.controller;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +14,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.citi.portfolio.entity.Bond;
+import com.citi.portfolio.entity.Equity;
 import com.citi.portfolio.entity.FundManager;
+import com.citi.portfolio.entity.Future;
 import com.citi.portfolio.entity.Portfolio;
+import com.citi.portfolio.entity.Position;
+import com.citi.portfolio.entity.Security;
+import com.citi.portfolio.service.BondService;
+import com.citi.portfolio.service.EquityService;
+import com.citi.portfolio.service.FutureService;
 import com.citi.portfolio.service.PortfolioService;
+import com.citi.portfolio.service.PositionService;
+import com.citi.portfolio.service.SecurityService;
 
 @Controller
 public class PortfolioController {
@@ -20,8 +34,88 @@ public class PortfolioController {
 	@Resource
 	private PortfolioService portfolioService;
 	
+	@Resource
+	private PositionService positionService;
+	
+	@Resource
+	private SecurityService securityService;
+	
+	@Resource
+	private BondService bondService;
+	
+	@Resource
+	private EquityService equityService;
+	
+	@Resource
+	private FutureService futureService;
+	
+	@RequestMapping("/viewOnePortfolio")
+    public String viewPortfolio(HttpServletRequest request, Model model,HttpSession httpSession){
+	
+		int portfolioid = Integer.parseInt(request.getParameter("portfolioid"));	
+		Portfolio portfolio = portfolioService.getPortfolioByPortfolioId(portfolioid);
+		List<Position> positions = positionService.getAllPositionsOfPortfolio(portfolioid);
+		List<String> types = new ArrayList<>();
+		List<String> symbols = new ArrayList<>();
+		Map bondresults = new HashMap<>();
+		Map equityresults = new HashMap<>();
+		Map futureresults = new HashMap<>();
+		double bondvalue = 0;
+		double equityvalue = 0;
+		double futurevalue = 0;
+	
+		for(int i = 0 ; i < positions.size() ; i++) {
+			 
+			int securityid = positions.get(i).getSecurityid();
+			Security security = securityService.getSecurityTypeById(securityid);
+			String type = security.getSecuritytype();
+			types.add(type);
+			if(type.equals("bond"))
+			{
+				symbols.add(bondService.getBondBySecurityId(securityid).getIsin()+"(bond)");
+				bondresults.put(positions.get(i), bondService.getBondBySecurityId(securityid));
+				
+				String quantity = String.valueOf(positions.get(i).getQuantity());
+				bondvalue += positions.get(i).getCurrentprice().multiply(new BigDecimal(quantity)).doubleValue();
+				
+			}
+			else if(type.equals("equity"))
+			{
+				symbols.add(equityService.getEquityBySecurityId(securityid).getSymbol()+"(equity)");
+				equityresults.put(positions.get(i), equityService.getEquityBySecurityId(securityid));
+				
+				String quantity = String.valueOf(positions.get(i).getQuantity());
+				equityvalue += positions.get(i).getCurrentprice().multiply(new BigDecimal(quantity)).doubleValue();
+			}
+			else if(type.equals("future")){
+				symbols.add(futureService.getFutureBySecurityId(securityid).getSymbol()+"(future)");
+				futureresults.put(positions.get(i),futureService.getFutureBySecurityId(securityid));
+				
+				String quantity = String.valueOf(positions.get(i).getQuantity());
+				futurevalue += positions.get(i).getCurrentprice().multiply(new BigDecimal(quantity)).doubleValue();
+			}
+		}	
+		
+		Map results = new HashMap<>();
+		for(int i = 0; i < positions.size() ; i++){		
+			results.put(symbols.get(i), positions.get(i));
+		}
+		model.addAttribute("portfolio",portfolio);
+		model.addAttribute("results",results);
+		model.addAttribute("positions",positions);
+		model.addAttribute("bondresults",bondresults);
+		model.addAttribute("equityresults",equityresults);
+		model.addAttribute("futureresults",futureresults);
+		model.addAttribute("bondvalue",bondvalue);
+		model.addAttribute("equityvalue",equityvalue);
+		model.addAttribute("futurevalue",futurevalue);
+
+		
+		return "portfolioOfManager";
+	}
+	
 	@RequestMapping("/addPortfolio")
-    public String addManager(HttpServletRequest request, Model model,HttpSession httpSession){
+    public String addPortfolio(HttpServletRequest request, Model model,HttpSession httpSession){
 		System.out.println("in add portfolio");
 		String name = request.getParameter("name");
 		System.out.println(name);

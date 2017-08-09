@@ -114,4 +114,13 @@
       Profit = #{profit,jdbcType=DOUBLE}
     where PositionID = #{positionid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllPositionsOfPortfolio" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from position  
+    where PortfolioID = #{portfolioid}
+    order by profit desc
+  </select>
+  
 </mapper>

@@ -132,4 +132,11 @@
       SecurityID = #{securityid,jdbcType=INTEGER}
     where FutureID = #{futureid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getFutureBySecurityId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from future  
+    where SecurityID = #{securityid}   
+  </select>
 </mapper>

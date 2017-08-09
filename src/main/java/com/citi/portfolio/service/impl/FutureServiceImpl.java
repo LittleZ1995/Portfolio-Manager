@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.citi.portfolio.entity.Future;
 import com.citi.portfolio.entity.Price;
 import com.citi.portfolio.entity.dao.FutureMapper;
 import com.citi.portfolio.entity.dao.PriceMapper;
 import com.citi.portfolio.service.FutureService;
-
+@Service("FutureService")
 public class FutureServiceImpl implements FutureService {
 
 	@Resource
@@ -27,6 +29,12 @@ public class FutureServiceImpl implements FutureService {
 		} else {
 			return new ArrayList<Price>();
 		}
+	}
+
+	@Override
+	public Future getFutureBySecurityId(int securityid) {
+		// TODO Auto-generated method stub
+		return futureMapper.getFutureBySecurityId(securityid);
 	}
 
 }

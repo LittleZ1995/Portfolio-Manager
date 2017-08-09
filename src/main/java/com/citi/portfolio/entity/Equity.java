@@ -1,6 +1,6 @@
 package com.citi.portfolio.entity;
 
-public class Equity {
+public class Equity extends Security{
     private Integer equityid;
 
     private String isin;
@@ -78,6 +78,26 @@ public class Equity {
 	}
 
 	public void setPrice(String price) {
+		Price = price;
+	}
+
+	
+	
+	public Equity() {
+		super();
+	}
+
+	
+	
+	public Equity(String isin, Integer priceid, String symbol, Integer securityid, String sector, String industry,
+			String price) {
+		super();
+		this.isin = isin;
+		this.priceid = priceid;
+		this.symbol = symbol;
+		this.securityid = securityid;
+		this.sector = sector;
+		this.industry = industry;
 		Price = price;
 	}
 

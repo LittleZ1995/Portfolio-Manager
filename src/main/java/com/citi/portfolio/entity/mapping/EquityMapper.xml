@@ -144,4 +144,12 @@
       Industry = #{industry,jdbcType=VARCHAR}
     where EquityID = #{equityid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getEquityBySecurityId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from equity  
+    where SecurityID = #{securityid}   
+  </select>
+  
 </mapper>

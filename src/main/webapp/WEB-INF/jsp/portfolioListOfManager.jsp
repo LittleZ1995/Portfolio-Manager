@@ -38,7 +38,7 @@
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="<%=path %>/images/Pat.png" alt="..." class="img-circle profile_img">
+              <img src="<%=path %>/images/zyz.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -90,7 +90,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="<%=path %>/images/Pat.png" alt="">${sessionScope.FundManager.firstname}${sessionScope.FundManager.lastname}
+                  <img src="<%=path %>/images/zyz.jpg" alt="">${sessionScope.FundManager.firstname}${sessionScope.FundManager.lastname}
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -164,7 +164,7 @@
                                 <td>${portfolio.name}</td>
                                 <td>${portfolio.profit}</td>
                                 <td>
-                                  <a href="fundManagerDetail.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                  <a href="viewOnePortfolio?portfolioid=1" +  class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                   <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i> Edit </a>
                                   <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                 </td>
@@ -172,7 +172,12 @@
                             </c:forEach>                      
                           </tbody>
                         </table>
-            
+                        <div id="names">
+                        	${names}
+                        </div>     
+                        <div id="profits">
+                        	${profits}
+                        </div>  
           </div>
         </div>
       </div>
@@ -241,64 +246,29 @@
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
   var portfolioGraphLine = echarts.init(document.getElementById('portfolio-graphLine-manager'));
-        var option = {
-          color: ['#3498DB'],
-
+  var portfolionames = new Array();
+  portfolionames = $("#names").text().split(",");
+  var profits = new Array();
+  profits = $("#profits").text().split(",");
+  
+  var option = {
           title: {
-              text: 'Portfolio',
-              left: 'center',
-              top: 20,
-              textStyle: {
-                  color: '#73879C'
-              }
+              text: 'Portfolios'
           },
-
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+          tooltip: {},
+          legend: {
+              data:['Profit']
           },
-          xAxis : [
-          {
-            data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            axisLine: {
-              // show: false
-              lineStyle: {
-                color:'#73879C'
-              }
-            },
-            axisTick: {
-              show: false
-            }
-          }
-          ],
-          yAxis : [
-          {
-            type : 'value',
-            axisLine: {
-              lineStyle: {
-                color:'#73879C'
-              }
-            },
-            axisTick: {
-              show: false,
-            },
-          }
-          ],
-          series : [
-          {
-
-            type:'bar',
-            data:[10, 52, 200, 334, 390, 330, 220],
-            label:{
-              normal:{
-                show:true
-              }
-            }
-          }
-          ]
-        };
+          xAxis: {
+              data: portfolionames
+          },
+          yAxis: {},
+          series: [{
+              name: 'Profit',
+              type: 'bar',
+              data: profits
+          }]
+      };
 
         // 使用刚指定的配置项和数据显示图表。
         portfolioGraphLine.setOption(option);

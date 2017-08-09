@@ -2,7 +2,7 @@ package com.citi.portfolio.entity;
 
 import java.util.Date;
 
-public class Bond {
+public class Bond extends Security{
 	private Integer bondid;
 
 	private String isin;
@@ -81,6 +81,22 @@ public class Bond {
 
 	public void setSecurityid(Integer securityid) {
 		this.securityid = securityid;
+	}
+	
+	public Bond() {
+		super();
+	}
+	
+	public Bond(String isin, Integer priceid, String issuer, Double coupon, Date maturity, Integer securityid,
+			Price price) {
+		super();
+		this.isin = isin;
+		this.priceid = priceid;
+		this.issuer = issuer;
+		this.coupon = coupon;
+		this.maturity = maturity;
+		this.securityid = securityid;
+		this.price = price;
 	}
 
 	@Override

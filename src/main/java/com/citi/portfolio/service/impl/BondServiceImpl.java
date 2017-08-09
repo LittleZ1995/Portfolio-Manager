@@ -32,4 +32,10 @@ public class BondServiceImpl implements BondService{
 		}
 		
 	}
+
+	@Override
+	public Bond getBondBySecurityId(int securityid) {
+		// TODO Auto-generated method stub
+		return bondMapper.getBondBySecurityId(securityid);
+	}
 }

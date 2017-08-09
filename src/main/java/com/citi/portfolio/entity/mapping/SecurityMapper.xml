@@ -55,4 +55,12 @@
     set SecurityType = #{securitytype,jdbcType=VARCHAR}
     where SecurityID = #{securityid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getSecurityTypeById" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from security  
+    where SecurityID = #{securityid}
+  </select>
+  
 </mapper>

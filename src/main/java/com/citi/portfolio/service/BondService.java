@@ -9,4 +9,6 @@ public interface BondService {
 
 	public List<Price> findAllHistoryPrices(int bondid);
 	
+	Bond getBondBySecurityId(int securityid);
+	
 }

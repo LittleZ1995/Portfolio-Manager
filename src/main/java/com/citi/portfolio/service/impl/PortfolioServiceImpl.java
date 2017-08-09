@@ -27,4 +27,10 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return portfolioMapper.getAllPortfoliosOfManager(managerid);
 	}
 
+	@Override
+	public Portfolio getPortfolioByPortfolioId(int portfolioid) {
+		// TODO Auto-generated method stub
+		return portfolioMapper.selectByPrimaryKey(portfolioid);
+	}
+
 }

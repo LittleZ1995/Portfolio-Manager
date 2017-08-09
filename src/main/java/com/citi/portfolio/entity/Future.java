@@ -2,7 +2,7 @@ package com.citi.portfolio.entity;
 
 import java.util.Date;
 
-public class Future {
+public class Future extends Security{
     private Integer futureid;
 
     private String symbol;
@@ -70,6 +70,24 @@ public class Future {
 	}
 
 	public void setPrice(Price price) {
+		this.price = price;
+	}
+	
+	
+
+	public Future() {
+		super();
+	}
+	
+	
+
+	public Future(String symbol, Date deliverydate, String isin, Integer priceid, Integer securityid, Price price) {
+		super();
+		this.symbol = symbol;
+		this.deliverydate = deliverydate;
+		this.isin = isin;
+		this.priceid = priceid;
+		this.securityid = securityid;
 		this.price = price;
 	}
 

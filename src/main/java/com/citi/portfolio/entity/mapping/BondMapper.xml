@@ -146,4 +146,11 @@
       SecurityID = #{securityid,jdbcType=INTEGER}
     where BondID = #{bondid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getBondBySecurityId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from bond  
+    where SecurityID = #{securityid}   
+  </select>
 </mapper>

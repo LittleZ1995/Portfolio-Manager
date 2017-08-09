@@ -18,4 +18,6 @@ public interface EquityMapper {
     int updateByPrimaryKey(Equity record);
 
 	Equity selectBySymbol(String symbol);
+	
+	Equity getEquityBySecurityId(int securityid);
 }

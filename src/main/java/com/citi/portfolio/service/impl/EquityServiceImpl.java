@@ -33,4 +33,10 @@ public class EquityServiceImpl implements EquityService {
 		
 	}
 
+	@Override
+	public Equity getEquityBySecurityId(int securityid) {
+		// TODO Auto-generated method stub
+		return equityMapper.getEquityBySecurityId(securityid);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.citi.portfolio.entity.dao;
 
+import java.util.List;
+
 import com.citi.portfolio.entity.Position;
 
 public interface PositionMapper {
@@ -14,5 +16,7 @@ public interface PositionMapper {
     int updateByPrimaryKeySelective(Position record);
 
     int updateByPrimaryKey(Position record);
+    
+    List<Position> getAllPositionsOfPortfolio(int portfolioid);
     
 }

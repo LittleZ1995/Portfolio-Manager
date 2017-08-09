@@ -1,5 +1,7 @@
 package com.citi.portfolio.entity.dao;
 
+import java.util.List;
+
 import com.citi.portfolio.entity.Security;
 
 public interface SecurityMapper {
@@ -14,4 +16,6 @@ public interface SecurityMapper {
     int updateByPrimaryKeySelective(Security record);
 
     int updateByPrimaryKey(Security record);
+    
+    Security getSecurityTypeById(int securityid);
 }

@@ -18,4 +18,6 @@ public interface FutureMapper {
     int updateByPrimaryKey(Future record);
 
 	Future selectBySymbol(String symbol);
+	
+	Future getFutureBySecurityId(int securityid);
 }

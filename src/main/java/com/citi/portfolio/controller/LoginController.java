@@ -1,5 +1,6 @@
 package com.citi.portfolio.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -35,7 +36,9 @@ public class LoginController {
 		
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
-		
+		List<String> portfolionames = new ArrayList<>();
+		String names = "a";
+		String profits = "";
 		if(account.equals("admin") && password.equals("admin"))
 		{
 //			List<FundManager> fundManagers = fundManagerService.getAllManagers();     
@@ -59,7 +62,18 @@ public class LoginController {
 			else {
 				httpSession.setAttribute("FundManager", fundManager);
 				List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
+				for(int i = 0; i < portfolios.size()-1 ; i++){		
+					portfolionames.add(portfolios.get(i).getName());
+					names += (portfolios.get(i).getName() + ",");
+					profits += (portfolios.get(i).getProfit() + ",");
+				}
+				names += portfolios.get(portfolios.size()-1).getName();
+				profits += (portfolios.get(portfolios.size()-1).getProfit());
+				
 				model.addAttribute("portfolios",portfolios);
+				model.addAttribute("names",names);
+				model.addAttribute("profits",profits);
+				model.addAttribute("portfolionames",portfolionames);
 				return "portfolioListOfManager";
 			}
 		}
