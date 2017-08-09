@@ -148,6 +148,16 @@
             </div>
           </div>
           
+           <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Position List</h2>
+                  <ul class="nav navbar-right ">
+                    <li><a  class="btn btn-success btn-xs plus" href="securitiesList_manager.html"><i class="fa fa-plus"></i> Add </a></li>
+                  </ul>
+                 <!--  -->
+                  <div class="clearfix"></div>
+                </div>
           
            <div class="x_content">
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -183,7 +193,7 @@
                               <tbody>
                                 
                                <c:forEach items="${results}" var="position" >
-                                <tr>
+                                <tr id = ${position.value.securityid}>
                                   <td>${position.key}</td>
                                   <td>${position.value.quantity}</td>
                                   <td>${position.value.initialprice}</td>
@@ -191,6 +201,7 @@
                                   <td>${position.value.profit}</td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>        
@@ -221,7 +232,7 @@
 
                               <tbody>
                                  <c:forEach items="${bondresults}" var="bond" >
-                                <tr>
+                                <tr id = ${bond.key.securityid}>
                                   <td>${bond.value.isin}</td>
                                   <td>${bond.value.issuer}</td>
                                   <td>${bond.value.coupon}</td>
@@ -232,6 +243,7 @@
                                   <td>${bond.key.profit}</td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach> 
@@ -247,7 +259,7 @@
                             future-tab
                            <table id="future-table" class="table table-striped table-bordered bulk_action">
                               <thead>
-                               <tr>
+                               <tr >
                                   <th>Symbol</th>
                                   <th>DeliveryDate</th>                       
                                   <th>Quntity</th>
@@ -261,7 +273,7 @@
 
                               <tbody>
                                 <c:forEach items="${futureresults}" var="future" >
-                                <tr>
+                                <tr id = ${future.key.securityid}>
                                   <td>${future.value.symbol}</td>
                                   <td>${future.value.deliverydate}</td>
                                   <td>${future.key.quantity}</td>
@@ -270,6 +282,7 @@
                                   <td>${future.key.profit}</td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>
@@ -294,7 +307,7 @@
                                 </tr>
                               </thead>
 							  <c:forEach items="${equityresults}" var="equity" >
-                                <tr>
+                                <tr id = ${equity.key.securityid}>
                                   <td>${equity.value.symbol}</td>
                                   <td>${equity.value.sector}</td>
                                   <td>${equity.value.industry}</td>
@@ -304,6 +317,7 @@
                                   <td>${equity.key.profit}</td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>
@@ -317,7 +331,8 @@
                         </div>
                       </div>
                 </div>
-          
+          	</div>
+          </div>
           
           
         </div>
@@ -381,7 +396,39 @@
     </div>
   </div>
 </div>
+<div class="modal fade salePosition" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog ">
+                          <div class="modal-content">
 
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                              </button>
+                              <h4 class="modal-title" id="myModalLabel2">Sale Position</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sale Quantity <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                                  </div>
+                                </div>
+                                
+                                
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 <!-- footer content -->
 <footer>
   <div class="pull-right">

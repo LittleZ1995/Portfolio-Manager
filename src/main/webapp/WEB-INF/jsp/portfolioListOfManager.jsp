@@ -163,21 +163,15 @@
                               <tr id = ${portfolio.portfolioid}>
                                 <td>${portfolio.name}</td>
                                 <td>${portfolio.profit}</td>
-                                <td>
-                                  <a href="viewOnePortfolio?portfolioid=1" +  class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                  <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i> Edit </a>
+                                <td>                                
+                                  <a href="viewOnePortfolio?portfolioid=${portfolio.portfolioid}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                   <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                 </td>
                               </tr>     
                             </c:forEach>                      
                           </tbody>
                         </table>
-                        <div id="names">
-                        	${names}
-                        </div>     
-                        <div id="profits">
-                        	${profits}
-                        </div>  
+                      
           </div>
         </div>
       </div>
@@ -245,12 +239,14 @@
 <!-- Custom Theme Scripts -->
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
+
+  var profit =  [];
+  var names = [];
+  <c:forEach items="${portfolios}" var="item" varStatus="status" >  
+	 profit.push(${item.profit});
+	 names.push("${item.name}");
+  </c:forEach>
   var portfolioGraphLine = echarts.init(document.getElementById('portfolio-graphLine-manager'));
-  var portfolionames = new Array();
-  portfolionames = $("#names").text().split(",");
-  var profits = new Array();
-  profits = $("#profits").text().split(",");
-  
   var option = {
           title: {
               text: 'Portfolios'
@@ -260,13 +256,13 @@
               data:['Profit']
           },
           xAxis: {
-              data: portfolionames
+              data: names
           },
           yAxis: {},
           series: [{
               name: 'Profit',
               type: 'bar',
-              data: profits
+              data: profit
           }]
       };
 
