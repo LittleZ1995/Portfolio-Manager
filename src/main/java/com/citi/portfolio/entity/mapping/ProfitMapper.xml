@@ -79,4 +79,10 @@
       Date = #{date,jdbcType=DATE}
     where ProfitID = #{profitid,jdbcType=INTEGER}
   </update>
+  <select id="selectByPortfolioId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from profit
+    where PortfolioID = #{portfolioid,jdbcType=INTEGER}
+  </select>
 </mapper>

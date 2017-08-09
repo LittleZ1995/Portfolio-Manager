@@ -3,6 +3,7 @@ package com.citi.portfolio.service;
 import java.util.List;
 
 import com.citi.portfolio.entity.Portfolio;
+import com.citi.portfolio.entity.Profit;
 
 public interface PortfolioService {
 	
@@ -17,4 +18,6 @@ public interface PortfolioService {
 	public List<Portfolio> getAllPortfolios();
 
 	public Double calculateProfit(Integer portfolioid);
+	
+	public List<Profit> getAllHistoryProfit(Integer portfolioid);
 }

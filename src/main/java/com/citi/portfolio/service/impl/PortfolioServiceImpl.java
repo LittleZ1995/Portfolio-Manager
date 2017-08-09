@@ -10,14 +10,19 @@ import com.citi.portfolio.entity.Portfolio;
 import com.citi.portfolio.entity.Position;
 import com.citi.portfolio.entity.dao.FundManagerMapper;
 import com.citi.portfolio.entity.dao.PortfolioMapper;
+import com.citi.portfolio.entity.dao.ProfitMapper;
 import com.citi.portfolio.service.PortfolioService;
 import com.citi.portfolio.service.PositionService;
+import com.citi.portfolio.entity.Profit;
 
 @Service("PortfolioService")
 public class PortfolioServiceImpl implements PortfolioService {
 
 	@Resource
 	private PortfolioMapper portfolioMapper;
+	
+	@Resource
+	private ProfitMapper profitMapper;
 	
 	@Resource
 	private PositionService positionService;
@@ -56,6 +61,11 @@ public class PortfolioServiceImpl implements PortfolioService {
 			profit += position.getProfit();
 		}
 		return profit;
+	}
+
+	@Override
+	public List<Profit> getAllHistoryProfit(Integer portfolioid) {
+		return profitMapper.selectByPortfolioId(portfolioid);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.citi.portfolio.entity.dao;
 
+import java.util.List;
+
 import com.citi.portfolio.entity.Profit;
 
 public interface ProfitMapper {
@@ -14,4 +16,6 @@ public interface ProfitMapper {
     int updateByPrimaryKeySelective(Profit record);
 
     int updateByPrimaryKey(Profit record);
+
+	List<Profit> selectByPortfolioId(Integer portfolioid);
 }
