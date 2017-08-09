@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.citi.portfolio.entity.Bond;
+import com.citi.portfolio.entity.Equity;
+import com.citi.portfolio.entity.Future;
 import com.citi.portfolio.entity.Position;
 import com.citi.portfolio.entity.Price;
 import com.citi.portfolio.entity.Security;
@@ -56,14 +58,22 @@ public class PositionController {
 		}
 		else if(type.equals("equity"))
 		{
-			
+			Equity equity = equityService.getEquityBySecurityId(securityid);
+			int equityid = equity.getEquityid();
+			List<Price> prices = equityService.findAllHistoryPrices(equityid);
+			model.addAttribute("prices", prices);
+			model.addAttribute("equity",equity);
 		}
 		else if(type.equals("future"))
 		{
-			
+			Future future = futureService.getFutureBySecurityId(securityid);
+			int futureid = future.getFutureid();
+			List<Price> prices = futureService.findAllHistoryPrices(futureid);
+			model.addAttribute("prices", prices);
+			model.addAttribute("future",future);
 		}
 		
-		return "";
+		return "securityDetail";
 		
 	}
 
