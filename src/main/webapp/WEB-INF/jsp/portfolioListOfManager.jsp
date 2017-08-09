@@ -243,7 +243,7 @@
   var profit =  [];
   var names = [];
   <c:forEach items="${portfolios}" var="item" varStatus="status" >  
-	 profit.push(${item.profit});
+	 profit.push( ${item.profit});
 	 names.push("${item.name}");
   </c:forEach>
   var portfolioGraphLine = echarts.init(document.getElementById('portfolio-graphLine-manager'));

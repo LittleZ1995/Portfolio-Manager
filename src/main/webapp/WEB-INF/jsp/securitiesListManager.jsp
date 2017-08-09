@@ -174,7 +174,7 @@
                                   <td>${bond.value.bidprice}</td>
                                   <td>${bond.value.offerprice}</td>
                                   <td>
-                                    <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=0&securityid=${bond.value.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel"  onclick=getSecurityId(${bond.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
                                   </td>
                                 </tr>  
@@ -208,7 +208,7 @@
                                   <td>${future.value.bidprice}</td>
                                   <td>${future.value.offerprice}</td>
                                   <td>
-                                    <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=0&securityid=${future.value.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel" onclick=getSecurityId(${future.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
                                   </td>
                                 </tr>  
@@ -244,7 +244,7 @@
                                   <td>${equity.value.bidprice}</td>
                                   <td>${equity.value.offerprice}</td>
                                   <td>
-                                    <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=0&securityid=${equity.value.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel" onclick=getSecurityId(${equity.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
                                   </td>
                                 </tr>  

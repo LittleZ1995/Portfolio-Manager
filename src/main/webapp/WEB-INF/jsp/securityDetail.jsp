@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -156,7 +156,6 @@
                             	<th>Date</th>
                                 <th>Bid Price</th>
                                 <th>Offer Price</th>
-                                <th>Operations</th>
                             </tr>
                         </thead>
 
@@ -164,13 +163,10 @@
                         <tbody>
                         <c:forEach items="${prices}" var="price" >
                         <tr>
-                        	<td>${price.date}</td>
+                        
+                        	<td class="dates"><fmt:formatDate value="${price.date}" pattern="yyyy/MM/dd HH:mm"/></td>
                             <td>${price.bidprice}</td>
-                            <td>${price.offerprice}</td>
-                            <td>
-                          		<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i> Edit </a>
-                          		<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                              </td>
+                            <td>${price.offerprice}</td>                         
                             </tr>
                         </c:forEach>
                     	</tbody>
@@ -192,7 +188,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Ã</span>
         </button>
         <h4 class="modal-title" id="myModalLabel2">Edit Found Manager</h4>
       </div>
@@ -266,68 +262,90 @@
 <!-- Custom Theme Scripts -->
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
+	var bidprices =  [];
+	var offprices =  [];
+	var dates = [];
+	<c:forEach items="${prices}" var="item" varStatus="status" >  
+		bidprices.push(${item.bidprice});
+		offprices.push(${item.offerprice});
+	</c:forEach>
 
+	$(".dates").each(function(){
+		dates.push($(this).text());
+		});
+	
         var security_graphLine = echarts.init(document.getElementById('security_graphLine'));
-        var option = {
-          color: ['#3498DB'],
+        var  option = {
+        	    title : {
+        	        text: 'Security perfomece',
+        	    },
+        	    tooltip : {
+        	        trigger: 'axis'
+        	    },
+        	    legend: {
+        	        data:['BidPrice','OfferPrice']
+        	    },
+        	    toolbox: {
+        	        show : true,
+        	        feature : {
+        	            mark : {show: true},
+        	            magicType : {show: true, type: ['line', 'bar'],title :'bar'},
+        	            restore : {show: true,title :'restore'},
+        	            saveAsImage : {show: true,title :'save'}
+        	        }
+        	    },
+        	    calculable : true,
+        	    xAxis : [
+        	        {
+        	            type : 'category',
+        	            boundaryGap : false,
+        	            data : dates
+        	        }
+        	    ],
+        	    yAxis : [
+        	        {
+        	            type : 'value',
+        	            axisLabel : {
+        	                formatter: '${value}'
+        	            }
+        	        }
+        	    ],
+        	    series : [
+        	        {
+        	            name:'BidPrice',
+        	            type:'line',
+        	            data:bidprices,
+        	            markPoint : {
+        	                data : [
+        	                    {type : 'max', name: 'Max'},
+        	                    {type : 'min', name: 'Min'}
+        	                ]
+        	            },
+        	            markLine : {
+        	                data : [
+        	                    {type : 'average', name: 'Average'}
+        	                ]
+        	            }
+        	        },
+        	        {
+        	            name:'OfferPrice',
+        	            type:'line',
+        	            data:offprices,
+        	            markPoint : {
+        	                data : [
+        	                    {name : 'min', value : -2, xAxis: 1, yAxis: -1.5}
+        	                ]
+        	            },
+        	            markLine : {
+        	                data : [
+        	                    {type : 'average', name : 'Average'}
+        	                ]
+        	            }
+        	        }
+        	    ]
+        	};
 
-          title: {
-              text: 'Security Name',
-              left: 'center',
-              top: 20,
-              textStyle: {
-                  color: '#73879C'
-              }
-          },
-
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-          },
-          xAxis : [
-          {
-            data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            axisLine: {
-              // show: false
-              lineStyle: {
-                color:'#73879C'
-              }
-            },
-            axisTick: {
-              show: false
-            }
-          }
-          ],
-          yAxis : [
-          {
-            type : 'value',
-            axisLine: {
-              lineStyle: {
-                color:'#73879C'
-              }
-            },
-            axisTick: {
-              show: false,
-            },
-          }
-          ],
-          series : [
-          {
-
-            type:'line',
-            data:[10, 52, 200, 334, 390, 330, 220],
-            label:{
-              normal:{
-                show:true
-              }
-            }
-          }
-          ]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
+        // ä½¿ç¨åæå®çéç½®é¡¹åæ°æ®æ¾ç¤ºå¾è¡¨ã
         security_graphLine.setOption(option);
       </script>
     </body>

@@ -2662,11 +2662,11 @@ if (typeof NProgress != 'undefined') {
 				});
 
 				$('#prices-table').DataTable({
-				  'order': [[ 1, 'asc' ]],
+				  'order': [[ 0, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
 				  'columnDefs': [
-					{ orderable: false, targets: [2] }
+					{ orderable: false, targets: [3] }
 				  ]
 				});
 

@@ -22,7 +22,7 @@
     select *
     from price
     where SecurityID = #{securityId,jdbcType=INTEGER}
-    order by Date desc
+    order by Date asc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from price

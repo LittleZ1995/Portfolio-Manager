@@ -54,9 +54,16 @@ public class PositionController {
 	public String viewSecurity(HttpServletRequest request, Model model,HttpSession httpSession) {
 		
 		int positionid = Integer.parseInt(request.getParameter("positionid"));
-//		Position position = positionService.getPositionByPositionId(positionid);
-		Security security=securityService.getSecurityTypeById(positionid);
-		int securityid = security.getSecurityid();
+		int securityid= 0;
+		if(positionid == 0)
+			securityid = Integer.parseInt(request.getParameter("securityid"));
+		else
+		{
+			Position position = positionService.getPositionByPositionId(positionid);	
+			securityid = position.getSecurityid();
+		}
+		Security security=securityService.getSecurityTypeById(securityid);
+		securityid = security.getSecurityid();
 		String type = security.getSecuritytype();
 		if(type.equals("bond"))
 		{
