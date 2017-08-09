@@ -5,7 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<%String path = request.getContextPath(); 
+<%
+  String path = request.getContextPath(); 
   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,7 +74,7 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Security  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="securitiesList.html">View Securities</a></li>
+                      <li><a href="<%=basePath %>admin/viewSecurities">View Securities</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -95,7 +96,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="<%=path %>/images/Pat.png" alt="">Pat
+                  <img src="<%=path %>/images/Pat.png" alt="">Admin
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
