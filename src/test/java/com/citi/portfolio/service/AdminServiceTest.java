@@ -40,6 +40,8 @@ public class AdminServiceTest {
 		
 		Date currentDate = priceMapper.getLatestDate();
 		
+		adminService.saveHistoryProfit(currentDate);
+		
 		Integer securityId = bond.getSecurityid();
 		Price oldPrice = priceMapper.selectByPrimaryKey(bond.getPriceid());
 		

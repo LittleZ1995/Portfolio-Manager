@@ -32,4 +32,6 @@ public interface AdminService {
 
 	void updatePositionPrice(Integer securityId, BigDecimal offerprice);
 
+	void saveHistoryProfit(Date currentDate);
+
 }

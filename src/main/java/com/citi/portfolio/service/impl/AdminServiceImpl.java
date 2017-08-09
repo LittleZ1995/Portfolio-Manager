@@ -18,11 +18,13 @@ import com.citi.portfolio.entity.Future;
 import com.citi.portfolio.entity.Portfolio;
 import com.citi.portfolio.entity.Position;
 import com.citi.portfolio.entity.Price;
+import com.citi.portfolio.entity.Profit;
 import com.citi.portfolio.entity.dao.BondMapper;
 import com.citi.portfolio.entity.dao.EquityMapper;
 import com.citi.portfolio.entity.dao.FutureMapper;
 import com.citi.portfolio.entity.dao.PositionMapper;
 import com.citi.portfolio.entity.dao.PriceMapper;
+import com.citi.portfolio.entity.dao.ProfitMapper;
 import com.citi.portfolio.service.AdminService;
 import com.citi.portfolio.service.FundManagerService;
 import com.citi.portfolio.service.PortfolioService;
@@ -32,6 +34,9 @@ import com.citi.portfolio.service.PositionService;
 public class AdminServiceImpl implements AdminService {
 	
 	private Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+	
+	@Resource
+	private ProfitMapper profitMapper;
 	
 	@Resource 
 	private PriceMapper priceMapper;
@@ -65,6 +70,8 @@ public class AdminServiceImpl implements AdminService {
 		
 		logger.info("Current Date: " + currentDate);
 		logger.info("The largest PriceID :" + this.getLargestPriceID());
+		
+		this.saveHistoryProfit(currentDate);
 		this.getLargestPriceID();
 		
 		List<Bond> bonds = bondMapper.getAllBonds();
@@ -79,6 +86,19 @@ public class AdminServiceImpl implements AdminService {
 		this.updatePortolioProfit();
 		
 		this.updateManagerProfit();
+		
+	}
+
+	@Override
+	public void saveHistoryProfit(Date currentDate) {
+		List<Portfolio> portfolios = portfolioService.getAllPortfolios();
+		for (Portfolio portfolio : portfolios) {
+			Profit profit = new Profit();
+			profit.setPortfolioid(portfolio.getPortfolioid());
+			profit.setProfitvalue(portfolio.getProfit());
+			profit.setDate(currentDate);
+			profitMapper.insert(profit);
+		}
 		
 	}
 
