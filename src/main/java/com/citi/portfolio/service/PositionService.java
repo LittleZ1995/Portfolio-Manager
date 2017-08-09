@@ -11,4 +11,6 @@ public interface PositionService {
 	Position getPositionByPositionId(int positionid);
 	
 	public int addPosition(Position position);
+
+	public int updatePosition(Position position);
 }
