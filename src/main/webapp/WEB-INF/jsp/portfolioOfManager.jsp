@@ -182,10 +182,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <thead>
                                 <tr>
                                   <th>Symbol/ISIN</th>
-                                  <th>Quntity</th>
+                                  <th>Quantity</th>
                                   <th>InitialPrice</th>
                                   <th>CurrentPrice</th>
+                                  <th>InitialValue</th>
+                                  <th>CurrentValue</th>
                                   <th>Profit</th>
+                                  <th>Proportion</th>
                                   <th>Operations</th>
                                 </tr>
                               </thead>
@@ -198,9 +201,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                <!--  <tr id = ${position.value.securityid}> -->
                                   <td>${position.key}</td>
                                   <td class="quantity">${position.value.quantity}</td>
-                                  <td>${position.value.initialprice}</td>
-                                  <td>${position.value.currentprice}</td>
-                                  <td class="profit">${position.value.profit}</td>
+                                  <td class="initialprice">${position.value.initialprice}</td>
+                                  <td class="currentprice">${position.value.currentprice}</td>
+                                  <td class="initialValue">${position.value.initialprice * position.value.quantity}</td>
+                                  <td class="currentValue">${position.value.currentprice * position.value.quantity}</td>
+                                  <td class="profit ${position.value.profit lt 0?'red':'green'}">${position.value.profit}</td>
+                                  <td class="proportion"></td>
+                                  <%-- <fmt:formatNumber value="${100/position.value.initialprice}"  minFractionDigits="2"/> --%>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${position.value.positionid}',${position.value.quantity})"><i class="fa fa-pencil"></i> Sale </a>
@@ -223,10 +230,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <th>Issuer</th>
                                   <th>Coupon</th>
                                   <th>Maturity</th>
-                                  <th>Quntity</th>
+                                  <th>Quantity</th>
                                   <th>InitialPrice</th>
                                   <th>CurrentPrice</th>
+                                  <th>InitialValue</th>
+                                  <th>CurrentValue</th>
                                   <th>Profit</th>
+                                  <th>Proportion</th>
                                   <th>Operations</th>
                                 </tr>
                               </thead>
@@ -240,9 +250,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td>${bond.value.coupon}</td>
                                   <td>${bond.value.maturity}</td>
                                   <td class="quantity">${bond.key.quantity}</td>
-                                  <td>${bond.key.initialprice}</td>
-                                  <td>${bond.key.currentprice}</td>
+                                  <td class="initialprice">${bond.key.initialprice}</td>
+                                  <td class="currentprice">${bond.key.currentprice}</td>
+                                  <td class="initialValue">${bond.key.initialprice*bond.key.quantity}</td>
+                                  <td class="currentValue">${bond.key.currentprice*bond.key.quantity}</td>
                                   <td class="profit">${bond.key.profit}</td>
+                                  <td class="proportion"></td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                      <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${bond.key.positionid}',${bond.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
@@ -264,10 +277,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                <tr >
                                   <th>Symbol</th>
                                   <th>DeliveryDate</th>                       
-                                  <th>Quntity</th>
+                                  <th>Quantity</th>
                                   <th>InitialPrice</th>
                                   <th>CurrentPrice</th>
+                                  <th>InitialValue</th>
+                                  <th>CurrentValue</th>
                                   <th>Profit</th>
+                                  <th>Proportion</th>
                                   <th>Operations</th>
                                 </tr>
                               </thead>
@@ -279,9 +295,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td>${future.value.symbol}</td>
                                   <td>${future.value.deliverydate}</td>
                                   <td class="quantity">${future.key.quantity}</td>
-                                  <td>${future.key.initialprice}</td>
-                                  <td>${future.key.currentprice}</td>
+                                  <td class="initialprice">${future.key.initialprice}</td>
+                                  <td class="currentprice">${future.key.currentprice}</td>
+                                  <td class="initialValue">${future.key.initialprice*future.key.quantity}</td>
+                                  <td class="currentValue">${future.key.currentprice*future.key.quantity}</td>
                                   <td class="profit">${future.key.profit}</td>
+                                  <td class="proportion"></td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                      <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${future.key.positionid}',${future.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
@@ -301,22 +320,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <th>Symbol</th>
                                   <th>Sector</th>
                                   <th>Industry</th>
-                                  <th>Quntity</th>
+                                  <th>Quantity</th>
                                   <th>InitialPrice</th>
                                   <th>CurrentPrice</th>
+                                  <th>InitialValue</th>
+                                  <th>CurrentValue</th>
                                   <th>Profit</th>
+                                  <th>Proportion</th>
                                   <th>Operations</th>
                                 </tr>
                               </thead>
 							  <c:forEach items="${equityresults}" var="equity" >
-                                <tr id = 'equity${equity.key.securityid}'>
+                                <tr id = 'equity${equity.key.positionid}'>
                                   <td>${equity.value.symbol}</td>
                                   <td>${equity.value.sector}</td>
                                   <td>${equity.value.industry}</td>
                                   <td class="quantity">${equity.key.quantity}</td>
-                                  <td>${equity.key.initialprice}</td>
-                                  <td>${equity.key.currentprice}</td>
+                                  <td class="initialprice">${equity.key.initialprice}</td>
+                                  <td class="currentprice">${equity.key.currentprice}</td>
+                                  <td class="initialValue">${equity.key.initialprice*equity.key.quantity}</td>
+                                  <td class="currentValue">${equity.key.currentprice*equity.key.quantity}</td>
                                   <td class="profit">${equity.key.profit}</td>
+                                  <td class="proportion"></td>
                                   <td>
                                     <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${equity.key.positionid}',${equity.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
@@ -416,6 +441,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- Custom Theme Scripts -->
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
+
+	$(document).ready(function(){
+		$(".proportion").each(function(){
+		    $(this).text((($(this).prev().text())/($(this).parent().children(".initialValue").text())).toFixed(2));
+		    if($(this).text()<0){
+		    	$(this).addClass("red");
+			}else{
+				$(this).addClass("green");
+		    }
+		  });
+		
+	
+	});
+
   function submitToModel(posId,quantityAll){
 	  $("#positionId").val(posId);
 	  $("#quantityAll").text(quantityAll);
@@ -427,6 +466,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	function salePosition(){
 	  var posId = $("#positionId").val();
+	  /* alert(posId); */
 	  var sale =  $("#sale").val();
       var jsonData = {
     	      "posId":posId,
@@ -445,8 +485,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              $(".salePosition").modal('hide');
         	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
         	 $("#position"+posId + ">.profit").text(map.profit);
+        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
+        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
+        	 var proportion = (map.profit/initialValue).toFixed(2);
+        	 $("#position"+posId + ">.initialValue").text(initialValue);
+        	 $("#position"+posId + ">.currentValue").text(currentValue);
+        	 $("#position"+posId + ">.proportion").text(proportion);
+        	 
         	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
         	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
+        	 $("#" + map.securityType + posId + ">.initialValue").text(initialValue);
+        	 $("#" + map.securityType + posId + ">.currentValue").text(currentValue);
+        	 $("#" + map.securityType + posId + ">.proportion").text(proportion);
           }
       });
 
