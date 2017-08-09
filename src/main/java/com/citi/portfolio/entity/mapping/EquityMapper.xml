@@ -152,4 +152,11 @@
     where SecurityID = #{securityid}   
   </select>
   
+  <select id="getAllEquitys" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from equity  
+  </select>
+  
+  
 </mapper>

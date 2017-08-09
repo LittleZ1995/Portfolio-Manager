@@ -1,5 +1,7 @@
 package com.citi.portfolio.entity.dao;
 
+import java.util.List;
+
 import com.citi.portfolio.entity.Equity;
 
 public interface EquityMapper {
@@ -20,4 +22,6 @@ public interface EquityMapper {
 	Equity selectBySymbol(String symbol);
 	
 	Equity getEquityBySecurityId(int securityid);
+
+	List<Equity> getAllEquitys();
 }

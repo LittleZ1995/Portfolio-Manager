@@ -139,4 +139,10 @@
     from future  
     where SecurityID = #{securityid}   
   </select>
+  
+  <select id="getAllFutures" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from future
+  </select>
 </mapper>

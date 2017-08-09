@@ -123,4 +123,12 @@
     order by profit desc
   </select>
   
+  <select id="getPositionsBySecurityID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from position
+    where SecurityID = #{securityid,jdbcType=INTEGER}
+  </select>
+  
+  
 </mapper>

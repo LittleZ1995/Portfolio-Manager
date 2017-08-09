@@ -1,5 +1,7 @@
 package com.citi.portfolio.entity.dao;
 
+import java.util.List;
+
 import com.citi.portfolio.entity.Future;
 
 public interface FutureMapper {
@@ -20,4 +22,6 @@ public interface FutureMapper {
 	Future selectBySymbol(String symbol);
 	
 	Future getFutureBySecurityId(int securityid);
+
+	List<Future> getAllFutures();
 }

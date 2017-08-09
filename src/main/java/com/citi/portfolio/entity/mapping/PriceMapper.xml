@@ -109,4 +109,11 @@
       SecurityID = #{securityid,jdbcType=INTEGER}
     where PriceID = #{priceid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getLatestDate" resultMap="BaseResultMap">
+    select distinct Date 
+    from mydb.price
+    order by Date desc
+    limit 1
+  </select>
 </mapper>

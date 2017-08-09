@@ -23,4 +23,6 @@ public interface BondMapper {
 	Bond selectByISIN(String iSIN);
 	
 	Bond getBondBySecurityId(int securityid);
+
+	List<Bond> getAllBonds();
 }

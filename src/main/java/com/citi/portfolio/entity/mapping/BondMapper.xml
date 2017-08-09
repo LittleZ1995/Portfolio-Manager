@@ -153,4 +153,10 @@
     from bond  
     where SecurityID = #{securityid}   
   </select>
+  
+  <select id="getAllBonds" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bond  
+  </select>
 </mapper>

@@ -19,4 +19,6 @@ public interface PositionMapper {
     
     List<Position> getAllPositionsOfPortfolio(int portfolioid);
     
+    List<Position> getPositionsBySecurityID(int securityid);
+    
 }
