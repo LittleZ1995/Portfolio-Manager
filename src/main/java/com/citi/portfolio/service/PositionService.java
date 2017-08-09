@@ -9,4 +9,6 @@ public interface PositionService {
 	public List<Position> getAllPositionsOfPortfolio(int portfolioid);
 	
 	Position getPositionByPositionId(int positionid);
+	
+	public int addPosition(Position position);
 }

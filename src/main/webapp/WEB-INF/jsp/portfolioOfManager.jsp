@@ -153,7 +153,7 @@
                 <div class="x_title">
                   <h2>Position List</h2>
                   <ul class="nav navbar-right ">
-                    <li><a  class="btn btn-success btn-xs plus" href="securitiesList_manager.html"><i class="fa fa-plus"></i> Add </a></li>
+                    <li><a  class="btn btn-success btn-xs plus" href="showpositions?portfolioid=${portfolio.portfolioid}"><i class="fa fa-plus"></i> Add </a></li>
                   </ul>
                  <!--  -->
                   <div class="clearfix"></div>

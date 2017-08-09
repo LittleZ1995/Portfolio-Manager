@@ -72,4 +72,21 @@ public class Position {
     public void setProfit(Double profit) {
         this.profit = profit;
     }
+
+	public Position(Integer portfolioid, Integer quantity, BigDecimal initialprice, BigDecimal currentprice,
+			Integer securityid, Double profit) {
+		super();
+		this.portfolioid = portfolioid;
+		this.quantity = quantity;
+		this.initialprice = initialprice;
+		this.currentprice = currentprice;
+		this.securityid = securityid;
+		this.profit = profit;
+	}
+
+	public Position() {
+		super();
+	}
+    
+    
 }

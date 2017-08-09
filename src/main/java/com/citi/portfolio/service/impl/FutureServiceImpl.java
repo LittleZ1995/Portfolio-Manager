@@ -37,4 +37,10 @@ public class FutureServiceImpl implements FutureService {
 		return futureMapper.getFutureBySecurityId(securityid);
 	}
 
+	@Override
+	public List<Future> getAllFutures() {
+		// TODO Auto-generated method stub
+		return futureMapper.getAllFutures();
+	}
+
 }

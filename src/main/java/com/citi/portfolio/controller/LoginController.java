@@ -62,18 +62,18 @@ public class LoginController {
 			else {
 				httpSession.setAttribute("FundManager", fundManager);
 				List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
-				for(int i = 0; i < portfolios.size()-1 ; i++){		
-					portfolionames.add(portfolios.get(i).getName());
-					names += (portfolios.get(i).getName() + ",");
-					profits += (portfolios.get(i).getProfit() + ",");
-				}
-				names += portfolios.get(portfolios.size()-1).getName();
-				profits += (portfolios.get(portfolios.size()-1).getProfit());
+//				for(int i = 0; i < portfolios.size()-1 ; i++){		
+//					portfolionames.add(portfolios.get(i).getName());
+//					names += (portfolios.get(i).getName() + ",");
+//					profits += (portfolios.get(i).getProfit() + ",");
+//				}
+//				names += portfolios.get(portfolios.size()-1).getName();
+//				profits += (portfolios.get(portfolios.size()-1).getProfit());
 				
 				model.addAttribute("portfolios",portfolios);
-				model.addAttribute("names",names);
-				model.addAttribute("profits",profits);
-				model.addAttribute("portfolionames",portfolionames);
+//				model.addAttribute("names",names);
+//				model.addAttribute("profits",profits);
+//				model.addAttribute("portfolionames",portfolionames);
 				return "portfolioListOfManager";
 			}
 		}

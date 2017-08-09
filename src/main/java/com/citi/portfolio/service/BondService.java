@@ -11,4 +11,5 @@ public interface BondService {
 	
 	Bond getBondBySecurityId(int securityid);
 	
+	List<Bond> getAllBonds();
 }

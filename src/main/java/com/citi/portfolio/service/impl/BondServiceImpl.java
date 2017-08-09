@@ -38,4 +38,10 @@ public class BondServiceImpl implements BondService{
 		// TODO Auto-generated method stub
 		return bondMapper.getBondBySecurityId(securityid);
 	}
+
+	@Override
+	public List<Bond> getAllBonds() {
+		// TODO Auto-generated method stub
+		return bondMapper.getAllBonds();
+	}
 }
