@@ -112,8 +112,15 @@
   
   <select id="getLatestDate" resultMap="BaseResultMap">
     select distinct Date 
-    from mydb.price
+    from price
     order by Date desc
+    limit 1
+  </select>
+  
+  <select id="getLargestPriceID" resultMap="BaseResultMap">
+    select PriceID 
+    from price
+    order by PriceID desc
     limit 1
   </select>
 </mapper>

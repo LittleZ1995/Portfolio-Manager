@@ -21,4 +21,6 @@ public interface PriceMapper {
 	List<Price> selectBySecurityID(int securityId);
 
 	Date getLatestDate();
+
+	Integer getLargestPriceID();
 }
