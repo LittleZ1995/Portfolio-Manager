@@ -8,8 +8,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.citi.portfolio.entity.Equity;
+import com.citi.portfolio.entity.Future;
 import com.citi.portfolio.entity.Price;
 import com.citi.portfolio.entity.dao.EquityMapper;
+import com.citi.portfolio.entity.dao.FutureMapper;
 import com.citi.portfolio.entity.dao.PriceMapper;
 import com.citi.portfolio.service.EquityService;
 
@@ -38,5 +40,15 @@ public class EquityServiceImpl implements EquityService {
 		// TODO Auto-generated method stub
 		return equityMapper.getEquityBySecurityId(securityid);
 	}
+
+	@Override
+	public List<Equity> getAllEquities() {
+		// TODO Auto-generated method stub
+		return equityMapper.getAllEquitys();
+	}
+
+	
+
+	
 
 }

@@ -10,4 +10,6 @@ public interface FutureService {
 	public List<Price> findAllHistoryPrices(int futureid);
 	
 	Future getFutureBySecurityId(int securityid);
+	
+	List<Future> getAllFutures();
 }

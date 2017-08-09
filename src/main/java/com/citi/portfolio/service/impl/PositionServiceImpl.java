@@ -22,4 +22,16 @@ public class PositionServiceImpl implements PositionService {
 		return positionMapper.getAllPositionsOfPortfolio(portfolioid);
 	}
 
+	@Override
+	public int addPosition(Position position) {
+		// TODO Auto-generated method stub
+		return positionMapper.insert(position);
+	}
+
+	@Override
+	public Position getPositionByPositionId(int positionid) {
+		// TODO Auto-generated method stub
+		return positionMapper.selectByPrimaryKey(positionid);
+	}
+
 }

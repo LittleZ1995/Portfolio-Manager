@@ -2616,6 +2616,33 @@ if (typeof NProgress != 'undefined') {
 				  ]
 				});
 
+				$('#bonds-table1').DataTable({
+					  'order': [[ 5, 'desc' ]],
+					  'lengthChange': false,
+					  'info':false,
+					  'columnDefs': [
+						{ orderable: false, targets: [6] }
+					  ]
+					});
+
+					$('#future-table1').DataTable({
+					  'order': [[ 3, 'desc' ]],
+					  'lengthChange': false,
+					  'info':false,
+					  'columnDefs': [
+						{ orderable: false, targets: [4] }
+					  ]
+					});
+
+					$('#equity-table1').DataTable({
+					  'order': [[ 4, 'desc' ]],
+					  'lengthChange': false,
+					  'info':false,
+					  'columnDefs': [
+						{ orderable: false, targets: [5] }
+					  ]
+					});
+				
 				$('#etf-table').DataTable({
 				  'order': [[ 4, 'desc' ]],
 				  'lengthChange': false,
