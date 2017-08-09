@@ -105,7 +105,7 @@
                     </a>
                   </li>
                   <li><a href="javascript:;">Help</a></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="<%=path %>/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                 </ul>
               </li>
 
@@ -170,9 +170,9 @@
                                   <td>${bond.key.isin}</td>
                                   <td>${bond.key.issuer}</td>
                                   <td>${bond.key.coupon}</td>
-                                  <td>${bond.key.maturity}</td>
-                                  <td>${bond.value.bidprice}</td>
-                                  <td>${bond.value.offerprice}</td>
+                                  <td><fmt:formatDate value="${bond.key.maturity}" pattern="yyyy/MM/dd"/></td>
+                                  <td><label>$</label>${bond.value.bidprice}</td>
+                                  <td><label>$</label>${bond.value.offerprice}</td>
                                   <td>
                                     <a href="viewSecurity?positionid=0&securityid=${bond.value.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel"  onclick=getSecurityId(${bond.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
@@ -204,9 +204,9 @@
                                 <c:forEach items="${futureresults}" var="future" >
                                 <tr>
                                   <td>${future.key.symbol}</td>
-                                  <td>${future.key.deliverydate}</td>
-                                  <td>${future.value.bidprice}</td>
-                                  <td>${future.value.offerprice}</td>
+                                  <td><fmt:formatDate value="${future.key.deliverydate}" pattern="yyyy/MM/dd"/></td>
+                                  <td><label>$</label>${future.value.bidprice}</td>
+                                  <td><label>$</label>${future.value.offerprice}</td>
                                   <td>
                                     <a href="viewSecurity?positionid=0&securityid=${future.value.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel" onclick=getSecurityId(${future.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
@@ -241,8 +241,8 @@
                                   <td>${equity.key.symbol}</td>
                                   <td>${equity.key.sector}</td>
                                   <td>${equity.key.industry}</td>
-                                  <td>${equity.value.bidprice}</td>
-                                  <td>${equity.value.offerprice}</td>
+                                  <td><label>$</label>${equity.value.bidprice}</td>
+                                  <td><label>$</label>${equity.value.offerprice}</td>
                                   <td>
                                     <a href="viewSecurity?positionid=0&securityid=${equity.value.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel" onclick=getSecurityId(${equity.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
@@ -280,11 +280,11 @@
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control" id="portfolioselect" onchange='Change(this[selectedIndex].value);'>
-                                <c:forEach items="${portfolios}" var="portfolio" >
-                       				<option value = ${portfolio.portfolioid}> ${portfolio.name}</option>
+                                <c:forEach items="${portfolios}" var="item" >
+                       				<option value = ${item.portfolioid}> ${portfolio.name}</option>
                                 </c:forEach>
-                                <input id="selectedid" name="selectedid" type="text" value=""/>
-                                <input id="securityid" name="securityid" type="text" value=""/>
+                                <input id="selectedid" style="display: none" name="selectedid" type="text" value=""/>
+                                <input id="securityid" style="display: none" name="securityid" type="text" value=""/>
                                 </select>
                               </div>
                             </div>
@@ -336,11 +336,11 @@
 <!-- Custom Theme Scripts -->
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
-$(function(){
-	$("#portfolioselect").find("option[value='${portfolio.portfolioid}']").attr("selected",true);
-	$("#selectedid").val('${portfolio.portfolioid}');
-	
-});
+	$(function(){
+		$("#portfolioselect").find("option[value='${portfolio.portfolioid}']").attr("selected",true);
+		$("#selectedid").val('${portfolio.portfolioid}');
+		
+	});
 	function Change(value) {
 		$("#selectedid").val(value);
 	}

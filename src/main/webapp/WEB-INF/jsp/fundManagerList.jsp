@@ -108,7 +108,7 @@
                     </a>
                   </li>
                   <li><a href="javascript:;">Help</a></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="<%=path %>/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                 </ul>
               </li>
 
@@ -197,9 +197,7 @@
                               <h4 class="modal-title" id="myModalLabel2">Add Fund Manager</h4>
                             </div>
                             <div class="modal-body">
-                            <form action="addManager" method="post" >
-                  		<button type="submit" class="btn btn-success" >Submit</button>
-                  	</form>
+                          
                               <form id="demo-form2" data-parsley-validate action="addManager" method="post" class="form-horizontal form-label-left">
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>

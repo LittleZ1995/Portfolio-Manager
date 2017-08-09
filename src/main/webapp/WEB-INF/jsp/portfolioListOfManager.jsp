@@ -102,7 +102,7 @@
                     </a>
                   </li>
                   <li><a href="javascript:;">Help</a></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="<%=path %>/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                 </ul>
               </li>
 
@@ -243,13 +243,13 @@
   var profit =  [];
   var names = [];
   <c:forEach items="${portfolios}" var="item" varStatus="status" >  
-	 profit.push( ${item.profit});
+	 profit.push(${item.profit});
 	 names.push("${item.name}");
   </c:forEach>
   var portfolioGraphLine = echarts.init(document.getElementById('portfolio-graphLine-manager'));
   var option = {
           title: {
-              text: 'Portfolios'
+              text: 'Portfolio Performence'
           },
           tooltip: {},
           legend: {

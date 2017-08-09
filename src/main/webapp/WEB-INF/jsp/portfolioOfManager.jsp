@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="<%=path %>/images/Pat.png" alt="..." class="img-circle profile_img">
+              <img src="<%=path %>/images/zyz.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="<%=path %>/images/Pat.png" alt="">${sessionScope.FundManager.firstname}${sessionScope.FundManager.lastname}
+                  <img src="<%=path %>/images/zyz.jpg" alt="">${sessionScope.FundManager.firstname}${sessionScope.FundManager.lastname}
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                   </li>
                   <li><a href="javascript:;">Help</a></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="<%=path %>/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                 </ul>
               </li>
 
@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
       <!-- page content -->
       <div class="right_col" role="main">
-        <div class=""  style="height: 1250px;">
+        <div class=""  style="height: 1400px;">
           <div class="page-title">
             <div class="title_left">
               <h3>Portfolio Detail</h3>
@@ -154,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="x_title">
                   <h2>Position List</h2>
                   <ul class="nav navbar-right ">
-                    <li><a  class="btn btn-success btn-xs plus" href="securitiesList_manager.html"><i class="fa fa-plus"></i> Add </a></li>
+                    <li><a  class="btn btn-success btn-xs plus" href="showpositions?portfolioid=${portfolio.portfolioid}"><i class="fa fa-plus"></i> Add </a></li>
                   </ul>
                  <!--  -->
                   <div class="clearfix"></div>
@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="proportion"></td>
                                   <%-- <fmt:formatNumber value="${100/position.value.initialprice}"  minFractionDigits="2"/> --%>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${position.value.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${position.value.positionid}',${position.value.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -248,7 +248,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td>${bond.value.isin}</td>
                                   <td>${bond.value.issuer}</td>
                                   <td>${bond.value.coupon}</td>
-                                  <td>${bond.value.maturity}</td>
+                                  <td><fmt:formatDate value="${bond.value.maturity}" pattern="yyyy/MM/dd"/></td>
                                   <td class="quantity">${bond.key.quantity}</td>
                                   <td class="initialprice">${bond.key.initialprice}</td>
                                   <td class="currentprice">${bond.key.currentprice}</td>
@@ -257,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="profit">${bond.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${bond.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                      <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${bond.key.positionid}',${bond.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -293,7 +293,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <c:forEach items="${futureresults}" var="future" >
                                 <tr id = 'future${future.key.positionid}'>
                                   <td>${future.value.symbol}</td>
-                                  <td>${future.value.deliverydate}</td>
+                                  <td><fmt:formatDate value="${future.value.deliverydate}" pattern="yyyy/MM/dd"/></td>
                                   <td class="quantity">${future.key.quantity}</td>
                                   <td class="initialprice">${future.key.initialprice}</td>
                                   <td class="currentprice">${future.key.currentprice}</td>
@@ -302,7 +302,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="profit">${future.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${future.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                      <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${future.key.positionid}',${future.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -343,7 +343,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="profit">${equity.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${equity.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${equity.key.positionid}',${equity.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -487,7 +487,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	 $("#position"+posId + ">.profit").text(map.profit);
         	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
         	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
-        	 var proportion = (map.profit/initialValue).toFixed(2);
+        	 var proportion = (map.profit/initialValue*100).toFixed(2);
         	 $("#position"+posId + ">.initialValue").text(initialValue);
         	 $("#position"+posId + ">.currentValue").text(currentValue);
         	 $("#position"+posId + ">.proportion").text(proportion);
@@ -526,7 +526,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    toolbox: {
 		        show : true,
 		        feature : {		           
-		            saveAsImage : {show: true}
+		            saveAsImage : {show: true,title :'save'}
 		        }
 		    },
 		    
@@ -578,6 +578,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   bottom: '3%',
                   containLabel: true
                 },
+                toolbox: {
+    		        show : true,
+    		        feature : {		           
+    		            saveAsImage : {show: true,title :'save'}
+    		        }
+    		    },
                 xAxis : [
                 {
                   data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],

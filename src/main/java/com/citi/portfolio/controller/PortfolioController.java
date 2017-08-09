@@ -144,7 +144,8 @@ public class PortfolioController {
 		FundManager fundManager = (FundManager) httpSession.getAttribute("FundManager");
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
 		
-		int portfolioid = Integer.parseInt(request.getParameter("portfolioid"));	
+		int portfolioid = Integer.parseInt(request.getParameter("portfolioid"));
+
 		Portfolio portfolio = portfolioService.getPortfolioByPortfolioId(portfolioid);	
 		List<Bond> bonds =  bondService.getAllBonds();
 		Map bondsresults = new HashMap<>();		

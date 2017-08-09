@@ -2590,29 +2590,29 @@ if (typeof NProgress != 'undefined') {
 				});
 
 				$('#bonds-table').DataTable({
-				  'order': [[ 7, 'desc' ]],
+				  'order': [[ 9, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
 				  'columnDefs': [
-					{ orderable: false, targets: [8] }
+					{ orderable: false, targets: [11] }
 				  ]
 				});
 
 				$('#future-table').DataTable({
-				  'order': [[ 5, 'desc' ]],
+				  'order': [[ 7, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
 				  'columnDefs': [
-					{ orderable: false, targets: [6] }
+					{ orderable: false, targets: [9] }
 				  ]
 				});
 
 				$('#equity-table').DataTable({
-				  'order': [[ 6, 'desc' ]],
+				  'order': [[ 8, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
 				  'columnDefs': [
-					{ orderable: false, targets: [7] }
+					{ orderable: false, targets: [10] }
 				  ]
 				});
 
@@ -2644,11 +2644,11 @@ if (typeof NProgress != 'undefined') {
 					});
 				
 				$('#etf-table').DataTable({
-				  'order': [[ 4, 'desc' ]],
+				  'order': [[ 6, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
 				  'columnDefs': [
-					{ orderable: false, targets: [5] }
+					{ orderable: false, targets: [8] }
 				  ]
 				});
 
