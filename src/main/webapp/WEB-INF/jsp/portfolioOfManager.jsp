@@ -200,7 +200,7 @@
                                   <td>${position.value.currentprice}</td>
                                   <td>${position.value.profit}</td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${position.value.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -242,7 +242,7 @@
                                   <td>${bond.key.currentprice}</td>
                                   <td>${bond.key.profit}</td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${bond.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                      <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -281,7 +281,7 @@
                                   <td>${future.key.currentprice}</td>
                                   <td>${future.key.profit}</td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${future.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                      <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
@@ -316,7 +316,7 @@
                                   <td>${equity.key.currentprice}</td>
                                   <td>${equity.key.profit}</td>
                                   <td>
-                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${equity.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>

@@ -7,4 +7,6 @@ import com.citi.portfolio.entity.Position;
 public interface PositionService {
 
 	public List<Position> getAllPositionsOfPortfolio(int portfolioid);
+	
+	Position getPositionByPositionId(int positionid);
 }
