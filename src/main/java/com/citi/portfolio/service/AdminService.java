@@ -1,5 +1,6 @@
 package com.citi.portfolio.service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,5 +23,13 @@ public interface AdminService {
 	public Integer getLargestPriceID();
 	
 	public Price generatePrice(Date currentDate,Price oldPrice);
+
+	void updatePortolioProfit();
+
+	public void updatePrices();
+
+	void updateManagerProfit();
+
+	void updatePositionPrice(Integer securityId, BigDecimal offerprice);
 
 }

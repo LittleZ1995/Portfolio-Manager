@@ -1,5 +1,6 @@
 package com.citi.portfolio.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -38,6 +39,15 @@ public class PositionServiceImpl implements PositionService {
 	public int updatePosition(Position position) {
 		// TODO Auto-generated method stub
 		return positionMapper.updateByPrimaryKey(position);
+	}
+
+	@Override
+	public Double calculateProfit(Position position) {
+		BigDecimal initialPrice = position.getInitialprice();
+		BigDecimal currentPrice = position.getCurrentprice();
+		Integer quantity = position.getQuantity();
+		double newProfit = (currentPrice.doubleValue() - initialPrice.doubleValue()) * quantity;
+		return newProfit;
 	}
 
 }

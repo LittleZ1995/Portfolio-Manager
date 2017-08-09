@@ -36,7 +36,7 @@ public class AdminServiceTest {
 	
 	@Test
 	public void testUpdateBondServices(){
-		Bond bond = bondMapper.selectByPrimaryKey(1);
+		Bond bond = bondMapper.selectByPrimaryKey(348);
 		
 		Date currentDate = priceMapper.getLatestDate();
 		
@@ -51,9 +51,11 @@ public class AdminServiceTest {
 		bond.setPriceid(price.getPriceid());
 		bondMapper.updateByPrimaryKey(bond);
 		
-		Position position = positionMapper.getPositionsBySecurityID(securityId).get(0);
-		position.setCurrentprice(price.getOfferprice());
+		adminService.updatePositionPrice(securityId, price.getOfferprice());
 		
+		adminService.updatePortolioProfit();
+		
+		adminService.updateManagerProfit();	
 		
 	}
 }

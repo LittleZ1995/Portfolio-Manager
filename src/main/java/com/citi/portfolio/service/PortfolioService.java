@@ -8,7 +8,13 @@ public interface PortfolioService {
 	
 	public int addPortfolio(Portfolio portfolio);
 	
+	public int updatePortfolio(Portfolio portfolio);
+	
 	public List<Portfolio> getAllPortfoliosOfManager(int managerid);
 
-	Portfolio getPortfolioByPortfolioId(int portfolioid);
+	public Portfolio getPortfolioByPortfolioId(int portfolioid);
+	
+	public List<Portfolio> getAllPortfolios();
+
+	public Double calculateProfit(Integer portfolioid);
 }

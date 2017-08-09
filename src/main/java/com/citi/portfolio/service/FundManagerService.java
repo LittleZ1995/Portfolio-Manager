@@ -17,4 +17,8 @@ public interface FundManagerService {
 	public int deleteManager(int managerId);
 	
 	public FundManager selectByEmail(String email);
+
+	public Double calculateProfit(Integer managerid);
+
+	public int updateFundManager(FundManager manager);
 }

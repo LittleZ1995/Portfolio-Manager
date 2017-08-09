@@ -112,20 +112,7 @@ public class AdminController {
 		
 		logger.info("Start to Update Price");
 		
-		Date currentDate =  adminService.getCurrentDate();
-		
-		logger.info("Current Date: " + currentDate);
-		logger.info("The largest PriceID :" + adminService.getLargestPriceID());
-		adminService.getLargestPriceID();
-		
-		List<Bond> bonds = bondMapper.getAllBonds();
-		adminService.updateBondPrices(bonds,currentDate); 
-		
-		List<Future> futures = futureMapper.getAllFutures();
-		adminService.updateFuturePrices(futures,currentDate);
-		
-		List<Equity> equities = equityMapper.getAllEquitys();
-		adminService.updateEquityPrices(equities,currentDate);
+		adminService.updatePrices();
 		
 		logger.info("End to Update Price");
 		logger.info("The largest PriceID :" + adminService.getLargestPriceID());

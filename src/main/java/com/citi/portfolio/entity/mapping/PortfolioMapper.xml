@@ -87,4 +87,11 @@
     where ManagerId = #{managerid}
     order by Profit desc 
   </select>
+  
+  <select id="getAllPortfolios" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from portfolio
+  </select>
+  
 </mapper>

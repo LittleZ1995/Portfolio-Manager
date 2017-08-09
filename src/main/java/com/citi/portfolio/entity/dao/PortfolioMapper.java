@@ -19,5 +19,5 @@ public interface PortfolioMapper {
     
     List<Portfolio> getAllPortfoliosOfManager(int managerid);
     
-    
+    public List<Portfolio> getAllPortfolios();
 }
