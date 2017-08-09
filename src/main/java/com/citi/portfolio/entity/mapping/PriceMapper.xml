@@ -110,14 +110,14 @@
     where PriceID = #{priceid,jdbcType=INTEGER}
   </update>
   
-  <select id="getLatestDate" resultMap="BaseResultMap">
+  <select id="getLatestDate" resultType="java.util.Date">
     select distinct Date 
     from price
     order by Date desc
     limit 1
   </select>
   
-  <select id="getLargestPriceID" resultMap="BaseResultMap">
+  <select id="getLargestPriceID" resultType="java.lang.Integer">
     select PriceID 
     from price
     order by PriceID desc
