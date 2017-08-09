@@ -34,4 +34,10 @@ public class PositionServiceImpl implements PositionService {
 		return positionMapper.selectByPrimaryKey(positionid);
 	}
 
+	@Override
+	public int updatePosition(Position position) {
+		// TODO Auto-generated method stub
+		return positionMapper.updateByPrimaryKey(position);
+	}
+
 }

@@ -5,7 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%String path = request.getContextPath(); %>
+<%String path = request.getContextPath(); 
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
@@ -153,7 +154,7 @@
                 <div class="x_title">
                   <h2>Position List</h2>
                   <ul class="nav navbar-right ">
-                    <li><a  class="btn btn-success btn-xs plus" href="showpositions?portfolioid=${portfolio.portfolioid}"><i class="fa fa-plus"></i> Add </a></li>
+                    <li><a  class="btn btn-success btn-xs plus" href="securitiesList_manager.html"><i class="fa fa-plus"></i> Add </a></li>
                   </ul>
                  <!--  -->
                   <div class="clearfix"></div>
@@ -193,15 +194,16 @@
                               <tbody>
                                 
                                <c:forEach items="${results}" var="position" >
-                                <tr id = ${position.value.securityid}>
+                                <tr id = "position${position.value.positionid}">
+                               <!--  <tr id = ${position.value.securityid}> -->
                                   <td>${position.key}</td>
-                                  <td>${position.value.quantity}</td>
+                                  <td class="quantity">${position.value.quantity}</td>
                                   <td>${position.value.initialprice}</td>
                                   <td>${position.value.currentprice}</td>
-                                  <td>${position.value.profit}</td>
+                                  <td class="profit">${position.value.profit}</td>
                                   <td>
-                                    <a href="viewSecurity?positionid=${position.value.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
+                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${position.value.positionid}',${position.value.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>        
@@ -232,18 +234,18 @@
 
                               <tbody>
                                  <c:forEach items="${bondresults}" var="bond" >
-                                <tr id = ${bond.key.securityid}>
+                                <tr id = 'bond${bond.key.positionid}'>
                                   <td>${bond.value.isin}</td>
                                   <td>${bond.value.issuer}</td>
                                   <td>${bond.value.coupon}</td>
                                   <td>${bond.value.maturity}</td>
-                                  <td>${bond.key.quantity}</td>
+                                  <td class="quantity">${bond.key.quantity}</td>
                                   <td>${bond.key.initialprice}</td>
                                   <td>${bond.key.currentprice}</td>
-                                  <td>${bond.key.profit}</td>
+                                  <td class="profit">${bond.key.profit}</td>
                                   <td>
-                                    <a href="viewSecurity?positionid=${bond.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
+                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${bond.key.positionid}',${bond.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach> 
@@ -273,16 +275,16 @@
 
                               <tbody>
                                 <c:forEach items="${futureresults}" var="future" >
-                                <tr id = ${future.key.securityid}>
+                                <tr id = 'future${future.key.positionid}'>
                                   <td>${future.value.symbol}</td>
                                   <td>${future.value.deliverydate}</td>
-                                  <td>${future.key.quantity}</td>
+                                  <td class="quantity">${future.key.quantity}</td>
                                   <td>${future.key.initialprice}</td>
                                   <td>${future.key.currentprice}</td>
-                                  <td>${future.key.profit}</td>
+                                  <td class="profit">${future.key.profit}</td>
                                   <td>
-                                    <a href="viewSecurity?positionid=${future.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
+                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${future.key.positionid}',${future.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>
@@ -307,17 +309,17 @@
                                 </tr>
                               </thead>
 							  <c:forEach items="${equityresults}" var="equity" >
-                                <tr id = ${equity.key.securityid}>
+                                <tr id = 'equity${equity.key.securityid}'>
                                   <td>${equity.value.symbol}</td>
                                   <td>${equity.value.sector}</td>
                                   <td>${equity.value.industry}</td>
-                                  <td>${equity.key.quantity}</td>
+                                  <td class="quantity">${equity.key.quantity}</td>
                                   <td>${equity.key.initialprice}</td>
                                   <td>${equity.key.currentprice}</td>
-                                  <td>${equity.key.profit}</td>
+                                  <td class="profit">${equity.key.profit}</td>
                                   <td>
-                                    <a href="viewSecurity?positionid=${equity.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
+                                    <a href="securityDetail.html.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${equity.key.positionid}',${equity.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>
@@ -343,59 +345,7 @@
 <!-- /page content -->
 
 <!-- modal -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content">
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel2">Edit Found Manager</h4>
-      </div>
-      <div class="modal-body">
-        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Phone <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="Phone" name="Phone" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-
-          <div class="ln_solid"></div>
-          <div class="form-group">
-            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-              <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
-              <button class="btn btn-primary" type="reset">Reset</button>
-              <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="modal fade salePosition" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog ">
                           <div class="modal-content">
@@ -407,11 +357,23 @@
                             </div>
                             <div class="modal-body">
                               <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                              	<input id="positionId" type="hidden">
+                              	<!-- <input id="quantityAll" type="hidden"> -->
+                              	<div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Quantity 
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <label class="control-label" id="quantityAll"></label>
+                                  </div>
+                                </div>
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sale Quantity <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="number" min="0"  id="sale" required="required" class="form-control col-md-7 col-xs-12">
+                                  </div>
+                                  <div class="col-md-3 col-sm-3 col-xs-12">
+                                  	<span id = "tips"></span>
                                   </div>
                                 </div>
                                 
@@ -421,7 +383,7 @@
                                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="button" class="btn btn-success" onclick="salePosition()">Submit</button>
                                   </div>
                                 </div>
                               </form>
@@ -454,6 +416,43 @@
 <!-- Custom Theme Scripts -->
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
+  function submitToModel(posId,quantityAll){
+	  $("#positionId").val(posId);
+	  $("#quantityAll").text(quantityAll);
+	  $("#sale").val(0);
+	  $("#sale").attr("max",quantityAll);
+  }
+
+
+
+	function salePosition(){
+	  var posId = $("#positionId").val();
+	  var sale =  $("#sale").val();
+      var jsonData = {
+    	      "posId":posId,
+    	      "sale":sale
+    	      };
+      $.ajax({
+          data:JSON.stringify(jsonData),
+          contentType:"text/html;charset=utf-8",       
+          type:"POST",
+          dataType:"json",
+          url:"salePosition",
+          error:function(data){
+              console.error("error:"+JSON.stringify(data));
+          },
+          success:function(map){
+             $(".salePosition").modal('hide');
+        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
+        	 $("#position"+posId + ">.profit").text(map.profit);
+        	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
+        	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
+          }
+      });
+
+	}
+  
+    
   var portfolioGraphPie = echarts.init(document.getElementById('portfolio-graphPie'));
   var option = {
 		   title: {
