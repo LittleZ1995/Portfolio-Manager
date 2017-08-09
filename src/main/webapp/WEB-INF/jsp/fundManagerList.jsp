@@ -5,7 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<%String path = request.getContextPath(); %>
+<%String path = request.getContextPath(); 
+  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
@@ -182,18 +184,21 @@
                 <div class="x_title">
                   <h2>Fund Manager List</small></h2>
                   <ul class="nav navbar-right ">
+                  	
                     <li><a  class="btn btn-success btn-xs plus" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Add </a></li>
                   
                       <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog ">
                           <div class="modal-content">
-
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                               </button>
                               <h4 class="modal-title" id="myModalLabel2">Add Fund Manager</h4>
                             </div>
                             <div class="modal-body">
+                            <form action="addManager" method="post" >
+                  		<button type="submit" class="btn btn-success" >Submit</button>
+                  	</form>
                               <form id="demo-form2" data-parsley-validate action="addManager" method="post" class="form-horizontal form-label-left">
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
@@ -236,9 +241,10 @@
                                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success" >Submit</button>
                                   </div>
                                 </div>
+                                
                               </form>
                             </div>
                           </div>
@@ -270,7 +276,7 @@
                         <td>${fundmanager.phonenumber}</td>
                         <td>${fundmanager.profit}</td>
                         <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          <a href="<%=basePath %>viewPortfoliosByManagerId" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                           <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i> Edit </a>
                           <a href="#" class="btn btn-danger btn-xs"  onclick="deleteManagerById(${fundmanager.managerid})"><i class="fa fa-trash-o"></i> Delete </a>
                         </td>
@@ -311,7 +317,11 @@
 <script src="<%=path %>/js/custom.js"></script>
 </body>
 <script type="text/javascript">
-				
+				function viewPortfoliosByManagerId(managerid){
+
+
+			    }
+
 				function deleteManagerById(managerid){
 					console.log("11");
 			        var j={"managerid":managerid};
