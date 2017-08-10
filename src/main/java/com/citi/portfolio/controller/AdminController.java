@@ -79,6 +79,7 @@ public class AdminController {
 	@RequestMapping("/showManagers")
 	public String showUser(HttpServletRequest request, Model model) {
 		List<FundManager> fundManagers = fundManagerService.getAllManagers();
+		fundManagerService.formatProfit(fundManagers);
 		model.addAttribute("fundManagers", fundManagers);
 		return "fundManagerList";
 	}
@@ -86,6 +87,7 @@ public class AdminController {
 	@RequestMapping("/mainpage")
 	public String mainPage(HttpServletRequest request, Model model) {
 		List<FundManager> fundManagers = fundManagerService.getAllManagers();
+		fundManagerService.formatProfit(fundManagers);
 		model.addAttribute("fundManagers", fundManagers);
 		return "fundManagerList";
 	}
@@ -105,6 +107,7 @@ public class AdminController {
 			System.out.println("add successfully");
 
 		List<FundManager> fundManagers = fundManagerService.getAllManagers();
+		fundManagerService.formatProfit(fundManagers);
 		model.addAttribute("fundManagers", fundManagers);
 		return "fundManagerList";
 	}
@@ -200,6 +203,7 @@ public class AdminController {
 
 		int managerid = Integer.parseInt(request.getParameter("managerid"));
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(managerid);
+		portfolioService.formatProfit(portfolios);
 		model.addAttribute("portfolios",portfolios);
 		
 		return "portfolioListOfManagerByadmin";

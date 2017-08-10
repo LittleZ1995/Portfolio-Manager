@@ -13,6 +13,7 @@ import com.citi.portfolio.entity.dao.PortfolioMapper;
 import com.citi.portfolio.entity.dao.ProfitMapper;
 import com.citi.portfolio.service.PortfolioService;
 import com.citi.portfolio.service.PositionService;
+import com.citi.portfolio.util.DoubleFormat;
 import com.citi.portfolio.entity.Profit;
 
 @Service("PortfolioService")
@@ -60,12 +61,25 @@ public class PortfolioServiceImpl implements PortfolioService {
 		for (Position position : positions) {
 			profit += position.getProfit();
 		}
-		return profit;
+		return DoubleFormat.format(profit);
 	}
 
 	@Override
 	public List<Profit> getAllHistoryProfit(Integer portfolioid) {
 		return profitMapper.selectByPortfolioId(portfolioid);
+	}
+
+	@Override
+	public void formatProfit(Portfolio portfolio) {
+		portfolio.setProfit(DoubleFormat.format(portfolio.getProfit()));
+	}
+
+	@Override
+	public void formatProfit(List<Portfolio> portfolios) {
+		for (Portfolio portfolio : portfolios) {
+			this.formatProfit(portfolio);
+		}
+		
 	}
 
 }

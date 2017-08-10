@@ -31,7 +31,9 @@ import com.citi.portfolio.service.FutureService;
 import com.citi.portfolio.service.PortfolioService;
 import com.citi.portfolio.service.PositionService;
 import com.citi.portfolio.service.PriceService;
+import com.citi.portfolio.service.ProfitService;
 import com.citi.portfolio.service.SecurityService;
+import com.citi.portfolio.util.DoubleFormat;
 
 @Controller
 public class PortfolioController {
@@ -59,6 +61,9 @@ public class PortfolioController {
 	
 	@Resource
 	private PriceService priceService;
+	
+	@Resource
+	private ProfitService profitService;
 	
 	@RequestMapping("/viewOnePortfolio")
     public String viewPortfolio(HttpServletRequest request, Model model,HttpSession httpSession){
@@ -121,18 +126,24 @@ public class PortfolioController {
 		currentProfit.setProfitvalue(portfolio.getProfit());
 		historyProfits.add(currentProfit);
 
+		portfolioService.formatProfit(portfolio);
 		model.addAttribute("portfolio",portfolio);
+		profitService.formatProfit(historyProfits);
 		model.addAttribute("profits",historyProfits);
+		positionService.formatProfit(results.keySet());
 		model.addAttribute("results",results);
+		positionService.formatProfit(positions);
 		model.addAttribute("positions",positions);
+		positionService.formatProfit(bondresults.keySet());
 		model.addAttribute("bondresults",bondresults);
+		positionService.formatProfit(equityresults.keySet());
 		model.addAttribute("equityresults",equityresults);
+		positionService.formatProfit(futureresults.keySet());
 		model.addAttribute("futureresults",futureresults);
 		model.addAttribute("bondvalue",bondvalue);
 		model.addAttribute("equityvalue",equityvalue);
 		model.addAttribute("futurevalue",futurevalue);
 
-		
 
 		if(httpSession.getAttribute("FundManager") != null )
 			return "portfolioOfManager";
@@ -155,6 +166,7 @@ public class PortfolioController {
 		if(result != 0)
 			System.out.println("add successfully");
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(managerid);	
+		portfolioService.formatProfit(portfolios);
 		model.addAttribute("portfolios",portfolios);
         return "portfolioListOfManager";
 	}
@@ -192,7 +204,10 @@ public class PortfolioController {
 			Price price = priceService.getPriceById(futures.get(i).getPriceid());
 			futureresults.put(futures.get(i), price);			
 		}
+		
+		portfolioService.formatProfit(portfolios);
 		model.addAttribute("portfolios",portfolios);
+		portfolioService.formatProfit(portfolio);
 		model.addAttribute("portfolio",portfolio);
 		model.addAttribute("bondsresults",bondsresults);
 		model.addAttribute("equityresults",equityresults);	
@@ -228,7 +243,7 @@ public class PortfolioController {
 			Price price = priceService.getPriceById(bond.getPriceid());
 			BigDecimal profitdecimal = price.getOfferprice().subtract(price.getBidprice());
 			profit = profitdecimal.multiply(new BigDecimal(quantity)).doubleValue();
-			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, profit);
+			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, DoubleFormat.format(profit));
 			positionService.addPosition(position);
 		}
 		else if(type.equals("equity"))
@@ -237,7 +252,7 @@ public class PortfolioController {
 			Price price = priceService.getPriceById(equity.getPriceid());
 			BigDecimal profitdecimal = price.getOfferprice().subtract(price.getBidprice());
 			profit = profitdecimal.multiply(new BigDecimal(quantity)).doubleValue();
-			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, profit);
+			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, DoubleFormat.format(profit));
 			positionService.addPosition(position);
 		}
 		else if(type.equals("future")){
@@ -245,7 +260,7 @@ public class PortfolioController {
 			Price price = priceService.getPriceById(future.getPriceid());
 			BigDecimal profitdecimal = price.getOfferprice().subtract(price.getBidprice());
 			profit = profitdecimal.multiply(new BigDecimal(quantity)).doubleValue(); 
-			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, profit);
+			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, DoubleFormat.format(profit));
 			positionService.addPosition(position);
 		}
 		
@@ -303,12 +318,19 @@ public class PortfolioController {
 		currentProfit.setProfitvalue(portfolio.getProfit());
 		historyProfits.add(currentProfit);
 		
+		portfolioService.formatProfit(portfolio);
 		model.addAttribute("portfolio",portfolio);
+		profitService.formatProfit(historyProfits);
 		model.addAttribute("profits",historyProfits);
+		positionService.formatProfit(results.keySet());
 		model.addAttribute("results",results);
+		positionService.formatProfit(positions);
 		model.addAttribute("positions",positions);
+		positionService.formatProfit(bondresults.keySet());
 		model.addAttribute("bondresults",bondresults);
+		positionService.formatProfit(equityresults.keySet());
 		model.addAttribute("equityresults",equityresults);
+		positionService.formatProfit(futureresults.keySet());
 		model.addAttribute("futureresults",futureresults);
 		model.addAttribute("bondvalue",bondvalue);
 		model.addAttribute("equityvalue",equityvalue);

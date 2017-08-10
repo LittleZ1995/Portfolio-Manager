@@ -33,6 +33,7 @@ import com.citi.portfolio.service.FutureService;
 import com.citi.portfolio.service.PortfolioService;
 import com.citi.portfolio.service.PositionService;
 import com.citi.portfolio.service.SecurityService;
+import com.citi.portfolio.util.DoubleFormat;
 import com.citi.portfolio.util.JSONUtil;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
@@ -129,7 +130,7 @@ public class PositionController {
             profit = profitDecimal.multiply(new BigDecimal(currentQuantity)).doubleValue();
             
             position.setQuantity(currentQuantity);
-            position.setProfit(profit);
+            position.setProfit(DoubleFormat.format(profit));
             
             res = positionService.updatePosition(position);   
             map.put("currentQuantity", currentQuantity);

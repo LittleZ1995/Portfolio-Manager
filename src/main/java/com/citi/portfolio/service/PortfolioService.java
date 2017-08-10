@@ -20,4 +20,8 @@ public interface PortfolioService {
 	public Double calculateProfit(Integer portfolioid);
 	
 	public List<Profit> getAllHistoryProfit(Integer portfolioid);
+	
+	public void formatProfit(Portfolio portfolio);
+	
+	public void formatProfit(List<Portfolio> portfolios);
 }

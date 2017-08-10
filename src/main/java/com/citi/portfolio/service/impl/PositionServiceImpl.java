@@ -1,6 +1,7 @@
 package com.citi.portfolio.service.impl;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.citi.portfolio.entity.Position;
 import com.citi.portfolio.entity.dao.PositionMapper;
 import com.citi.portfolio.service.PositionService;
+import com.citi.portfolio.util.DoubleFormat;
 
 @Service("PositionService")
 public class PositionServiceImpl implements PositionService {
@@ -47,13 +49,27 @@ public class PositionServiceImpl implements PositionService {
 		BigDecimal currentPrice = position.getCurrentprice();
 		Integer quantity = position.getQuantity();
 		double newProfit = (currentPrice.doubleValue() - initialPrice.doubleValue()) * quantity;
-		return newProfit;
+		return DoubleFormat.format(newProfit);
 	}
 
 	@Override
 	public int deletePositionById(int positionid) {
 		// TODO Auto-generated method stub
 		return positionMapper.deleteByPrimaryKey(positionid);
+	}
+
+	@Override
+	public void formatProfit(Position position) {
+		// TODO Auto-generated method stub
+		position.setProfit(DoubleFormat.format(position.getProfit()));
+	}
+
+	@Override
+	public void formatProfit(Collection<Position> positions) {
+		// TODO Auto-generated method stub
+		for (Position position : positions) {
+			this.formatProfit(position);
+		}
 	}
 
 }

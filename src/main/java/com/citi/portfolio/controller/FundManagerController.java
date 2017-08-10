@@ -33,7 +33,7 @@ public class FundManagerController {
     public String showUser(HttpServletRequest request, Model model,HttpSession httpSession){
 		FundManager fundManager = (FundManager) httpSession.getAttribute("FundManager");
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
-		
+		portfolioService.formatProfit(portfolios);
 		model.addAttribute("portfolios",portfolios);
 		return "portfolioListOfManager";
 }

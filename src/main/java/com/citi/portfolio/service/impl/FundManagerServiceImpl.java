@@ -11,6 +11,7 @@ import com.citi.portfolio.entity.Portfolio;
 import com.citi.portfolio.entity.dao.FundManagerMapper;
 import com.citi.portfolio.service.FundManagerService;
 import com.citi.portfolio.service.PortfolioService;
+import com.citi.portfolio.util.DoubleFormat;
 
 @Service("fundManagerService")
 public class FundManagerServiceImpl implements FundManagerService{
@@ -54,12 +55,26 @@ public class FundManagerServiceImpl implements FundManagerService{
 			profit += portfolio.getProfit();
 		}
 		
-		return profit;
+		return DoubleFormat.format(profit);
 	}
 
 	@Override
 	public int updateFundManager(FundManager manager) {
 		return fundManagerMapper.updateByPrimaryKey(manager);
+	}
+
+	@Override
+	public void formatProfit(FundManager manager) {
+		// TODO Auto-generated method stub
+		manager.setProfit(DoubleFormat.format(manager.getProfit()));
+	}
+
+	@Override
+	public void formatProfit(List<FundManager> managers) {
+		// TODO Auto-generated method stub
+		for (FundManager manager : managers) {
+			this.formatProfit(manager);
+		}
 	}
 
 }

@@ -66,6 +66,7 @@ public class LoginController {
 			else {
 				httpSession.setAttribute("FundManager", fundManager);
 				List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
+				portfolioService.formatProfit(portfolios);
 //				for(int i = 0; i < portfolios.size()-1 ; i++){		
 //					portfolionames.add(portfolios.get(i).getName());
 //					names += (portfolios.get(i).getName() + ",");
