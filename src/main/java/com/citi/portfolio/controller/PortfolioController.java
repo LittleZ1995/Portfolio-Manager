@@ -165,9 +165,14 @@ public class PortfolioController {
 		FundManager fundManager = (FundManager) httpSession.getAttribute("FundManager");
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
 		
-		int portfolioid = Integer.parseInt(request.getParameter("portfolioid"));
-
-		Portfolio portfolio = portfolioService.getPortfolioByPortfolioId(portfolioid);	
+		String portfolioId = request.getParameter("portfolioid");
+		Portfolio portfolio = new Portfolio();
+		if(portfolioId != null){
+			portfolio = portfolioService.getPortfolioByPortfolioId(Integer.parseInt(portfolioId));	
+		} else if(portfolios != null && !portfolios.isEmpty()){
+			portfolio = portfolios.get(0);
+		}	
+		
 		List<Bond> bonds =  bondService.getAllBonds();
 		Map bondsresults = new HashMap<>();		
 		for(int i = 0 ; i < bonds.size() ; i++) {	

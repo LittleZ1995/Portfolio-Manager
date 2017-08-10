@@ -195,7 +195,6 @@ public class AdminController {
 		return "securitiesList";
 	}
 	
-	
 	@RequestMapping("/viewportfoliosofmanager")
 	public String viewportfoliosofmanager(HttpServletRequest request, Model model) {
 

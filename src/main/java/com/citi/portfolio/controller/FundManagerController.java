@@ -1,5 +1,7 @@
 package com.citi.portfolio.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,10 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.citi.portfolio.entity.FundManager;
+import com.citi.portfolio.entity.Portfolio;
 import com.citi.portfolio.service.FundManagerService;
+import com.citi.portfolio.service.PortfolioService;
 
 @Controller
-@RequestMapping("/manager")
 public class FundManagerController {
 	
 	public FundManagerController() {
@@ -21,13 +24,15 @@ public class FundManagerController {
 
 	@Resource
 	private FundManagerService fundManagerService;
+	
+	@Resource
+	private PortfolioService portfolioService;
 
-	@RequestMapping("/showUser")
+	@RequestMapping("/viewPortfolios")
     public String showUser(HttpServletRequest request, Model model){
-		int userId = Integer.parseInt(request.getParameter("id"));
-		FundManager user = fundManagerService.getManagerById(userId);        
-        model.addAttribute("user",user);
-        return "showUser";
+		List<Portfolio> portfolios = portfolioService.getAllPortfolios();
+		model.addAttribute("portfolios",portfolios);
+		return "portfolioListOfManager";
 }
 //	@RequestMapping("/showUser/{id}")
 //	public String showUser(@PathVariable("id")Integer id, HttpServletRequest request,Model model) {
