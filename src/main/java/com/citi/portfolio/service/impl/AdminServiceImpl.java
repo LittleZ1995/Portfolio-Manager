@@ -123,10 +123,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Date getCurrentDate() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(priceMapper.getLatestDate());
-		calendar.add(Calendar.DATE, -1);
-		return calendar.getTime();
+		return priceMapper.getLatestDate();
 	}
 
 	@Override

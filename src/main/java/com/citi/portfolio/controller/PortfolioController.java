@@ -113,7 +113,7 @@ public class PortfolioController {
 		}
 		
 		List<Profit> historyProfits = portfolioService.getAllHistoryProfit(portfolioid);
-		if(historyProfits != null){
+		if(historyProfits == null){
 			historyProfits = new ArrayList<>();
 		}
 		Profit currentProfit = new Profit();
@@ -133,7 +133,11 @@ public class PortfolioController {
 		model.addAttribute("futurevalue",futurevalue);
 
 		
-		return "portfolioOfManager";
+
+		if(httpSession.getAttribute("FundManager") != null )
+			return "portfolioOfManager";
+		else
+			return "portfolioOfManagerByadmin";
 	}
 	
 	@RequestMapping("/addPortfolio")
@@ -286,7 +290,7 @@ public class PortfolioController {
 		}
 		
 		List<Profit> historyProfits = portfolioService.getAllHistoryProfit(portfolioid);
-		if(historyProfits != null){
+		if(historyProfits == null){
 			historyProfits = new ArrayList<>();
 		}
 		Profit currentProfit = new Profit();

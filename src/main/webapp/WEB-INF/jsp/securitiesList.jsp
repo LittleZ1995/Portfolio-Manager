@@ -41,7 +41,7 @@
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="<%=path %>/images/zyz.jpg" alt="..." class="img-circle profile_img">
+              <img src="<%=path %>/images/Pat.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -96,7 +96,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="<%=path %>/images/zyz.jpg" alt="">Admin
+                  <img src="<%=path %>/images/Pat.png" alt="">Admin
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -138,7 +138,7 @@
                 <div class="x_title">
                   <h2>Security List</small></h2>
                   <ul class="nav navbar-right ">
-                    <li><a  href="#" onclick="updatePrices" class="btn btn-danger btn-xs plus"><i class="fa fa-plus"></i> Update Prices </a></li>
+                    <li><a  href="updatePrices"  class="btn btn-danger btn-xs plus"><i class="fa fa-plus"></i> Update Prices </a></li>
                   </ul>
                   <div class="clearfix"></div>
                 </div>
@@ -157,7 +157,7 @@
 
                             <!-- start recent activity -->
 
-                            <table id="bonds-table" class="table table-striped table-bordered bulk_action">
+                            <table id="bonds-table1" class="table table-striped table-bordered bulk_action">
                               <thead>
                                 <tr>
                                   <th>ISIN</th>
@@ -194,7 +194,7 @@
 
                             <!-- start user projects -->
 
-                           <table id="future-table" class="table table-striped table-bordered bulk_action">
+                           <table id="future-table1" class="table table-striped table-bordered bulk_action">
                               <thead>
                                  <tr >
                                   <th>Symbol</th>
@@ -225,7 +225,7 @@
                           </div>
 						  
                           <div role="tabpanel" class="tab-pane fade" id="equity_tab_content" aria-labelledby="equity_tab">
-                            <table id="equity-table" class="table table-striped table-bordered bulk_action">
+                            <table id="equity-table1" class="table table-striped table-bordered bulk_action">
                               <thead>
                                 <tr>
                                 
@@ -249,7 +249,7 @@
                                   <td>${equity.value.offerprice}</td>
                                   <td>
                                     <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                    <a  class="btn btn-success btn-xs" data-toggle="modal" data-target=".addPositionModel" onclick=getSecurityId(${equity.key.securityid});><i class="fa fa-plus"></i> Add Position </a>
+                               
                                   </td>
                                 </tr>  
                                 </c:forEach> 
@@ -266,59 +266,6 @@
   </div>
 </div>
 <!-- /page content -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog ">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel2">Add Found Manager</h4>
-                        </div>
-                        <div class="modal-body">
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Phone <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Phone" name="Phone" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-                            
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 <!-- footer content -->
 <footer>
   <div class="pull-right">
@@ -344,65 +291,8 @@
 <!-- Custom Theme Scripts -->
 <script src="../js/custom.js"></script>
 <script type="text/javascript">
-  var bond_graphBar = echarts.init(document.getElementById('bond_graphBar'));
-  var future_graphBar = echarts.init(document.getElementById('future_graphBar'));
-  var equity_graphBar = echarts.init(document.getElementById('equity_graphBar'));
-  var etf_graphBar = echarts.init(document.getElementById('etf_graphBar'));
-  var fra_graphBar = echarts.init(document.getElementById('fra_graphBar'));
-  var option = {
-    color: ['#169F85'],
 
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis : [
-    {
-      data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      }
-    }
-    ],
-    yAxis : [
-    {
-      type : 'value',
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      }
-    }
-    ],
-    series : [
-    {
-
-      type:'bar',
-      barWidth: '60%',
-      data:[10, 52, 200, 334, 390, 330, 220]
-    }
-    ]
-  };
-
-  // function showGraph(id){
-  //   var graphBar = echarts.init(document.getElementById(id));
-  //   graphBar.setOption(option)
-
-  // }
-
-  bond_graphBar.setOption(option);
-  future_graphBar.setOption(option);
-  equity_graphBar.setOption(option);
-  etf_graphBar.setOption(option);
-  fra_graphBar.setOption(option);
-  
-  function updatePrices(){
+/*   function updatePrices(){
 					console.log("Start to update prices");
 
 			        $.ajax({
@@ -414,12 +304,12 @@
 			                console.error("error when update prices");
 			            },
 			            success:function(map){
-			                console.log("End to start date"));
+			                console.log("End to start date");
 			                alert(map.message);
 			            }
 			        });
 			
-  }		    
+  }		  */   
 </script>
 </body>
 </html>

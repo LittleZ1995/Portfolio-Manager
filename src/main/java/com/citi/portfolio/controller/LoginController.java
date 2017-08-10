@@ -42,7 +42,10 @@ public class LoginController {
 		if(account.equals("admin") && password.equals("admin"))
 		{
 //			List<FundManager> fundManagers = fundManagerService.getAllManagers();     
-//			model.addAttribute("fundManagers",fundManagers);		
+//			model.addAttribute("fundManagers",fundManagers);	
+			
+			
+			
 			return "redirect:/admin/mainpage";	
 		}
 				

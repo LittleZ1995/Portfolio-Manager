@@ -197,19 +197,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <tbody>
                                 
                                <c:forEach items="${results}" var="position" >
-                                <tr id = "position${position.value.positionid}" data-posid="${position.value.positionid}">
-                               <!--  <tr id = ${position.value.securityid}> -->
-                                  <td>${position.key}</td>
-                                  <td class="quantity">${position.value.quantity}</td>
-                                  <td class="initialprice">${position.value.initialprice}</td>
-                                  <td class="currentprice">${position.value.currentprice}</td>
-                                  <td class="initialValue">${position.value.initialprice * position.value.quantity}</td>
-                                  <td class="currentValue">${position.value.currentprice * position.value.quantity}</td>
-                                  <td class="profit ${position.value.profit lt 0?'red':'green'}">${position.value.profit}</td>
+                                <tr id = "position${position.key.positionid}" data-posid="${position.key.positionid}">
+                                  <td>${position.value}</td>
+                                  <td class="quantity">${position.key.quantity}</td>
+                                  <td class="initialprice">${position.key.initialprice}</td>
+                                  <td class="currentprice">${position.key.currentprice}</td>
+                                  <td class="initialValue">${position.key.initialprice * position.key.quantity}</td>
+                                  <td class="currentValue">${position.key.currentprice * position.key.quantity}</td>
+                                  <td class="profit ${position.key.profit lt 0?'red':'green'}">${position.key.profit}</td>
                                   <td class="proportion"></td>
                                   <%-- <fmt:formatNumber value="${100/position.value.initialprice}"  minFractionDigits="2"/> --%>
                                   <td>
-                                    <a href="viewSecurity?positionid=${position.value.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="viewSecurity?positionid=${position.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                     <%-- <a class="btn btn-info btn-xs sale" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${position.value.positionid}',${position.value.quantity})"><i class="fa fa-pencil"></i> Sale </a> --%>
                                     <a class="btn btn-info btn-xs sale"  data-toggle="modal" data-target=".salePosition"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>

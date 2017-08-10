@@ -275,9 +275,8 @@
                         <td>${fundmanager.phonenumber}</td>
                         <td>${fundmanager.profit}</td>
                         <td>
-                          <a href="<%=basePath %>viewPortfoliosByManagerId" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"  onclick="deleteManagerById(${fundmanager.managerid})"><i class="fa fa-trash-o"></i> Delete </a>
+                          <a href="viewportfoliosofmanager?managerid=${fundmanager.managerid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+ 
                         </td>
                       </tr>
                  	</c:forEach>
