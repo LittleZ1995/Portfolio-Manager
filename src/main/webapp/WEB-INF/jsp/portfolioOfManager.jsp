@@ -416,6 +416,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           </div>
                         </div>
                       </div>
+                      
+                      <div style="display: none">
+                       <c:forEach items="${profits}" var="profit" >
+                      		<p class="dates"><fmt:formatDate value="${profit.date}" pattern="yyyy/MM/dd HH:mm"/></p>
+                       </c:forEach>
+                      </div>
 <!-- footer content -->
 <footer>
   <div class="pull-right">
@@ -443,6 +449,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
     /* var pieData = [];
     var getPieData; */
+
+    var profit =  [];
+	var dates = [];
+	<c:forEach items="${profits}" var="item" varStatus="status" >  
+		profit.push(${item.profitvalue});
+	</c:forEach>
+
+	$(".dates").each(function(){
+		dates.push($(this).text());
+		});
+	
+	
 	$(document).ready(function(){
 		$(".proportion").each(function(){
 		    $(this).text((($(this).prev().text())/($(this).parent().children(".initialValue").text())).toFixed(2));

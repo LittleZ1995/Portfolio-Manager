@@ -181,7 +181,7 @@
                                   <td>${bond.value.bidprice}</td>
                                   <td>${bond.value.offerprice}</td>
                                   <td>
-                                    <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="<%=path %>/viewSecurity?positionid=0&securityid=${bond.key.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                   </td>
                                 </tr>  
                                 </c:forEach>                                                          
@@ -214,7 +214,7 @@
                                   <td>${future.value.bidprice}</td>
                                   <td>${future.value.offerprice}</td>
                                   <td>
-                                    <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="<%=path %>/viewSecurity?positionid=0&securityid=${future.key.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                   </td>
                                 </tr>  
                                 </c:forEach> 
@@ -248,7 +248,7 @@
                                   <td>${equity.value.bidprice}</td>
                                   <td>${equity.value.offerprice}</td>
                                   <td>
-                                    <a href="securityDetail_manager.html" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                                    <a href="<%=path %>/viewSecurity?positionid=0&securityid=${equity.key.securityid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
                                
                                   </td>
                                 </tr>  
@@ -279,17 +279,17 @@
 </div>
 
 <!-- jQuery -->
-<script src="../js/jquery.min.js"></script>
+<script src="<%=path %>/js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="<%=path %>js/bootstrap.min.js"></script>
 
 <!-- Echart -->
-<script type="text/javascript" src="../js/echarts.js"></script>
-<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/validator.js"></script>
+<script type="text/javascript" src="<%=path %>js/echarts.js"></script>
+<script type="text/javascript" src="<%=path %>js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=path %>js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path %>js/validator.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="../js/custom.js"></script>
+<script src="<%=path %>js/custom.js"></script>
 <script type="text/javascript">
 
 /*   function updatePrices(){

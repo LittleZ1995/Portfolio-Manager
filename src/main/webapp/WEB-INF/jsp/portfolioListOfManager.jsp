@@ -189,7 +189,7 @@
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                               </button>
-                              <h4 class="modal-title" id="myModalLabel2">Add Found Manager</h4>
+                              <h4 class="modal-title" id="myModalLabel2">Add Portfolio</h4>
                             </div>
                             <div class="modal-body">
                               <form id="demo-form2" data-parsley-validate  action="addPortfolio" method="post" class="form-horizontal form-label-left">
