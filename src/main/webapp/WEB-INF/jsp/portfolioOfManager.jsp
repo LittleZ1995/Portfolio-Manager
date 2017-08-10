@@ -229,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td>${bond.value.isin}</td>
                                   <td>${bond.value.issuer}</td>
                                   <td>${bond.value.coupon}</td>
-                                  <td><fmt:formatDate value="${bond.value.maturity}" pattern="yyyy/MM/dd"/></td>
+                                  <td><fmt:formatDate value="${bond.value.maturity}" pattern="yyyy/MM"/></td>
                                   <td class="quantity">${bond.key.quantity}</td>
                                   <td class="initialprice">${bond.key.initialprice}</td>
                                   <td class="currentprice">${bond.key.currentprice}</td>
@@ -281,8 +281,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="currentprice">${future.key.currentprice}</td>
                                   <td class="initialValue">${future.key.initialprice*future.key.quantity}</td>
                                   <td class="currentValue">${future.key.currentprice*future.key.quantity}</td>
-                                  <td class="profit ${future.key.profit lt 0?'red':'green'}"><fmt:formatNumber type="percent" 
-            minFractionDigits="2" value="${future.key.profit}" /></td>
+                                  <td class="profit ${future.key.profit lt 0?'red':'green'}">${future.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
                                     <a href="viewSecurity?positionid=${future.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
@@ -477,8 +476,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var currentValueAllArr = $(this).find(".currentValue").map(function() {
 	  		   return $(this).text();
 	  		}).get();
-			var currentValueAll =  eval(currentValueAllArr.join('+'));
-			$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll.toFixed(2));
+			var currentValueAll = eval(currentValueAllArr.join('+'));
+			currentValueAll = currentValueAll?currentValueAll.toFixed(2):0;
+			
+			$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll);
 			
 		});
 
@@ -737,8 +738,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var currentValueAllArr = $(this).find(".currentValue").map(function() {
 					  		   return $(this).text();
 					  		}).get();
-							var currentValueAll =  eval(currentValueAllArr.join('+'));
-							$(this).parent().parent().parent().siblings(".currentValueAll").children().text((currentValueAll).toFixed(2));
+							var currentValueAll = eval(currentValueAllArr.join('+'));
+							currentValueAll = currentValueAll?currentValueAll.toFixed(2):0;
+							$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll);
 						});
 						
 						var sale =  $("#sale").val();

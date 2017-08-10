@@ -223,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td>${bond.value.isin}</td>
                                   <td>${bond.value.issuer}</td>
                                   <td>${bond.value.coupon}</td>
-                                  <td><fmt:formatDate value="${bond.value.maturity}" pattern="yyyy/MM/dd"/></td>
+                                  <td><fmt:formatDate value="${bond.value.maturity}" pattern="yyyy/MM"/></td>
                                   <td class="quantity">${bond.key.quantity}</td>
                                   <td class="initialprice">${bond.key.initialprice}</td>
                                   <td class="currentprice">${bond.key.currentprice}</td>
@@ -534,7 +534,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    ]
 		};
 
-        // 使用刚指定的�置项和数据显示图表。
+        // 使用刚指定的�置项和数据显示图表。
         portfolioGraphPie.setOption(option);
 
         var portfolioFraphLine = echarts.init(document.getElementById('portfolio-graphLine'));
