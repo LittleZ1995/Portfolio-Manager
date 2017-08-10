@@ -54,31 +54,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                
-                <ul class="nav side-menu">
-                  <li><a href="../index.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    
-                  </li>
-                  <li><a><i class="fa fa-user"></i> Found Manager <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="fundManagersList.html">View Found Managers</a></li>
-                      <!-- <li><a href="form_advanced.html">Advanced Components</a></li> -->
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-tasks"></i> Portfolio <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="portfoliosList.html">View Portfolios</a></li>
-                      <!-- <li><a href="form_advanced.html">Advanced Components</a></li> -->
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-table"></i> Security  <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="securitiesList.html">View Securities</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+              <jsp:include page="navigationBar.jsp" flush="true"/>
             </div>
             <!-- /sidebar menu -->
 
@@ -177,7 +153,7 @@
                                   <td>${bond.key.isin}</td>
                                   <td>${bond.key.issuer}</td>
                                   <td>${bond.key.coupon}</td>
-                                  <td>${bond.key.maturity}</td>
+                                  <td><fmt:formatDate value="${bond.key.maturity}" pattern="yyyy/MM"/></td>
                                   <td>${bond.value.bidprice}</td>
                                   <td>${bond.value.offerprice}</td>
                                   <td>
@@ -210,7 +186,7 @@
                                 <c:forEach items="${futureresults}" var="future" >
                                 <tr>
                                   <td>${future.key.symbol}</td>
-                                  <td>${future.key.deliverydate}</td>
+                                  <td><fmt:formatDate value="${future.key.deliverydate}" pattern="yyyy/MM/dd"/></td>
                                   <td>${future.value.bidprice}</td>
                                   <td>${future.value.offerprice}</td>
                                   <td>
@@ -281,15 +257,15 @@
 <!-- jQuery -->
 <script src="<%=path %>/js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="<%=path %>js/bootstrap.min.js"></script>
+<script src="<%=path %>/js/bootstrap.min.js"></script>
 
 <!-- Echart -->
-<script type="text/javascript" src="<%=path %>js/echarts.js"></script>
-<script type="text/javascript" src="<%=path %>js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<%=path %>js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=path %>js/validator.js"></script>
+<script type="text/javascript" src="<%=path %>/js/echarts.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/validator.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="<%=path %>js/custom.js"></script>
+<script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
 
 /*   function updatePrices(){

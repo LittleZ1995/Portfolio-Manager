@@ -39,11 +39,11 @@
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="<%=path %>/images/zyz.jpg" alt="..." class="img-circle profile_img">
+              <img src="<%=path %>/images/Pat.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>${sessionScope.FundManager.firstname}${sessionScope.FundManager.lastname}</h2>
+              <h2>Admin</h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -52,7 +52,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <jsp:include page="navigationBar_Manager.jsp" flush="true"/>
+                <jsp:include page="navigationBar.jsp" flush="true"/>
             </div>
             <!-- /sidebar menu -->
 
@@ -70,7 +70,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="<%=path %>/images/zyz.jpg" alt="">${sessionScope.FundManager.firstname}${sessionScope.FundManager.lastname}
+                  <img src="<%=path %>/images/Pat.png" alt="">Admin
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -140,7 +140,7 @@
                         <c:forEach items="${prices}" var="price" >
                         <tr>
                         
-                        	<td class="dates"><fmt:formatDate value="${price.date}" pattern="yyyy/MM/dd"/></td>
+                        	<td class="dates"><fmt:formatDate value="${price.date}" pattern="yyyy/MM/dd HH:mm"/></td>
                             <td><label>$</label>${price.bidprice}</td>
                             <td><label>$</label>${price.offerprice}</td>                         
                             </tr>

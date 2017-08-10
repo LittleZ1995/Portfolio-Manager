@@ -55,7 +55,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <jsp:include page="<%=path %>/WEB-INF/jsp/navigationBar.jsp" flush="true"/>
+              <jsp:include page="navigationBar.jsp" flush="true"/>
             </div>
             <!-- /sidebar menu -->
 
@@ -142,9 +142,9 @@
                             </p>
                           </div>
                           <div class="col-xs-12 col-sm-6 emphasis">
-                            <button type="button" class="btn btn-primary btn-xs" onclick="window.location.href='fundManagerDetail.html'">
+                            <a  class="btn btn-primary btn-xs" href="viewportfoliosofmanager?managerid=${fundmanager.managerid}">
                               <i class="fa fa-user"> </i> View Portfolio
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>

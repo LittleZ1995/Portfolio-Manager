@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +30,10 @@ public class FundManagerController {
 	private PortfolioService portfolioService;
 
 	@RequestMapping("/viewPortfolios")
-    public String showUser(HttpServletRequest request, Model model){
-		List<Portfolio> portfolios = portfolioService.getAllPortfolios();
+    public String showUser(HttpServletRequest request, Model model,HttpSession httpSession){
+		FundManager fundManager = (FundManager) httpSession.getAttribute("FundManager");
+		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(fundManager.getManagerid());
+		
 		model.addAttribute("portfolios",portfolios);
 		return "portfolioListOfManager";
 }

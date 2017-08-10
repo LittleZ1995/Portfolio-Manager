@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%String path = request.getContextPath(); 
+  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
               <div class="menu_section">
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-user"></i> Found Manager <span class="fa fa-chevron-down"></span></a>

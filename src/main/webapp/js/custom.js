@@ -2664,10 +2664,8 @@ if (typeof NProgress != 'undefined') {
 				$('#prices-table').DataTable({
 				  'order': [[ 0, 'desc' ]],
 				  'lengthChange': false,
-				  'info':false,
-				  'columnDefs': [
-					{ orderable: false, targets: [3] }
-				  ]
+				  'info':false
+				
 				});
 
 				TableManageButtons.init();

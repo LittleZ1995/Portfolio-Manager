@@ -100,7 +100,10 @@ public class PositionController {
 			model.addAttribute("future",future);
 		}
 		
-		return "securityDetail";
+		if(httpSession.getAttribute("FundManager") != null )
+			return "securityDetail";
+		else
+			return "securityDetailByadmin";
 		
 	}
 	
