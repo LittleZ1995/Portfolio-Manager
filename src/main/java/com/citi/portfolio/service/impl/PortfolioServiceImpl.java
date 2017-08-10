@@ -59,7 +59,9 @@ public class PortfolioServiceImpl implements PortfolioService {
 		Double profit = 0d;
 		List<Position> positions = positionService.getAllPositionsOfPortfolio(portfolioid);
 		for (Position position : positions) {
-			profit += position.getProfit();
+			if(position.getProfit() != null){
+				profit += position.getProfit();
+			}
 		}
 		return DoubleFormat.format(profit);
 	}

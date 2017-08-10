@@ -52,7 +52,9 @@ public class FundManagerServiceImpl implements FundManagerService{
 		List<Portfolio> portfolios = portfolioService.getAllPortfoliosOfManager(managerid);
 		
 		for (Portfolio portfolio : portfolios) {
-			profit += portfolio.getProfit();
+			if(portfolio.getProfit() != null){
+				profit += portfolio.getProfit();
+			}
 		}
 		
 		return DoubleFormat.format(profit);

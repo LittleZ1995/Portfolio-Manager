@@ -45,11 +45,17 @@ public class PositionServiceImpl implements PositionService {
 
 	@Override
 	public Double calculateProfit(Position position) {
-		BigDecimal initialPrice = position.getInitialprice();
-		BigDecimal currentPrice = position.getCurrentprice();
-		Integer quantity = position.getQuantity();
-		double newProfit = (currentPrice.doubleValue() - initialPrice.doubleValue()) * quantity;
-		return DoubleFormat.format(newProfit);
+		if(position.getInitialprice() != null 
+				&& position.getCurrentprice() != null
+				&& position.getQuantity() != null){
+			BigDecimal initialPrice = position.getInitialprice();
+			BigDecimal currentPrice = position.getCurrentprice();
+			Integer quantity = position.getQuantity();
+			double newProfit = (currentPrice.doubleValue() - initialPrice.doubleValue()) * quantity;
+			return DoubleFormat.format(newProfit);
+		}
+		
+		return 0d;
 	}
 
 	@Override
