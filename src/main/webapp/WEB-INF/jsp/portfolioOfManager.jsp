@@ -479,6 +479,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		}).get();
 			var currentValueAll =  eval(currentValueAllArr.join('+'));
 			$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll.toFixed(2));
+			
 		});
 
 		function getPieData(){
