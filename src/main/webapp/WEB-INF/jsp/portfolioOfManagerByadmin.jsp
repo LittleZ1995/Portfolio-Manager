@@ -391,6 +391,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           </div>
                         </div>
                       </div>
+                      <div style="display: none">
+                       <c:forEach items="${profits}" var="profit" >
+                      		<p class="dates"><fmt:formatDate value="${profit.date}" pattern="yyyy/MM/dd HH:mm"/></p>
+                       </c:forEach>
+                      </div>
 <!-- footer content -->
 <footer>
   <div class="pull-right">
@@ -418,6 +423,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
 	$(document).ready(function(){
+
+		var profit =  [];
+		var dates = [];
+		<c:forEach items="${profits}" var="item" varStatus="status" >  
+			profit.push(${item.profitvalue});
+		</c:forEach>
+		alert(profit);
+		$(".dates").each(function(){
+			dates.push($(this).text());
+			});
+		
 		$(".proportion").each(function(){
 		    $(this).text((($(this).prev().text())/($(this).parent().children(".initialValue").text())).toFixed(2));
 		    if($(this).text()<0){
@@ -426,57 +442,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(this).addClass("green");
 		    }
 		  });
+
+		var	pieData = [];
+		var bondsValueArr = $('#bonds-table > tbody > tr > .currentValue').map(function() {
+	  		  return $(this).text();
+	  		}).get();
+		var bondsValue =  eval(bondsValueArr.join('+'));
+
+		var futureValueArr = $('#future-table > tbody > tr > .currentValue').map(function() {
+	  		  return $(this).text();
+	  		}).get();
+	    var futureValue =  eval(futureValueArr.join('+'));
+	    
+		var equityValueArr = $('#equity-table > tbody > tr > .currentValue').map(function() {
+  		  return $(this).text();
+  		}).get();
+		var equityValue =  eval(equityValueArr.join('+'));
 		
-	
-	});
+		
+		bondObj = {
+					name:"Bond",
+				    value: bondsValue
+				  };
+		futureObj = {
+					name:"Future",
+			    	value: futureValue
+			      };
+		equityObj = {
+					name:"Equity",
+		    		value: equityValue
+		      	  };
+		SecutityList = [bondObj, futureObj, equityObj];
 
-  function submitToModel(posId,quantityAll){
-	  $("#positionId").val(posId);
-	  $("#quantityAll").text(quantityAll);
-	  $("#sale").val(0);
-	  $("#sale").attr("max",quantityAll);
-  }
+		
+		SecutityList.forEach(function(value,index){
+			if(value.value>0){
+				pieData.push(value);
+			}
+		});
+	  
 
 
 
-	function salePosition(){
-	  var posId = $("#positionId").val();
-	  /* alert(posId); */
-	  var sale =  $("#sale").val();
-      var jsonData = {
-    	      "posId":posId,
-    	      "sale":sale
-    	      };
-      $.ajax({
-          data:JSON.stringify(jsonData),
-          contentType:"text/html;charset=utf-8",       
-          type:"POST",
-          dataType:"json",
-          url:"salePosition",
-          error:function(data){
-              console.error("error:"+JSON.stringify(data));
-          },
-          success:function(map){
-             $(".salePosition").modal('hide');
-        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
-        	 $("#position"+posId + ">.profit").text(map.profit);
-        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
-        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
-        	 var proportion = (map.profit/initialValue*100).toFixed(2);
-        	 $("#position"+posId + ">.initialValue").text(initialValue);
-        	 $("#position"+posId + ">.currentValue").text(currentValue);
-        	 $("#position"+posId + ">.proportion").text(proportion);
-        	 
-        	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
-        	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
-        	 $("#" + map.securityType + posId + ">.initialValue").text(initialValue);
-        	 $("#" + map.securityType + posId + ">.currentValue").text(currentValue);
-        	 $("#" + map.securityType + posId + ">.proportion").text(proportion);
-          }
-      });
-
-	}
-  
     
   var portfolioGraphPie = echarts.init(document.getElementById('portfolio-graphPie'));
   var option = {
@@ -496,7 +503,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    legend: {
 		        orient : 'vertical',
 		        x : 'left',
-		        data:['Bond','Equity','Future']
+		        data:pieData.map(function(item){
+					   return item.name;
+		        })
 		    },
 		    toolbox: {
 		        show : true,
@@ -511,13 +520,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            type:'pie',
 		            radius : '55%',
 		            center: ['50%', '60%'],
-		            data:[
-		              	{value:"${bondvalue}", name:'Bond'},
-		                {value:"${equityvalue}", name:'Equity'},
-		                {value:"${futurevalue}", name:'Future'}
-
-
-		            ],
+		            data:pieData,
 		             roseType: 'radius',
                  label: {
                      normal: {
@@ -531,7 +534,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    ]
 		};
 
-        // 使用刚指定的配置项和数据显示图表。
+        // 使用刚指定的�置项和数据显示图表。
         portfolioGraphPie.setOption(option);
 
         var portfolioFraphLine = echarts.init(document.getElementById('portfolio-graphLine'));
@@ -561,7 +564,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		    },
                 xAxis : [
                 {
-                  data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                  data : dates,
                   axisLine: {
                     // show: false
                     lineStyle: {
@@ -590,7 +593,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 {
 
                   type:'line',
-                  data:["${portfolio.profit}", 52, 200, 334, 390, 330, 220],
+                  data:profit,
                   label:{
                     normal:{
                       show:true
@@ -599,9 +602,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
                 ]
               };
-
-        // 使用刚指定的配置项和数据显示图表。
         portfolioFraphLine.setOption(option);
+        
+	});
       </script>
     </body>
     </html>

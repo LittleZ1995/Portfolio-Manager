@@ -53,7 +53,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <jsp:include page="navigationBar_Manager.jsp" flush="true"/>
+              <div class="menu_section">
+                
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-user"></i> Found Manager <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="fundManagersList.html">View Found Managers</a></li>
+                      <!-- <li><a href="form_advanced.html">Advanced Components</a></li> -->
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-tasks"></i> Portfolio <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="portfoliosList.html">View Portfolios</a></li>
+                      <!-- <li><a href="form_advanced.html">Advanced Components</a></li> -->
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i> Security  <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="securitiesList.html">View Securities</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
             <!-- /sidebar menu -->
 
@@ -254,7 +275,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <div role="tabpanel" class="tab-pane fade" id="future_tab_content" aria-labelledby="future-tab">
 
                             <!-- start user projects -->
-                            future-tab
                            <table id="future-table" class="table table-striped table-bordered bulk_action">
                               <thead>
                                <tr >
@@ -282,7 +302,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="currentprice">${future.key.currentprice}</td>
                                   <td class="initialValue">${future.key.initialprice*future.key.quantity}</td>
                                   <td class="currentValue">${future.key.currentprice*future.key.quantity}</td>
-                                  <td class="profit ${future.key.profit lt 0?'red':'green'}">${future.key.profit}</td>
+                                  <td class="profit ${future.key.profit lt 0?'red':'green'}"><fmt:formatNumber type="percent" 
+            minFractionDigits="2" value="${future.key.profit}" /></td>
                                   <td class="proportion"></td>
                                   <td>
                                     <a href="viewSecurity?positionid=${future.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
@@ -298,7 +319,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="equity_tab_content" aria-labelledby="equity_tab">
-                            equity-table
                             <table id="equity-table" class="table table-striped table-bordered bulk_action">
                               <thead>
                                 <tr>
@@ -696,8 +716,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     				$(this).addClass("green");
 			     		    }
 			     		 });
+			        	 	var currentprice = $("#position"+posId + ">.currentprice").text();
 
 			          	}else{
+			          		var currentprice = $("#position"+posId + ">.currentprice").text();
 			          		$("#position"+posId).remove();
 			          		$("#" + map.securityType + posId ).remove();
 				        }
@@ -740,14 +762,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						});
 						
 						var sale =  $("#sale").val();
-						var currentprice = $("#position"+posId + ">.currentprice").text();
 						$("#saleTips > span").text(currentprice * sale);
 						$("#saleTips").css("display","block");
 			     		$('.salePosition').modal('hide');
 
 			     		setTimeout(function(){
 			     			$("#saleTips").css("display","none");
-				     		},2000);
+				     		},3000);
 			          }
 
 		      });
