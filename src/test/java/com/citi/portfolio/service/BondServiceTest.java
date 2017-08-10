@@ -32,9 +32,16 @@ public class BondServiceTest {
 	}
 	
 	@Test
+	public void testSelectByISIN(){
+		Bond bond = bondMapper.selectByISIN("1234567890");
+		System.out.println(bond);
+	}
+
+	
+	@Test
 	public void testFindAllHistoryPrices(){
 		List<Price> historyPrices = bondService.findAllHistoryPrices(1);
-		Assert.assertEquals(3, historyPrices.size());
+		Assert.assertEquals(2, historyPrices.size());
 		for (int i = 0; i < historyPrices.size(); i++) {
 			System.out.println(historyPrices.get(i));
 		}
@@ -42,9 +49,18 @@ public class BondServiceTest {
 	}
 	
 	@Test
-	public void testSelectByISIN(){
-		Bond bond = bondMapper.selectByISIN("1234567890");
-		System.out.println(bond);
+	public void testGetBondBySecurityId() {
+		Bond bond = bondService.getBondBySecurityId(1);
+		Assert.assertNotNull(bond);
+		//Assert.assertEquals("1234567890", bond.getIsin());
 	}
+	
 
+	@Test
+	public void testGetAllBonds() {
+		List<Bond> bonds = bondService.getAllBonds();
+		Assert.assertNotNull(bonds);
+		Assert.assertEquals(3, bonds.size());
+	}
+	
 }
