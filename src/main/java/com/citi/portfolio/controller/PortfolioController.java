@@ -26,6 +26,7 @@ import com.citi.portfolio.entity.Profit;
 import com.citi.portfolio.entity.Security;
 import com.citi.portfolio.service.BondService;
 import com.citi.portfolio.service.EquityService;
+import com.citi.portfolio.service.FundManagerService;
 import com.citi.portfolio.service.FutureService;
 import com.citi.portfolio.service.PortfolioService;
 import com.citi.portfolio.service.PositionService;
@@ -37,6 +38,9 @@ public class PortfolioController {
 
 	@Resource
 	private PortfolioService portfolioService;
+	
+	@Resource
+	private FundManagerService managerService;
 	
 	@Resource
 	private PositionService positionService;
@@ -110,11 +114,15 @@ public class PortfolioController {
 		
 		List<Profit> historyProfits = portfolioService.getAllHistoryProfit(portfolioid);
 		if(historyProfits != null){
-			model.addAttribute("profits", historyProfits);
-		} else {
-			model.addAttribute("profits", new ArrayList<Profit>());
+			historyProfits = new ArrayList<>();
 		}
+		Profit currentProfit = new Profit();
+		currentProfit.setDate(priceService.getLatestDate());
+		currentProfit.setProfitvalue(portfolio.getProfit());
+		historyProfits.add(currentProfit);
+
 		model.addAttribute("portfolio",portfolio);
+		model.addAttribute("profits",historyProfits);
 		model.addAttribute("results",results);
 		model.addAttribute("positions",positions);
 		model.addAttribute("bondresults",bondresults);
@@ -227,7 +235,7 @@ public class PortfolioController {
 			Future future = futureService.getFutureBySecurityId(securityid);
 			Price price = priceService.getPriceById(future.getPriceid());
 			BigDecimal profitdecimal = price.getOfferprice().subtract(price.getBidprice());
-			profit = profitdecimal.multiply(new BigDecimal(quantity)).doubleValue();
+			profit = profitdecimal.multiply(new BigDecimal(quantity)).doubleValue(); 
 			Position position = new Position(portfolioid, quantity, price.getBidprice(), price.getOfferprice(), securityid, profit);
 			positionService.addPosition(position);
 		}
@@ -265,11 +273,29 @@ public class PortfolioController {
 			}
 		}	
 		
+		portfolio.setProfit(portfolioService.calculateProfit(portfolioid));
+		portfolioService.updatePortfolio(portfolio);
+		
+		FundManager fundManager = managerService.getManagerById(portfolio.getManagerid());
+		fundManager.setProfit(managerService.calculateProfit(fundManager.getManagerid()));
+		managerService.updateFundManager(fundManager);
+		
 		Map results = new HashMap<>();
 		for(int i = 0; i < positions.size() ; i++){		
 			results.put(positions.get(i), symbols.get(i));
 		}
+		
+		List<Profit> historyProfits = portfolioService.getAllHistoryProfit(portfolioid);
+		if(historyProfits != null){
+			historyProfits = new ArrayList<>();
+		}
+		Profit currentProfit = new Profit();
+		currentProfit.setDate(priceService.getLatestDate());
+		currentProfit.setProfitvalue(portfolio.getProfit());
+		historyProfits.add(currentProfit);
+		
 		model.addAttribute("portfolio",portfolio);
+		model.addAttribute("profits",historyProfits);
 		model.addAttribute("results",results);
 		model.addAttribute("positions",positions);
 		model.addAttribute("bondresults",bondresults);

@@ -1,5 +1,7 @@
 package com.citi.portfolio.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -16,8 +18,12 @@ public class PriceServiceImpl implements PriceService {
 	
 	@Override
 	public Price getPriceById(int priceid) {
-		// TODO Auto-generated method stub
 		return priceMapper.selectByPrimaryKey(priceid);
+	}
+
+	@Override
+	public Date getLatestDate() {
+		return priceMapper.getLatestDate();
 	}
 
 }
