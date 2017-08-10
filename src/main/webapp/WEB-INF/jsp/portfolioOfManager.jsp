@@ -197,7 +197,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <tbody>
                                 
                                <c:forEach items="${results}" var="position" >
-                                <tr id = "position${position.value.positionid}">
+                                <tr id = "position${position.value.positionid}" data-posid="${position.value.positionid}">
                                <!--  <tr id = ${position.value.securityid}> -->
                                   <td>${position.key}</td>
                                   <td class="quantity">${position.value.quantity}</td>
@@ -210,7 +210,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <%-- <fmt:formatNumber value="${100/position.value.initialprice}"  minFractionDigits="2"/> --%>
                                   <td>
                                     <a href="viewSecurity?positionid=${position.value.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${position.value.positionid}',${position.value.quantity})"><i class="fa fa-pencil"></i> Sale </a>
+                                    <%-- <a class="btn btn-info btn-xs sale" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${position.value.positionid}',${position.value.quantity})"><i class="fa fa-pencil"></i> Sale </a> --%>
+                                    <a class="btn btn-info btn-xs sale"  data-toggle="modal" data-target=".salePosition"><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>        
@@ -244,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                               <tbody>
                                  <c:forEach items="${bondresults}" var="bond" >
-                                <tr id = 'bond${bond.key.positionid}'>
+                                <tr id = 'bond${bond.key.positionid}' data-posid="${bond.key.positionid}">
                                   <td>${bond.value.isin}</td>
                                   <td>${bond.value.issuer}</td>
                                   <td>${bond.value.coupon}</td>
@@ -254,11 +255,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="currentprice">${bond.key.currentprice}</td>
                                   <td class="initialValue">${bond.key.initialprice*bond.key.quantity}</td>
                                   <td class="currentValue">${bond.key.currentprice*bond.key.quantity}</td>
-                                  <td class="profit">${bond.key.profit}</td>
+                                  <td class="profit ${bond.key.profit lt 0?'red':'green'}">${bond.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
                                     <a href="viewSecurity?positionid=${bond.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${bond.key.positionid}',${bond.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
+                                     <a class="btn btn-info btn-xs sale" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach> 
@@ -291,7 +292,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                               <tbody>
                                 <c:forEach items="${futureresults}" var="future" >
-                                <tr id = 'future${future.key.positionid}'>
+                                <tr id = 'future${future.key.positionid}' data-posid="${future.key.positionid}">
                                   <td>${future.value.symbol}</td>
                                   <td><fmt:formatDate value="${future.value.deliverydate}" pattern="yyyy/MM/dd"/></td>
                                   <td class="quantity">${future.key.quantity}</td>
@@ -299,11 +300,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="currentprice">${future.key.currentprice}</td>
                                   <td class="initialValue">${future.key.initialprice*future.key.quantity}</td>
                                   <td class="currentValue">${future.key.currentprice*future.key.quantity}</td>
-                                  <td class="profit">${future.key.profit}</td>
+                                  <td class="profit ${future.key.profit lt 0?'red':'green'}">${future.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
                                     <a href="viewSecurity?positionid=${future.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                     <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${future.key.positionid}',${future.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
+                                     <a class="btn btn-info btn-xs sale" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>
@@ -331,7 +332,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </tr>
                               </thead>
 							  <c:forEach items="${equityresults}" var="equity" >
-                                <tr id = 'equity${equity.key.positionid}'>
+                                <tr id = 'equity${equity.key.positionid}' data-posid="${equity.key.positionid}">
                                   <td>${equity.value.symbol}</td>
                                   <td>${equity.value.sector}</td>
                                   <td>${equity.value.industry}</td>
@@ -340,11 +341,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <td class="currentprice">${equity.key.currentprice}</td>
                                   <td class="initialValue">${equity.key.initialprice*equity.key.quantity}</td>
                                   <td class="currentValue">${equity.key.currentprice*equity.key.quantity}</td>
-                                  <td class="profit">${equity.key.profit}</td>
+                                  <td class="profit ${equity.key.profit lt 0?'red':'green'}">${equity.key.profit}</td>
                                   <td class="proportion"></td>
                                   <td>
                                     <a href="viewSecurity?positionid=${equity.key.positionid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
-                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".salePosition" onclick="submitToModel('${equity.key.positionid}',${equity.key.quantity})"><i class="fa fa-pencil"></i> Sale </a>
+                                    <a class="btn btn-info btn-xs sale" data-toggle="modal" data-target=".salePosition" ><i class="fa fa-pencil"></i> Sale </a>
                                   </td>
                                 </tr>
 							  </c:forEach>
@@ -408,7 +409,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="button" class="btn btn-success" onclick="salePosition()">Submit</button>
+                                    <button id="salePosition" type="button" class="btn btn-success" >Submit</button>
                                   </div>
                                 </div>
                               </form>
@@ -441,7 +442,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- Custom Theme Scripts -->
 <script src="<%=path %>/js/custom.js"></script>
 <script type="text/javascript">
-
+    /* var pieData = [];
+    var getPieData; */
 	$(document).ready(function(){
 		$(".proportion").each(function(){
 		    $(this).text((($(this).prev().text())/($(this).parent().children(".initialValue").text())).toFixed(2));
@@ -450,114 +452,190 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}else{
 				$(this).addClass("green");
 		    }
-		  });
+		 });
+
+		 
+
+
+		$(".sale").click(function(){
+			var posId = $(this).parent().parent().data("posid");
+			var quantityAll = $(this).parent().siblings(".quantity").text();
+			$("#positionId").val(posId);
+			$("#quantityAll").text(quantityAll);
+			$("#sale").val(0);
+			$("#sale").attr("max",quantityAll);
+		});
+
+		function getPieData(){
+		var	pieData = [];
+		var bondsValueArr = $('#bonds-table > tbody > tr > .currentValue').map(function() {
+	  		  return $(this).text();
+	  		}).get();
+		var bondsValue =  eval(bondsValueArr.join('+'));
+
+		var futureValueArr = $('#future-table > tbody > tr > .currentValue').map(function() {
+	  		  return $(this).text();
+	  		}).get();
+	    var futureValue =  eval(futureValueArr.join('+'));
+	    
+		var equityValueArr = $('#equity-table > tbody > tr > .currentValue').map(function() {
+  		  return $(this).text();
+  		}).get();
+		var equityValue =  eval(equityValueArr.join('+'));
+
 		
-	
+		bondObj = {
+					name:"Bond",
+				    value: bondsValue
+				  };
+		futureObj = {
+					name:"Future",
+			    	value: futureValue
+			      };
+		equityObj = {
+					name:"Equity",
+		    		value: equityValue
+		      	  };
+		SecutityList = [bondObj, futureObj, equityObj];
+
+		
+		SecutityList.forEach(function(value,index){
+			if(value.value>0){
+				pieData.push(value);
+			}
+		});
+
+		return pieData;
+		}
+
+		var pieData = getPieData();
+		var portfolioGraphPie = echarts.init(document.getElementById('portfolio-graphPie'));
+		var option = {
+				   title: {
+		             text: 'Portfolio Compoment',
+		             left: 'center',
+		             top: 20,
+		             textStyle: {
+		                 color: '#73879C'
+		             }
+		         },
+				     tooltip : {
+		             trigger: 'item',
+		             formatter: "{b} : {c} "
+		         },
+
+				    legend: {
+				        orient : 'vertical',
+				        x : 'left',
+				        data:pieData.map(function(item){
+							   return item.name;
+					        })
+				    },
+				    toolbox: {
+				        show : true,
+				        feature : {		           
+				            saveAsImage : {show: true,title :'save'}
+				        }
+				    },
+				    
+				    calculable : true,
+				    series : [
+				        {     
+				            type:'pie',
+				            radius : '55%',
+				            center: ['50%', '60%'],
+				            data: pieData,
+				             roseType: 'radius',
+		                 label: {
+		                     normal: {
+		                         textStyle: {
+		                             color: '#73879C'
+		                         },
+		                         formatter: "{b} : {d}%"
+		                     }
+		                 }
+				        }
+				    ]
+				};
+
+		  // 使用刚指定的配置项和数据显示图表。
+		  portfolioGraphPie.setOption(option);
+
+		  $("#salePosition").click(function(){
+			  var posId = $("#positionId").val();
+			  /* alert(posId); */
+			  var sale =  $("#sale").val();
+		      var jsonData = {
+		    	      "posId":posId,
+		    	      "sale":sale
+		    	      };
+		      $.ajax({
+		          data:JSON.stringify(jsonData),
+		          contentType:"text/html;charset=utf-8",       
+		          type:"POST",
+		          dataType:"json",
+		          url:"salePosition",
+		          error:function(data){
+		              console.error("error:"+JSON.stringify(data));
+		          },
+		          success:function(map){
+		             $(".salePosition").modal('hide');
+		        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
+		        	 $("#position"+posId + ">.profit").text(map.profit);
+		        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
+		        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
+		        	 var proportion = (map.profit/initialValue*100).toFixed(2);
+		        	 $("#position"+posId + ">.initialValue").text(initialValue);
+		        	 $("#position"+posId + ">.currentValue").text(currentValue);
+		        	 $("#position"+posId + ">.proportion").text(proportion);
+		        	 
+		        	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
+		        	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
+		        	 $("#" + map.securityType + posId + ">.initialValue").text(initialValue);
+		        	 $("#" + map.securityType + posId + ">.currentValue").text(currentValue);
+		        	 $("#" + map.securityType + posId + ">.proportion").text(proportion);
+
+		        	 $(".profit").each(function(){
+		     		    if($(this).text()<0){
+		     		    	$(this).addClass("red");
+		     			}else{
+		     				$(this).addClass("green");
+		     		    }
+		     		 });
+		        	 $(".proportion").each(function(){
+		     		    if($(this).text()<0){
+		     		    	$(this).addClass("red");
+		     			}else{
+		     				$(this).addClass("green");
+		     		    }
+		     		 });
+
+		     		 /* update the data in pie*/
+		        	pieData = getPieData();
+
+		     		portfolioGraphPie.setOption({
+		     			legend: {
+					        data:pieData.map(function(item){
+								   return item.name;
+						        })
+					    },
+		     			series : [
+					        {     
+					            data: pieData,
+					        }
+					    ]
+			     	});
+		          }
+		      });
+
+			});
 	});
 
-  function submitToModel(posId,quantityAll){
-	  $("#positionId").val(posId);
-	  $("#quantityAll").text(quantityAll);
-	  $("#sale").val(0);
-	  $("#sale").attr("max",quantityAll);
-  }
 
-
-
-	function salePosition(){
-	  var posId = $("#positionId").val();
-	  /* alert(posId); */
-	  var sale =  $("#sale").val();
-      var jsonData = {
-    	      "posId":posId,
-    	      "sale":sale
-    	      };
-      $.ajax({
-          data:JSON.stringify(jsonData),
-          contentType:"text/html;charset=utf-8",       
-          type:"POST",
-          dataType:"json",
-          url:"salePosition",
-          error:function(data){
-              console.error("error:"+JSON.stringify(data));
-          },
-          success:function(map){
-             $(".salePosition").modal('hide');
-        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
-        	 $("#position"+posId + ">.profit").text(map.profit);
-        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
-        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
-        	 var proportion = (map.profit/initialValue*100).toFixed(2);
-        	 $("#position"+posId + ">.initialValue").text(initialValue);
-        	 $("#position"+posId + ">.currentValue").text(currentValue);
-        	 $("#position"+posId + ">.proportion").text(proportion);
-        	 
-        	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
-        	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
-        	 $("#" + map.securityType + posId + ">.initialValue").text(initialValue);
-        	 $("#" + map.securityType + posId + ">.currentValue").text(currentValue);
-        	 $("#" + map.securityType + posId + ">.proportion").text(proportion);
-          }
-      });
-
-	}
+	
   
     
-  var portfolioGraphPie = echarts.init(document.getElementById('portfolio-graphPie'));
-  var option = {
-		   title: {
-             text: 'Portfolio Compoment',
-             left: 'center',
-             top: 20,
-             textStyle: {
-                 color: '#73879C'
-             }
-         },
-		     tooltip : {
-             trigger: 'item',
-             formatter: "{b} : {c} "
-         },
-
-		    legend: {
-		        orient : 'vertical',
-		        x : 'left',
-		        data:['Bond','Equity','Future']
-		    },
-		    toolbox: {
-		        show : true,
-		        feature : {		           
-		            saveAsImage : {show: true,title :'save'}
-		        }
-		    },
-		    
-		    calculable : true,
-		    series : [
-		        {     
-		            type:'pie',
-		            radius : '55%',
-		            center: ['50%', '60%'],
-		            data:[
-		              	{value:"${bondvalue}", name:'Bond'},
-		                {value:"${equityvalue}", name:'Equity'},
-		                {value:"${futurevalue}", name:'Future'}
-
-
-		            ],
-		             roseType: 'radius',
-                 label: {
-                     normal: {
-                         textStyle: {
-                             color: '#73879C'
-                         },
-                         formatter: "{b} : {d}%"
-                     }
-                 }
-		        }
-		    ]
-		};
-
-        // 使用刚指定的配置项和数据显示图表。
-        portfolioGraphPie.setOption(option);
+  
 
         var portfolioFraphLine = echarts.init(document.getElementById('portfolio-graphLine'));
         var option = {
