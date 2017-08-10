@@ -250,7 +250,7 @@
                         <td>${fundmanager.firstname}${fundmanager.lastname}</td>
                         <td>${fundmanager.email}</td>
                         <td>${fundmanager.phonenumber}</td>
-                        <td ${fundmanager.profit lt 0?'red':'green'}>${fundmanager.profit}</td>
+                        <td class = "${fundmanager.profit lt 0?'red':'green'}">${fundmanager.profit}</td>
                         <td>
                           <a href="viewportfoliosofmanager?managerid=${fundmanager.managerid}" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
  

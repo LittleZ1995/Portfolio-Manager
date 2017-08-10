@@ -138,7 +138,7 @@
                             <c:forEach items="${portfolios}" var="portfolio" >
                               <tr id = ${portfolio.portfolioid}>
                                 <td>${portfolio.name}</td>
-                                <td>${portfolio.profit}</td>
+                                <td class = "${portfolio.profit lt 0?'red':'green'}">${portfolio.profit}</td>
                                 <td>                                
                                   <a href="<%=path %>/viewOnePortfolio?portfolioid=${portfolio.portfolioid}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>View</a>
                                 </td>

@@ -429,7 +429,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<c:forEach items="${profits}" var="item" varStatus="status" >  
 			profit.push(${item.profitvalue});
 		</c:forEach>
-		alert(profit);
+		
 		$(".dates").each(function(){
 			dates.push($(this).text());
 			});
