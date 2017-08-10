@@ -20,13 +20,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.citi.portfolio.entity.Bond;
 import com.citi.portfolio.entity.Equity;
+import com.citi.portfolio.entity.FundManager;
 import com.citi.portfolio.entity.Future;
+import com.citi.portfolio.entity.Portfolio;
 import com.citi.portfolio.entity.Position;
 import com.citi.portfolio.entity.Price;
 import com.citi.portfolio.entity.Security;
 import com.citi.portfolio.service.BondService;
 import com.citi.portfolio.service.EquityService;
+import com.citi.portfolio.service.FundManagerService;
 import com.citi.portfolio.service.FutureService;
+import com.citi.portfolio.service.PortfolioService;
 import com.citi.portfolio.service.PositionService;
 import com.citi.portfolio.service.SecurityService;
 import com.citi.portfolio.util.JSONUtil;
@@ -42,6 +46,9 @@ public class PositionController {
 	private SecurityService securityService;
 	
 	@Resource
+	private PortfolioService portfolioService;
+	
+	@Resource
 	private BondService bondService;
 	
 	@Resource
@@ -49,6 +56,9 @@ public class PositionController {
 	
 	@Resource
 	private FutureService futureService;
+	
+	@Resource
+	private FundManagerService managerService;
 	
 	@RequestMapping("/viewSecurity")
 	public String viewSecurity(HttpServletRequest request, Model model,HttpSession httpSession) {
@@ -123,6 +133,16 @@ public class PositionController {
             map.put("profit", profit);
 		}
         
+        // add update portfolio profit code
+        int portfolioid = position.getPortfolioid();
+        Portfolio portfolio = portfolioService.getPortfolioByPortfolioId(portfolioid); 
+        portfolio.setProfit(portfolioService.calculateProfit(portfolioid));
+		portfolioService.updatePortfolio(portfolio);
+		
+		FundManager fundManager = managerService.getManagerById(portfolio.getManagerid());
+		fundManager.setProfit(managerService.calculateProfit(fundManager.getManagerid()));
+		managerService.updateFundManager(fundManager);
+        //        
         int securityId = position.getSecurityid();
         Security security = securityService.getSecurityTypeById(securityId);
         String securityType = security.getSecuritytype();

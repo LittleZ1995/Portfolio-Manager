@@ -174,11 +174,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                         <div id="myTabContent" class="tab-content">
                         	
-                        	
+                        	<div id="saleTips" style="color:red;position:absolute;left:20px;display:none;">Cash: <span style="font-weight:900;padding:0 5px"></span>return to your account!</div>
                         	
                         	<div role="tabpanel" class="tab-pane fade active in" id="etf_tab_content" aria-labelledby="etf-tab">
            
-                            <table id="etf-table" class="table table-striped table-bordered bulk_action">
+                            <table id="position-table" class="table table-striped table-bordered bulk_action">
                               <thead>
                                 <tr>
                                   <th>Symbol/ISIN</th>
@@ -217,6 +217,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                               </tbody>
                             </table>
+                            <div class="currentValueAll" style="font-weight:900;position:absolute;bottom:10px;">Total CurrentValue: <span
+                            ></span></div>
                           </div>
                         	
                         	
@@ -265,6 +267,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                               </tbody>
                             </table>
+                            <div class="currentValueAll" style="font-weight:900;position:absolute;bottom:10px;">Total CurrentValue: <span
+                            ></span></div>
                             <!-- end recent activity -->
 
                           </div>
@@ -309,6 +313,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </c:forEach>
                               </tbody>
                             </table>
+                            <div class="currentValueAll" style="font-weight:900;position:absolute;bottom:10px;">Total CurrentValue: <span
+                            ></span></div>
                             <!-- end user projects -->
 
                           </div>
@@ -353,6 +359,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 
                               </tbody>
                             </table>
+                            <div class="currentValueAll" style="font-weight:900;position:absolute;bottom:10px;">Total CurrentValue: <span
+                            ></span></div>
                           </div>
 
                         </div>
@@ -450,18 +458,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     /* var pieData = [];
     var getPieData; */
 
-    var profit =  [];
-	var dates = [];
-	<c:forEach items="${profits}" var="item" varStatus="status" >  
-		profit.push(${item.profitvalue});
-	</c:forEach>
-
-	$(".dates").each(function(){
-		dates.push($(this).text());
-		});
+    
 	
 	
 	$(document).ready(function(){
+
+		var profit =  [];
+		var dates = [];
+		<c:forEach items="${profits}" var="item" varStatus="status" >  
+			profit.push(${item.profitvalue});
+		</c:forEach>
+
+		$(".dates").each(function(){
+			dates.push($(this).text());
+			});
+		
 		$(".proportion").each(function(){
 		    $(this).text((($(this).prev().text())/($(this).parent().children(".initialValue").text())).toFixed(2));
 		    if($(this).text()<0){
@@ -483,6 +494,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#sale").attr("max",quantityAll);
 		});
 
+		
+		$("table").each(function(){
+			var currentValueAllArr = $(this).find(".currentValue").map(function() {
+	  		   return $(this).text();
+	  		}).get();
+			var currentValueAll =  eval(currentValueAllArr.join('+'));
+			$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll);
+		});
+
 		function getPieData(){
 		var	pieData = [];
 		var bondsValueArr = $('#bonds-table > tbody > tr > .currentValue').map(function() {
@@ -499,7 +519,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		  return $(this).text();
   		}).get();
 		var equityValue =  eval(equityValueArr.join('+'));
-
+		
 		
 		bondObj = {
 					name:"Bond",
@@ -578,6 +598,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  // 使用刚指定的配置项和数据显示图表。
 		  portfolioGraphPie.setOption(option);
 
+
+		  var portfolioFraphLine = echarts.init(document.getElementById('portfolio-graphLine'));
+	        var option = {
+	                color: ['#3498DB'],
+
+	                title: {
+	                    text: 'Portfolio',
+	                    left: 'center',
+	                    top: 20,
+	                    textStyle: {
+	                        color: '#73879C'
+	                    }
+	                },
+
+	                grid: {
+	                  left: '3%',
+	                  right: '4%',
+	                  bottom: '3%',
+	                  containLabel: true
+	                },
+	                toolbox: {
+	    		        show : true,
+	    		        feature : {		           
+	    		            saveAsImage : {show: true,title :'save'}
+	    		        }
+	    		    },
+	                xAxis : [
+	                {
+	                  data : dates,
+	                  axisLine: {
+	                    // show: false
+	                    lineStyle: {
+	                      color:'#73879C'
+	                    }
+	                  },
+	                  axisTick: {
+	                    show: false
+	                  }
+	                }
+	                ],
+	                yAxis : [
+	                {
+	                  type : 'value',
+	                  axisLine: {
+	                    lineStyle: {
+	                      color:'#73879C'
+	                    }
+	                  },
+	                  axisTick: {
+	                    show: false,
+	                  },
+	                }
+	                ],
+	                series : [
+	                {
+
+	                  type:'line',
+	                  data:profit,
+	                  label:{
+	                    normal:{
+	                      show:true
+	                    }
+	                  }
+	                }
+	                ]
+	              };
+
+	        // 使用刚指定的配置项和数据显示图表。
+	        portfolioFraphLine.setOption(option);
+		  
 		  $("#salePosition").click(function(){
 			  var posId = $("#positionId").val();
 			  /* alert(posId); */
@@ -596,7 +686,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		              console.error("error:"+JSON.stringify(data));
 		          },
 		          success:function(map){
-			          if(!map.isDelete && map.isDelete == "Yes"){
+			          if(!map.isDelete || map.isDelete != "Yes"){
 			             $(".salePosition").modal('hide');
 			        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
 			        	 $("#position"+posId + ">.profit").text(map.profit);
@@ -648,12 +738,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    ]
 				     	});
 
+				     	
+						var profitArr = $("#position-table > tbody > tr > .profit").map(function() {
+		  		  			return $(this).text();
+		  				}).get();
+						var profitValue =  eval(profitArr.join('+'));
+						profit[profit.length-1] = profitValue;
+						portfolioFraphLine.setOption({
+			     			series : [
+						        {     
+						            data: profit,
+						        }
+						    ]
+				     	});
+
+						$("table").each(function(){
+							var currentValueAllArr = $(this).find(".currentValue").map(function() {
+					  		   return $(this).text();
+					  		}).get();
+							var currentValueAll =  eval(currentValueAllArr.join('+'));
+							$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll);
+						});
+						
+						var sale =  $("#sale").val();
+						var currentprice = $("#position"+posId + ">.currentprice").text();
+						$("#saleTips > span").text(currentprice * sale);
+						$("#saleTips").css("display","block");
 			     		$('.salePosition').modal('hide');
+
+			     		setTimeout(function(){
+			     			$("#saleTips").css("display","none");
+				     		},2000);
 			          }
 
 		      });
 
 			});
+
+
+			
 	});
 
 
@@ -662,74 +785,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
   
 
-        var portfolioFraphLine = echarts.init(document.getElementById('portfolio-graphLine'));
-        var option = {
-                color: ['#3498DB'],
-
-                title: {
-                    text: 'Portfolio',
-                    left: 'center',
-                    top: 20,
-                    textStyle: {
-                        color: '#73879C'
-                    }
-                },
-
-                grid: {
-                  left: '3%',
-                  right: '4%',
-                  bottom: '3%',
-                  containLabel: true
-                },
-                toolbox: {
-    		        show : true,
-    		        feature : {		           
-    		            saveAsImage : {show: true,title :'save'}
-    		        }
-    		    },
-                xAxis : [
-                {
-                  data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                  axisLine: {
-                    // show: false
-                    lineStyle: {
-                      color:'#73879C'
-                    }
-                  },
-                  axisTick: {
-                    show: false
-                  }
-                }
-                ],
-                yAxis : [
-                {
-                  type : 'value',
-                  axisLine: {
-                    lineStyle: {
-                      color:'#73879C'
-                    }
-                  },
-                  axisTick: {
-                    show: false,
-                  },
-                }
-                ],
-                series : [
-                {
-
-                  type:'line',
-                  data:["${portfolio.profit}", 52, 200, 334, 390, 330, 220],
-                  label:{
-                    normal:{
-                      show:true
-                    }
-                  }
-                }
-                ]
-              };
-
-        // 使用刚指定的配置项和数据显示图表。
-        portfolioFraphLine.setOption(option);
+        
       </script>
     </body>
     </html>

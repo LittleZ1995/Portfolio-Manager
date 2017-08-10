@@ -2643,7 +2643,7 @@ if (typeof NProgress != 'undefined') {
 					  ]
 					});
 				
-				$('#etf-table').DataTable({
+				$('#position-table').DataTable({
 				  'order': [[ 6, 'desc' ]],
 				  'lengthChange': false,
 				  'info':false,
