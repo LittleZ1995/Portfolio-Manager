@@ -578,53 +578,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		              console.error("error:"+JSON.stringify(data));
 		          },
 		          success:function(map){
-		             $(".salePosition").modal('hide');
-		        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
-		        	 $("#position"+posId + ">.profit").text(map.profit);
-		        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
-		        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
-		        	 var proportion = (map.profit/initialValue*100).toFixed(2);
-		        	 $("#position"+posId + ">.initialValue").text(initialValue);
-		        	 $("#position"+posId + ">.currentValue").text(currentValue);
-		        	 $("#position"+posId + ">.proportion").text(proportion);
-		        	 
-		        	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
-		        	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
-		        	 $("#" + map.securityType + posId + ">.initialValue").text(initialValue);
-		        	 $("#" + map.securityType + posId + ">.currentValue").text(currentValue);
-		        	 $("#" + map.securityType + posId + ">.proportion").text(proportion);
+			          if(!map.isDelete && map.isDelete == "Yes"){
+			             $(".salePosition").modal('hide');
+			        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
+			        	 $("#position"+posId + ">.profit").text(map.profit);
+			        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
+			        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
+			        	 var proportion = (map.profit/initialValue*100).toFixed(2);
+			        	 $("#position"+posId + ">.initialValue").text(initialValue);
+			        	 $("#position"+posId + ">.currentValue").text(currentValue);
+			        	 $("#position"+posId + ">.proportion").text(proportion);
+			        	 
+			        	 $("#" + map.securityType + posId + ">.quantity").text(map.currentQuantity);
+			        	 $("#" + map.securityType + posId + ">.profit").text(map.profit);
+			        	 $("#" + map.securityType + posId + ">.initialValue").text(initialValue);
+			        	 $("#" + map.securityType + posId + ">.currentValue").text(currentValue);
+			        	 $("#" + map.securityType + posId + ">.proportion").text(proportion);
+	
+			        	 $(".profit").each(function(){
+			     		    if($(this).text()<0){
+			     		    	$(this).addClass("red");
+			     			}else{
+			     				$(this).addClass("green");
+			     		    }
+			     		 });
+			        	 $(".proportion").each(function(){
+			     		    if($(this).text()<0){
+			     		    	$(this).addClass("red");
+			     			}else{
+			     				$(this).addClass("green");
+			     		    }
+			     		 });
 
-		        	 $(".profit").each(function(){
-		     		    if($(this).text()<0){
-		     		    	$(this).addClass("red");
-		     			}else{
-		     				$(this).addClass("green");
-		     		    }
-		     		 });
-		        	 $(".proportion").each(function(){
-		     		    if($(this).text()<0){
-		     		    	$(this).addClass("red");
-		     			}else{
-		     				$(this).addClass("green");
-		     		    }
-		     		 });
+			          	}else{
+			          		$("#position"+posId).remove();
+			          		$("#" + map.securityType + posId ).remove();
+				        }
+			          /* update the data in pie*/
+		        		pieData = getPieData();
 
-		     		 /* update the data in pie*/
-		        	pieData = getPieData();
+			     		portfolioGraphPie.setOption({
+			     			legend: {
+						        data:pieData.map(function(item){
+									   return item.name;
+							        })
+						    },
+			     			series : [
+						        {     
+						            data: pieData,
+						        }
+						    ]
+				     	});
 
-		     		portfolioGraphPie.setOption({
-		     			legend: {
-					        data:pieData.map(function(item){
-								   return item.name;
-						        })
-					    },
-		     			series : [
-					        {     
-					            data: pieData,
-					        }
-					    ]
-			     	});
-		          }
+			     		$('.salePosition').modal('hide');
+			          }
+
 		      });
 
 			});
