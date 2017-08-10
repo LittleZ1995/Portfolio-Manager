@@ -105,31 +105,34 @@ public class PositionController {
         Position position = positionService.getPositionByPositionId(posId);
         int orgQuantity = position.getQuantity();
         int currentQuantity = orgQuantity - sale;
-        
-        double profit = 0;
-        BigDecimal profitDecimal = position.getCurrentprice().subtract(position.getInitialprice());
-        profit = profitDecimal.multiply(new BigDecimal(currentQuantity)).doubleValue();
-        
-        position.setQuantity(currentQuantity);
-        position.setProfit(profit);
-        
-        int res = positionService.updatePosition(position);
+        Map<String,Object> map=new HashMap();
+        int res = 0;
+        if (currentQuantity == 0) {
+        	res = positionService.deletePositionById(posId);
+        	map.put("isDelete","Yes");
+		}else{
+			double profit = 0;
+            BigDecimal profitDecimal = position.getCurrentprice().subtract(position.getInitialprice());
+            profit = profitDecimal.multiply(new BigDecimal(currentQuantity)).doubleValue();
+            
+            position.setQuantity(currentQuantity);
+            position.setProfit(profit);
+            
+            res = positionService.updatePosition(position);   
+            map.put("currentQuantity", currentQuantity);
+            map.put("profit", profit);
+		}
         
         int securityId = position.getSecurityid();
         Security security = securityService.getSecurityTypeById(securityId);
         String securityType = security.getSecuritytype();
-        
-        Map<String,Object> map=new HashMap();
         String message="";
         if(res>=1)message="success";
         else message="failed";
 
         map.put("message",message);
-        map.put("currentQuantity", currentQuantity);
         map.put("securityType", securityType);
-        map.put("profit", profit);
         return JSONUtil.toJsonString(map);
-
     }
 
 

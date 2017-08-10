@@ -16,4 +16,6 @@ public interface PositionService {
 	public int updatePosition(Position position);
 	
 	public Double calculateProfit(Position position);
+	
+	public int deletePositionById(int positionid);
 }

@@ -50,4 +50,10 @@ public class PositionServiceImpl implements PositionService {
 		return newProfit;
 	}
 
+	@Override
+	public int deletePositionById(int positionid) {
+		// TODO Auto-generated method stub
+		return positionMapper.deleteByPrimaryKey(positionid);
+	}
+
 }
