@@ -478,7 +478,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		   return $(this).text();
 	  		}).get();
 			var currentValueAll =  eval(currentValueAllArr.join('+'));
-			$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll);
+			$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll.toFixed(2));
 		});
 
 		function getPieData(){
@@ -668,8 +668,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			             $(".salePosition").modal('hide');
 			        	 $("#position"+posId + ">.quantity").text(map.currentQuantity);
 			        	 $("#position"+posId + ">.profit").text(map.profit);
-			        	 var initialValue = map.currentQuantity*$("#position"+posId + ">.initialprice").text();
-			        	 var currentValue = map.currentQuantity*$("#position"+posId + ">.currentprice").text();
+			        	 var initialValue = (map.currentQuantity*$("#position"+posId + ">.initialprice").text()).toFixed(2);
+			        	 var currentValue = (map.currentQuantity*$("#position"+posId + ">.currentprice").text()).toFixed(2);
 			        	 var proportion = (map.profit/initialValue*100).toFixed(2);
 			        	 $("#position"+posId + ">.initialValue").text(initialValue);
 			        	 $("#position"+posId + ">.currentValue").text(currentValue);
@@ -737,11 +737,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  		   return $(this).text();
 					  		}).get();
 							var currentValueAll =  eval(currentValueAllArr.join('+'));
-							$(this).parent().parent().parent().siblings(".currentValueAll").children().text(currentValueAll);
+							$(this).parent().parent().parent().siblings(".currentValueAll").children().text((currentValueAll).toFixed(2));
 						});
 						
 						var sale =  $("#sale").val();
-						$("#saleTips > span").text(currentprice * sale);
+						$("#saleTips > span").text((currentprice * sale).toFixed(2));
 						$("#saleTips").css("display","block");
 			     		$('.salePosition').modal('hide');
 

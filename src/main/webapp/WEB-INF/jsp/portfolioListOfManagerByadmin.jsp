@@ -140,7 +140,7 @@
                                 <td>${portfolio.name}</td>
                                 <td class = "${portfolio.profit lt 0?'red':'green'}">${portfolio.profit}</td>
                                 <td>                                
-                                  <a href="<%=path %>/viewOnePortfolio?portfolioid=${portfolio.portfolioid}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>View</a>
+                                  <a href="<%=path %>/viewOnePortfolio?portfolioid=${portfolio.portfolioid}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> View </a>
                                 </td>
                               </tr>     
                             </c:forEach>                      
@@ -191,6 +191,7 @@
   </c:forEach>
   var portfolioGraphLine = echarts.init(document.getElementById('portfolio-graphLine-manager'));
   var option = {
+		  color: ['#169F85'],
           title: {
               text: 'Portfolio Performence'
           },
