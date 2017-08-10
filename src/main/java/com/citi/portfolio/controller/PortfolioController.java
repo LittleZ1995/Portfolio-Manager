@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.enterprise.inject.New;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,7 @@ import com.citi.portfolio.entity.Future;
 import com.citi.portfolio.entity.Portfolio;
 import com.citi.portfolio.entity.Position;
 import com.citi.portfolio.entity.Price;
+import com.citi.portfolio.entity.Profit;
 import com.citi.portfolio.entity.Security;
 import com.citi.portfolio.service.BondService;
 import com.citi.portfolio.service.EquityService;
@@ -103,7 +105,14 @@ public class PortfolioController {
 		
 		Map results = new HashMap<>();
 		for(int i = 0; i < positions.size() ; i++){		
-			results.put(symbols.get(i), positions.get(i));
+			results.put(positions.get(i), symbols.get(i));
+		}
+		
+		List<Profit> historyProfits = portfolioService.getAllHistoryProfit(portfolioid);
+		if(historyProfits != null){
+			model.addAttribute("profits", historyProfits);
+		} else {
+			model.addAttribute("profits", new ArrayList<Profit>());
 		}
 		model.addAttribute("portfolio",portfolio);
 		model.addAttribute("results",results);
@@ -258,7 +267,7 @@ public class PortfolioController {
 		
 		Map results = new HashMap<>();
 		for(int i = 0; i < positions.size() ; i++){		
-			results.put(symbols.get(i), positions.get(i));
+			results.put(positions.get(i), symbols.get(i));
 		}
 		model.addAttribute("portfolio",portfolio);
 		model.addAttribute("results",results);

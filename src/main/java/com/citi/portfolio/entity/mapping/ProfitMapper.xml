@@ -84,5 +84,6 @@
     <include refid="Base_Column_List" />
     from profit
     where PortfolioID = #{portfolioid,jdbcType=INTEGER}
+    order by Date
   </select>
 </mapper>
